@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useState } from "react";
 
 import FormRedirection from "../../Form/FormRedirection";
@@ -49,10 +50,11 @@ const Heroes = (props: HeroesProps) => {
                                     <h1 className="mt-4 text-4xl font-bold tracking-tight text-blue-grey-50 sm:text-5xl sm:tracking-tight md:text-6xl md:tracking-tight">
                                         Level up your salary
                                     </h1>
-                                    <p className="mt-3 text-base text-blue-grey-300 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
+                                    <p className="mt-3 text-base text-blue-grey-200 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
                                         Stop asking yourself if you are paid correctly or not. Leverage our database to get confidence when you ask for your next raise or to know if your next company will pay you well compared to competitor.
                                     </p>
-                                    <FormRedirection department={department} handleChange={handleChange} />
+                                    <FormRedirection department={department} handleChange={handleChange} textButton={'Explore the data'} />
+                                    <Link href={'https://framaforms.org/salary-survey-1658479303'} className='mt-2'><a className="text-blue-grey-400 text-sm">Share your salaries</a></Link>
                                 </div>
 
                             </div>
