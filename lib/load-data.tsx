@@ -19,7 +19,6 @@ export async function loadDepartmentData() {
         return { params: {country: 'france', department: data.department_lower_case}}
     })
 
-    console.log(response)
     return response
 }
 

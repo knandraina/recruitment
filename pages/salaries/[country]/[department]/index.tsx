@@ -1,14 +1,15 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
+import { useState } from 'react';
 
 import { loadData, loadDepartmentData } from '../../../../lib/load-data'
 import connectionDB from '../../../../lib/connectionDB'
+import { metricsCompensation } from '../../../../lib/calculation';
 
 import Table from '../../../../components/Table/table';
 import OptimizedPage from '../../../../components/Page/OptimizedPage'
+import FormRedirection from '../../../../components/Form/FormRedirection';
 
-import { metricsCompensation } from '../../../../lib/calculation';
-
-
+import { NextSeo } from 'next-seo';
 
 
 // `getStaticPaths` requires using `getStaticProps`
@@ -44,10 +45,25 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 
 const DepartmentData = (props: any) => {
+
+    const [department, setDepartment] = useState<string>(props.department);
+
+    const handleChange = async (department: string) => {
+        console.log(department)
+        setDepartment(department)
+    }
+
+
+
     return (
         <>
+            <NextSeo
+                title={`Discover Software engineer salaries in ${props.country}`}
+                description="Leverage our database to know the sofware engineer wage in France"
+            />
             <OptimizedPage area={props.department} compensation={props.compensation} median={props.median} />
             <Table compensation={props} />
+            <FormRedirection department={department} handleChange={handleChange} textButton={"Explore Data"} />
         </>
     )
 }

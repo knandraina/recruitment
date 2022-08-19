@@ -16,7 +16,6 @@ const Homepage = () => {
   useEffect(() => {
     async function fetchData() {
       const response = await getCompensation()
-      console.log(response, 'test')
       setCompensation(response);
     }
     fetchData()

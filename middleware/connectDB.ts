@@ -6,7 +6,6 @@ const url_mongo: any = process.env.NEXT_PUBLIC_MONGODB_URL;
 
 
 const connectDB = (handler: Function) => async (req: any, res: any) => {
-    console.log(url_mongo)
     if (mongoose.connections[0].readyState) {
         // Use current db connection
         console.log('Already connected');

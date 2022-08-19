@@ -4,10 +4,11 @@ import Router from 'next/router'
 
 interface formRedirectionProps {
     department: string,
-    handleChange: Function
+    handleChange: Function,
+    textButton: string
 }
 
-const formRedirection = (props: formRedirectionProps) => {
+const FormRedirection = (props: formRedirectionProps) => {
 
     async function handleSubmit(e: React.BaseSyntheticEvent) {
         e.preventDefault();
@@ -24,9 +25,9 @@ const formRedirection = (props: formRedirectionProps) => {
 
     return (
         <form className="grid grid-cols-2 gap-4 mt-4">
-            <Input value={props.department} handleChange={handleChange} /> <Button value={'Start exploring data'} handleSubmit={handleSubmit} />
+            <Input value={props.department} handleChange={handleChange} /> <Button value={props.textButton} handleSubmit={handleSubmit} />
         </form>
     )
 }
 
-export default formRedirection;
+export default FormRedirection;
