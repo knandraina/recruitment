@@ -53,8 +53,6 @@ const DepartmentData = (props: any) => {
         setDepartment(department)
     }
 
-
-
     return (
         <>
             <NextSeo
