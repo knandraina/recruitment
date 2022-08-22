@@ -42,7 +42,7 @@ const CompensationSchema = new Schema<ICompensation>({
     contract: { type: String, enum: ['Full-Time', 'Part-Time', 'Freelance'], required: true },
     anonymous: { type: Boolean, required: true, default: false },
     department: { type: String, required: true },
-    department_lower_case: {type: String, required: true, unique: true}
+    department_lower_case: {type: String, required: true, unique: true}  
 })
 
 export default mongoose.models.Compensation || mongoose.model('Compensation', CompensationSchema);
