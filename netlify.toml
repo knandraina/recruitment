@@ -1,0 +1,11 @@
+[context.production.environment]
+NEXT_PUBLIC_MONGODB_URL="mongodb+srv://knandraina:Tsyadinomo0@prod.j8a9c.mongodb.net/count-calories-prod?retryWrites=true&w=majority"
+NEXT_PUBLIC_NODE_ENV="production"
+
+[context.deploy-preview.environment]
+NEXT_PUBLIC_MONGODB_URL="mongodb+srv://knandraina:Tsyadinomo0@cluster0.owfo1rt.mongodb.net/test"
+NEXT_PUBLIC_NODE_ENV="development"
+
+[context.branch-deploy.environment]
+NEXT_PUBLIC_MONGODB_URL="mongodb+srv://knandraina:Tsyadinomo0@cluster0.owfo1rt.mongodb.net/test"
+NEXT_PUBLIC_NODE_ENV="development"

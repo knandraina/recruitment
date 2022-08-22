@@ -1,7 +1,7 @@
 interface OptimizedPageProps {
     area: string,
-    compensation: Number,
-    median: Number
+    compensation: number,
+    median: number,
 }
 
 const Page = (props: OptimizedPageProps) => {
@@ -15,15 +15,15 @@ const Page = (props: OptimizedPageProps) => {
                 </div>
             </div>
             <div className="grid grid-cols-2 gap-4 px-4 content-center">
-                    <div>
+                <div>
                     <p className="text-blue-grey-300 mt-2 text-center">Average revenue</p>
                     <p className="text-2xl text-light-blue-400 text-center">{props.compensation} €</p>
-                    </div>
-                    <div>
+                </div>
+                <div>
                     <p className="text-blue-grey-300 mt-2 text-center">Median revenue</p>
                     <p className="text-2xl text-light-blue-400 text-center">{props.median} €</p>
-                    </div>
                 </div>
+            </div>
         </>
     )
 }
