@@ -57,7 +57,7 @@ const DepartmentData = (props: any) => {
         <>
             <NextSeo
                 title={`Discover Software engineer salaries in ${props.country}`}
-                description="Leverage our database to know the sofware engineer wage in France"
+                description={`Leverage our database to know the sofware engineer wage in ${props.country}`}
             />
             <OptimizedPage area={props.department} compensation={props.compensation} median={props.median} />
             <Table compensation={props} />
