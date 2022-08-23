@@ -1,5 +1,5 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { loadData, loadDepartmentData } from '../../../../lib/load-data'
 import connectionDB from '../../../../lib/connectionDB'
@@ -49,17 +49,14 @@ const DepartmentData = (props: any) => {
     const [department, setDepartment] = useState<string>(props.department);
 
     const handleChange = async (department: string) => {
-        console.log(department)
         setDepartment(department)
     }
-
-
 
     return (
         <>
             <NextSeo
                 title={`Discover Software engineer salaries in ${props.country}`}
-                description="Leverage our database to know the sofware engineer wage in France"
+                description={`Leverage our database to know the sofware engineer wage in ${props.country}`}
             />
             <OptimizedPage area={props.department} compensation={props.compensation} median={props.median} />
             <Table compensation={props} />
