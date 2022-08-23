@@ -32,7 +32,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             solution_tested
         } = req.body
 
-        const response = await addNewCompensation(revenue,
+        const response = await addNewCompensation(
+            revenue,
             bonus,
             stock_option,
             gender,
@@ -66,7 +67,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 }
 
 
-async function addNewCompensation(revenue: string,
+async function addNewCompensation(
+    revenue: string,
     bonus: string,
     stock_option: string,
     gender: string,
@@ -90,7 +92,9 @@ async function addNewCompensation(revenue: string,
         company_stage,
         industry
     );
-    const compensation = await createCompensation(company, revenue,
+    const compensation = await createCompensation(
+        company, 
+        revenue,
         bonus,
         stock_option,
         gender,
@@ -100,9 +104,10 @@ async function addNewCompensation(revenue: string,
         place_of_work,
         office_setup,
         contract,
-        technology_used,
         role,
-        anonymous);
+        anonymous,
+        technology_used,
+        );
 
     const res = await linkCompensationToCompany(compensation._id, company._id)
     return compensation
@@ -134,7 +139,9 @@ async function createCompany(
     return company;
 }
 
-async function createCompensation(company: any, revenue: string,
+async function createCompensation(
+    company: any, 
+    revenue: string,
     bonus: string,
     stock_option: string,
     gender: string,
@@ -148,18 +155,19 @@ async function createCompensation(company: any, revenue: string,
     anonymous: string,
     technology_used: string,
 ) {
+
     const compensation = await Compensation.create({
         revenue: parseInt(revenue),
         bonus: parseInt(bonus),
         stock_option: parseInt(stock_option),
-        role,
+        role: role,
         gender,
         years_in_company: years_in_company,
         years_of_experience: years_of_experience,
         seniority,
         place_of_work,
         office_setup,
-        technology_used,
+        technology_used: technology_used,
         contract: contract,
         anonymous: anonymous === 'true',
         company: company._id,
