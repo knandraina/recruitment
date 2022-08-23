@@ -6,7 +6,8 @@ import Compensation from '../../models/compensation';
 
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const response = await Compensation.aggregate([{ "$match": { "approved": true } }, { $sample: { size: 10 } }]);
+  //{ "$match": { "approved": true } }
+  const response = await Compensation.aggregate([{ $sample: { size: 10 } }]);
   const randomResponse = await Compensation.populate(response, { path: "company" })
 
 
