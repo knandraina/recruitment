@@ -1,5 +1,5 @@
 
-import {useState } from "react";
+import { useState } from "react";
 
 import Heroes from "../components/Element/Heroes";
 import Table from "../components/Table/table";
@@ -9,11 +9,11 @@ const post = [{ "_id": "62fbc24eb2659f54508993df", "revenue": 61000, "company": 
 
 const Homepage = () => {
 
-  const [compensation, setCompensation] = useState<any>(post)
+  const [compensation, setCompensation] = useState<any>({ data: { post } })
 
   return (
     <>
-      <Heroes table={<Table compensation={compensation ? compensation : ''} />} />
+      <Heroes table={<Table compensation={compensation ? compensation.data : ''} />} />
 
     </>
   )

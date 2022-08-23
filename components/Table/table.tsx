@@ -64,7 +64,7 @@ const Table = (props: TableProps) => {
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-blue-grey-200 bg-blue-grey-50">
-                                    {props.compensation ? props.compensation.map((transaction: any) => (
+                                    {props.compensation ? props.compensation.post.map((transaction: any) => (
                                         <tr key={transaction._id}>
                                             <td className="whitespace-nowrap px-2 py-2 text-sm font-medium text-blue-grey-900">
                                                 {transaction.anonymous === false ? transaction.company.name : 'Private'}
