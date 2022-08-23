@@ -1,5 +1,5 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import { loadData, loadDepartmentData } from '../../../../lib/load-data'
 import connectionDB from '../../../../lib/connectionDB'
