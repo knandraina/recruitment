@@ -48,7 +48,6 @@ const FrenchData = (props: any) => {
     const [department, setDepartment] = useState<string>(props.department);
 
     const handleChange = async (department: string) => {
-        console.log(department)
         setDepartment(department)
     }
 

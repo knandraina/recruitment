@@ -1,5 +1,5 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { loadData, loadDepartmentData } from '../../../../lib/load-data'
 import connectionDB from '../../../../lib/connectionDB'
@@ -49,7 +49,6 @@ const DepartmentData = (props: any) => {
     const [department, setDepartment] = useState<string>(props.department);
 
     const handleChange = async (department: string) => {
-        console.log(department)
         setDepartment(department)
     }
 
