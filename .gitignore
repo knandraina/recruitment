@@ -6,7 +6,6 @@
 .pnp.js
 .env
 pages/test
-pages/api/company
 
 # testing
 /coverage
