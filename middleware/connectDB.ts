@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 dotenv.config();
 
 const url_mongo: any = process.env.NEXT_PUBLIC_MONGODB_URL;
+console.log(url_mongo);
 
 
 const connectDB = (handler: Function) => async (req: any, res: any) => {
