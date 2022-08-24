@@ -29,7 +29,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             technology_used,
             anonymous,
             feedback_job_form,
-            solution_tested
+            solution_tested,
+            email
         } = req.body
 
         const response = await addNewCompensation(
@@ -56,7 +57,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
         await base('Table 1').create({
             feedback_job_form,
-            solution_tested
+            solution_tested,
+            email
         })
         res.status(200).json({ response })
     } catch (error) {
@@ -79,7 +81,7 @@ async function addNewCompensation(
     office_setup: string,
     contract: string,
     name: string,
-    technology_used: string,
+    technology_used: any,
     role: string,
     company_size: string,
     company_stage: string,
@@ -153,7 +155,7 @@ async function createCompensation(
     contract: string,
     role: string,
     anonymous: string,
-    technology_used: string,
+    technology_used: any,
 ) {
 
     const compensation = await Compensation.create({
@@ -167,7 +169,7 @@ async function createCompensation(
         seniority,
         place_of_work,
         office_setup,
-        technology_used: technology_used,
+        technology_used: technology_used.join(),
         contract: contract,
         anonymous: anonymous === 'true',
         company: company._id,

@@ -14,7 +14,7 @@ const Bonus = (props: BonusProps) => {
     return (
         <div>
             <label className="block text-sm font-medium text-blue-grey-700">
-                Bonus
+                Bonus in euros*
             </label>
             <div className="mt-1">
                 <input

@@ -4,8 +4,8 @@ interface ContractTypeProps {
 }
 
 const contract = [
-    'Full-Time',
-    'Part-Time',
+    'Full-Time (CDI)',
+    'Part-Time (CDD)',
     'Freelance'
 ]
 
