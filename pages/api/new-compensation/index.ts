@@ -175,7 +175,7 @@ async function createCompensation(
         company: company._id,
         department: undefined,
         department_lower_case: undefined,
-        category_role: undefined
+        category_role: role
     })
     return compensation;
 }
