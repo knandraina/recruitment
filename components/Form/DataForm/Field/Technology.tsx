@@ -16,6 +16,8 @@ const technology = [
     "Node.js",
     "React.js",
     "Next.js",
+    "Ember.js",
+    "Symfony",
     "Angular.js",
     "AWS",
     "Kubernetes",
@@ -42,7 +44,6 @@ const technology = [
     "PyTorch",
     "Linux",
     "PHP",
-    "Symfony",
     "Laravel",
     "Kibana",
     "Grafana",
@@ -51,7 +52,8 @@ const technology = [
     "Swift",
     "Flutter",
     "Unity",
-    "Jupyter"
+    "Jupyter",
+    "Django"
   ]
   
 
