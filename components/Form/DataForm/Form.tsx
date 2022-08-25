@@ -24,7 +24,6 @@ import SolutionTested from "./Field/SolutionTested";
 
 import axios from "axios";
 import Email from "./Field/Email";
-import Multiselect from "../../Element/MultipleSelect";
 
 const newCompensation = {
     revenue: '',

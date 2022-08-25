@@ -21,7 +21,6 @@ const role = [
     'Software Security Ops',
     'Software Network Engineer',
     'QA Engineer',
-
     'Engineering Director',
     'Principal Engineer',
     'CTO',
