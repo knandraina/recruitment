@@ -32,7 +32,7 @@ const CompensationSchema = new Schema<ICompensation>({
     bonus: { type: Number, required: true, min: 0, default: 0 },
     stock_option: { type: Number, required: true, min: 0, default: 0 },
     role: { type: String, required: true },
-    category_role: { type: String, enum: ['Software Engineer', 'DevOps', 'AdminSys', 'Data Analyst', 'Site Reliability Engineer', 'Data Scientist', 'Software Architect', 'Support'], required: true, default: 'Software Engineer' },
+    category_role: { type: String, required: true, default: 'Software Engineer' },
     gender: { type: String, enum: ['Male', 'Female', 'Other'], required: true },
     years_in_company: { type: Number, required: true, min: 0 },
     years_of_experience: { type: Number, required: true, min: 0 },

@@ -15,7 +15,7 @@ const Salary = (props: SalaryProps) => {
     return (
         <div>
             <label className="block text-sm font-medium text-blue-grey-700">
-                Salary in euros*
+                Yearly Salary in euros*
             </label>
             <div className="mt-1">
                 <input

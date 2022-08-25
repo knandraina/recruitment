@@ -19,7 +19,6 @@ const FeedbackJobForm = (props: FeedbackJobFormProps) => {
                     name="comment"
                     id="comment"
                     className="shadow-sm focus:ring-light-blue-500 focus:border-light-blue-500 block w-full sm:text-sm border-blue-grey-300 rounded-lg border-none"
-                    defaultValue={''}
                     onChange={handleChange}
                     value={props.value}
                 />

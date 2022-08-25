@@ -23,6 +23,7 @@ import FeedbackJobForm from "./Field/FeedbackJobForm";
 import SolutionTested from "./Field/SolutionTested";
 
 import axios from "axios";
+import Email from "./Field/Email";
 
 const newCompensation = {
     revenue: '',
@@ -39,9 +40,10 @@ const newCompensation = {
     name: '',
     company_size: '0-10',
     company_stage: 'Startup',
-    industry: '',
-    role: '',
+    industry: 'Agriculture',
+    role: 'Software Engineer, Back-end',
     anonymous: "false",
+    email: '',
     feedback_job_form: '',
     solution_tested: ''
 }
@@ -95,7 +97,6 @@ const FormCompensation = () => {
                             <StockOption value={compensation.stock_option} handleChange={handleChange} />
                         </div>
                     </div>
-
                     <Technology value={compensation.technology_used} handleChange={handleChange} />
                     <div className="grid grid-cols-2 gap-2">
                         <div>
@@ -115,6 +116,7 @@ const FormCompensation = () => {
                         </div>
                     </div>
                     <Anonymized value={compensation.anonymous} handleChange={handleChange} />
+                    <Email value={compensation.email} handleChange={handleChange} />
                     <FeedbackJobForm value={compensation.feedback_job_form} handleChange={handleChange} />
                     <SolutionTested value={compensation.solution_tested} handleChange={handleChange} />
                     <Button value='Submit my data' handleSubmit={handleSubmit} />

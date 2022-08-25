@@ -54,7 +54,7 @@ const Heroes = (props: HeroesProps) => {
                                         Stop asking yourself if you are paid correctly or not. Leverage our database to get confidence when you ask for your next raise or to know if your next company will pay you well compared to competitor.
                                     </p>
                                     <FormRedirection department={department} handleChange={handleChange} textButton={'Explore the data'} />
-                                    <Link href={'/new-salary'} className='mt-2'><a className="text-blue-grey-400 text-sm">Share your salaries</a></Link>
+                                    <Link href={'/new-salary'} className='mt-2'><a className="text-blue-grey-400 text-sm">Share your salary</a></Link>
                                 </div>
 
                             </div>
