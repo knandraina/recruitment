@@ -24,6 +24,7 @@ import SolutionTested from "./Field/SolutionTested";
 
 import axios from "axios";
 import Email from "./Field/Email";
+import ProductFeedback from "./Field/ProductFeedback";
 
 const newCompensation = {
     revenue: '',
@@ -45,7 +46,8 @@ const newCompensation = {
     anonymous: "false",
     email: '',
     feedback_job_form: '',
-    solution_tested: ''
+    solution_tested: '',
+    product_feedback:''
 }
 
 
@@ -119,6 +121,7 @@ const FormCompensation = () => {
                     <Email value={compensation.email} handleChange={handleChange} />
                     <FeedbackJobForm value={compensation.feedback_job_form} handleChange={handleChange} />
                     <SolutionTested value={compensation.solution_tested} handleChange={handleChange} />
+                    <ProductFeedback value={compensation.product_feedback} handleChange={handleChange}/>
                     <Button value='Submit my data' handleSubmit={handleSubmit} />
                 </form>
                 <div></div>

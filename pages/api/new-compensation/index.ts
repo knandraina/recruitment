@@ -30,7 +30,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             anonymous,
             feedback_job_form,
             solution_tested,
-            email
+            email,
+            product_feedback
         } = req.body
 
         const response = await addNewCompensation(
@@ -58,7 +59,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         await base('Table 1').create({
             feedback_job_form,
             solution_tested,
-            email
+            email,
+            product_feedback
         })
         res.status(200).json({ response })
     } catch (error) {
