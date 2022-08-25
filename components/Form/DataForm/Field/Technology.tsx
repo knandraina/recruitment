@@ -51,6 +51,7 @@ const technology = [
     "Swift",
     "Flutter",
     "Unity",
+    "Jupyter"
   ]
   
 
