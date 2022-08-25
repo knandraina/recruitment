@@ -28,7 +28,8 @@ const industry = [
     "Software & IT Services",
     "Transportation & Logistics",
     "Wellness & Fitness",
-    "Aerospace"
+    "Aerospace",
+    "E-Commerce"
 ]
 
 
