@@ -6,6 +6,7 @@ interface TechnologyProps {
 }
 
 const technology = [
+    "Java",
     "C",
     "C++",
     "Python",
