@@ -67,7 +67,7 @@ const Table = (props: TableProps) => {
                                     {props.compensation ? props.compensation.post.map((transaction: any) => (
                                         <tr key={transaction._id}>
                                             <td className="whitespace-nowrap px-2 py-2 text-sm font-medium text-blue-grey-900">
-                                                {transaction.anonymous === false ? transaction.company.name : 'Private'}
+                                                { transaction.company.compensation.length > 3 ? transaction.company.name : transaction.anonymous === false ? transaction.company.name : 'Private'}
                                             </td>
                                             <td className="whitespace-nowrap px-2 py-2 text-sm font-medium text-blue-grey-900">
                                                 {transaction.role}
