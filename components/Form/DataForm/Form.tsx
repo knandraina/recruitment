@@ -23,6 +23,11 @@ import FeedbackJobForm from "./Field/FeedbackJobForm";
 import SolutionTested from "./Field/SolutionTested";
 
 import axios from "axios";
+import { AnalyticsBrowser } from '@segment/analytics-next'
+const apiKey: any = process.env.NEXT_PUBLIC_SEGMENT_WRITE_KEY
+const analytics = AnalyticsBrowser.load({ writeKey: apiKey })
+
+
 import Email from "./Field/Email";
 import ProductFeedback from "./Field/ProductFeedback";
 
@@ -64,7 +69,8 @@ const FormCompensation = () => {
 
     const handleSubmit = async (e: React.BaseSyntheticEvent) => {
         e.preventDefault();
-        await axios.post('/api/new-compensation', compensation)
+        const anonymousId = (await analytics.user()).anonymousId()
+        await axios.post('/api/new-compensation', compensation, anonymousId)
         setCompensation(newCompensation);
 
         Router.push('/salaries/france')
