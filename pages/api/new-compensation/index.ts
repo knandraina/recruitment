@@ -9,7 +9,6 @@ var base = new Airtable({ apiKey: 'keyEhtbC8BEcOHnfU' }).base('appkuQ9Rzvw0sjelz
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
-
         const {
             revenue,
             bonus,
