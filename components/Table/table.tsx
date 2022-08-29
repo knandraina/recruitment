@@ -7,7 +7,7 @@ interface TableProps {
 const Table = (props: TableProps) => {
     return (
         <div className="px-4 sm:px-6 lg:px-8">
-            <p className='text-s text-blue-grey-700 mt-2'>{props.compensation.post.length} salaries from software engineer has been posted in France.</p>
+            <p className='text-s text-blue-grey-700 mt-2'>{props.compensation.post.length} { props.compensation.post.length > 1 ? 'salaries' : 'salary'} from software engineer has been posted in France.</p>
             <p className='text-xs text-blue-grey-200 mt-2'>Currently, we don't have enough data to disclose company name. For privacy reason, we will divulge company name only when we have more than 3 answers in the same company</p>
             <div className="mt-8 flex flex-col">
                 <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
