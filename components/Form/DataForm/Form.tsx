@@ -70,7 +70,7 @@ const FormCompensation = () => {
     const handleSubmit = async (e: React.BaseSyntheticEvent) => {
         e.preventDefault();
         const anonymousId = (await analytics.user()).anonymousId()
-        await axios.post('/api/new-compensation', compensation, anonymousId)
+        await axios.post('/api/new-compensation', {compensation, anonymousId})
         setCompensation(newCompensation);
 
         Router.push('/salaries/france')

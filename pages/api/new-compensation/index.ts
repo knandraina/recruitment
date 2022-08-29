@@ -4,6 +4,12 @@ import connectDB from '../../../middleware/connectDB';
 import Company from '../../../models/company';
 import Compensation from '../../../models/compensation';
 
+const apiKey: any = process.env.NEXT_PUBLIC_SEGMENT_WRITE_KEY
+console.log(apiKey);
+
+var Analytics = require('analytics-node');
+var analytics = new Analytics(apiKey);
+
 var Airtable = require('airtable');
 var base = new Airtable({ apiKey: 'keyEhtbC8BEcOHnfU' }).base('appkuQ9Rzvw0sjelz');
 
@@ -31,7 +37,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             solution_tested,
             email,
             product_feedback
-        } = req.body
+        } = req.body.compensation
+
+        const { anonymousId } = req.body
 
         const response = await addNewCompensation(
             revenue,
@@ -53,8 +61,35 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             anonymous,
             feedback_job_form,
             solution_tested)
-        
 
+
+        await analytics.track({
+            anonymousId: anonymousId,
+            event: 'Form Submitted Successful',
+            properties: {
+                revenue,
+                bonus,
+                stock_option,
+                gender,
+                years_in_company,
+                years_of_experience,
+                seniority,
+                place_of_work,
+                office_setup,
+                contract,
+                name,
+                role,
+                company_size,
+                company_stage,
+                industry,
+                technology_used,
+                anonymous,
+                feedback_job_form,
+                solution_tested,
+                email,
+                product_feedback
+            }
+        })
         await base('Table 1').create({
             feedback_job_form,
             solution_tested,
@@ -96,7 +131,7 @@ async function addNewCompensation(
         industry
     );
     const compensation = await createCompensation(
-        company, 
+        company,
         revenue,
         bonus,
         stock_option,
@@ -110,7 +145,7 @@ async function addNewCompensation(
         role,
         anonymous,
         technology_used,
-        );
+    );
 
     const res = await linkCompensationToCompany(compensation._id, company._id)
     return compensation
@@ -143,7 +178,7 @@ async function createCompany(
 }
 
 async function createCompensation(
-    company: any, 
+    company: any,
     revenue: string,
     bonus: string,
     stock_option: string,
