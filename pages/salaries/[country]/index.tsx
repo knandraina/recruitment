@@ -13,7 +13,6 @@ import { NextSeo } from 'next-seo';
 const _ = require("lodash");
 
 
-
 // `getStaticPaths` requires using `getStaticProps`
 export const getStaticProps: GetStaticProps = async (context: any) => {
     const country: String = context.params.country
@@ -39,9 +38,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
         fallback: false, // can also be true or 'blocking'
     }
 }
-
-
-
 
 const FrenchData = (props: any) => {
 
