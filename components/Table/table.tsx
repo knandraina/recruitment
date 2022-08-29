@@ -7,6 +7,8 @@ interface TableProps {
 const Table = (props: TableProps) => {
     return (
         <div className="px-4 sm:px-6 lg:px-8">
+            <p className='text-s text-blue-grey-700 mt-2'>{props.compensation.post.length} salaries from software engineer has been posted in France.</p>
+            <p className='text-xs text-blue-grey-200 mt-2'>Currently, we don't have enough data to disclose company name. For privacy reason, we will divulge company name only when we have more than 3 answers in the same company</p>
             <div className="mt-8 flex flex-col">
                 <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -24,7 +26,7 @@ const Table = (props: TableProps) => {
                                             scope="col"
                                             className="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-blue-grey-900"
                                         >
-                                            Title
+                                            Gender
                                         </th>
                                         <th
                                             scope="col"
@@ -43,6 +45,12 @@ const Table = (props: TableProps) => {
                                             className="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-blue-grey-900"
                                         >
                                             Bonus                                        </th>
+                                        <th
+                                            scope="col"
+                                            className="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-blue-grey-900"
+                                        >
+                                            Years of experience
+                                        </th>
                                         <th
                                             scope="col"
                                             className="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-blue-grey-900"
@@ -67,16 +75,17 @@ const Table = (props: TableProps) => {
                                     {props.compensation ? props.compensation.post.map((transaction: any) => (
                                         <tr key={transaction._id}>
                                             <td className="whitespace-nowrap px-2 py-2 text-sm font-medium text-blue-grey-900">
-                                                { transaction.company.compensation.length > 3 ? transaction.company.name : transaction.anonymous === false ? transaction.company.name : 'Private'}
+                                                {transaction.company.compensation.length < 3 ? 'Private' : transaction.anonymous === false ? transaction.company.name : 'Private'}
                                             </td>
                                             <td className="whitespace-nowrap px-2 py-2 text-sm font-medium text-blue-grey-900">
-                                                {transaction.role}
+                                                {transaction.gender}
                                             </td>
                                             <td className="whitespace-nowrap px-2 py-2 text-sm font-medium text-blue-grey-900">
                                                 {transaction.category_role}
                                             </td>
                                             <td className="whitespace-nowrap px-2 py-2 text-sm text-blue-grey-900 text-left">€ {transaction.revenue}</td>
                                             <td className="whitespace-nowrap px-2 py-2 text-sm text-blue-grey-500">€ {transaction.bonus}</td>
+                                            <td className="whitespace-nowrap px-2 py-2 text-sm text-blue-grey-500">{transaction.years_of_experience}</td>
                                             <td className="whitespace-nowrap px-2 py-2 text-sm text-blue-grey-500">{transaction.seniority}</td>
                                             <td className="whitespace-nowrap px-2 py-2 text-sm text-blue-grey-500">{transaction.department}</td>
                                             <td className="whitespace-nowrap px-2 py-2 text-sm text-blue-grey-500">{transaction.office_setup}</td>
