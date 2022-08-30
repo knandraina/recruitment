@@ -24,7 +24,6 @@ const role = [
     'Engineering Director',
     'Principal Engineer',
     'CTO',
-    "Software Engineer",
     "Machine Learning Engineer"
 
 ]

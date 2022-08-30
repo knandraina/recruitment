@@ -54,7 +54,7 @@ const FrenchData = (props: any) => {
                 description="Leverage our database to know the sofware engineer wage in France"
             />
             <OptimizedPage area={props.country} compensation={props.compensation} median={props.median} />
-            <Table compensation={props} />
+            <Table compensation={props} department={'France'}/>
             <FormRedirection department={department} handleChange={handleChange} textButton={"Explore Data"} />
         </>
     )

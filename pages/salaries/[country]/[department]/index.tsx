@@ -59,7 +59,7 @@ const DepartmentData = (props: any) => {
                 description={`Leverage our database to know the sofware engineer wage in ${props.country}`}
             />
             <OptimizedPage area={props.department} compensation={props.compensation} median={props.median} />
-            <Table compensation={props} />
+            <Table compensation={props} department={props.department}/>
             <FormRedirection department={department} handleChange={handleChange} textButton={"Explore Data"} />
         </>
     )
