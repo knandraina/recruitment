@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import Footer from "../components/Element/Footer";
 
 import Heroes from "../components/Element/Heroes";
 import Table from "../components/Table/table";
@@ -14,6 +15,7 @@ const Homepage = () => {
   return (
     <>
       <Heroes table={<Table compensation={compensation ? compensation.data : ''} department={'France'} />} />
+      <Footer />
 
     </>
   )

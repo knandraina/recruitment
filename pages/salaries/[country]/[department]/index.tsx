@@ -8,6 +8,7 @@ import { metricsCompensation } from '../../../../lib/calculation';
 import Table from '../../../../components/Table/table';
 import OptimizedPage from '../../../../components/Page/OptimizedPage'
 import FormRedirection from '../../../../components/Form/FormRedirection';
+import Footer from '../../../../components/Element/Footer';
 
 import { NextSeo } from 'next-seo';
 
@@ -61,6 +62,7 @@ const DepartmentData = (props: any) => {
             <OptimizedPage area={props.department} compensation={props.compensation} median={props.median} />
             <Table compensation={props} department={props.department}/>
             <FormRedirection department={department} handleChange={handleChange} textButton={"Explore Data"} />
+            <Footer />
         </>
     )
 }

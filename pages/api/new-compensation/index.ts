@@ -5,7 +5,6 @@ import Company from '../../../models/company';
 import Compensation from '../../../models/compensation';
 
 const apiKey: any = process.env.NEXT_PUBLIC_SEGMENT_WRITE_KEY
-console.log(apiKey);
 
 var Analytics = require('analytics-node');
 var analytics = new Analytics(apiKey);
