@@ -13,7 +13,7 @@ const Homepage = () => {
 
   return (
     <>
-      <Heroes table={<Table compensation={compensation ? compensation.data : ''} />} />
+      <Heroes table={<Table compensation={compensation ? compensation.data : ''} department={'France'} />} />
 
     </>
   )
