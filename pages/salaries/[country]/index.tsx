@@ -51,7 +51,7 @@ const FrenchData = (props: any) => {
     return (
         <>
             <NextSeo
-                title={`Discover Software engineer salaries in ${props.country}`}
+                title={`Discover Software engineer salary in ${props.country}`}
                 description="Leverage our database to know the sofware engineer wage in France"
             />
             <OptimizedPage area={props.country} compensation={props.compensation} median={props.median} />

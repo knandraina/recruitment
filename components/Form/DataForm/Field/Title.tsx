@@ -11,6 +11,7 @@ const role = [
     'Software Engineer, Operating Systems',
     'Software Engineer, Embedded Systems',
     'Software Engineer, Digital Signal Processing Systems',
+    'Software Engineer, Mobile',
     'DevOps',
     'Admin Systems',
     'Data Analyst',

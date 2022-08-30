@@ -82,10 +82,10 @@ export default function Footer() {
         async function fetchData() {
             const response = Object.keys(router.query);
             const results = await axios.post('/api/footer', { res: response })
-            const leverage = results.data.post;
+            const department = results.data.post;
 
-            const alors = _.chunk(leverage, Math.ceil(leverage.length / 4))
-            setVariable(alors);
+            const departmentDivided = _.chunk(department, Math.ceil(department.length / 4))
+            setVariable(departmentDivided);
         }
         fetchData()
 
@@ -104,8 +104,8 @@ export default function Footer() {
                             src="https://tailwindui.com/img/logos/workflow-mark.svg?color=gray&shade=300"
                             alt="Company name"
                         />
-                        <p className="text-base text-gray-500">
-                            Making the world a better place through constructing elegant hierarchies.
+                        <p className="text-base text-blue-grey-900">
+                            Transparency for good
                         </p>
                         {/* <div className="flex space-x-6">
                 {navigation.social.map((item) => (

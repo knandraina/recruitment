@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router'
+import Link from 'next/link';
 
 interface TableProps {
     compensation: any,
@@ -12,7 +13,7 @@ const Table = (props: TableProps) => {
     return (
         <div className="px-4 sm:px-6 lg:px-8">
             {router.pathname === '/' ? '' : <p className='text-s text-blue-grey-700 mt-2'>{`${props.compensation.post.length} ${props.compensation.post.length > 1 ? 'salaries' : 'salary'} from software engineer has been posted in ${props.department}.`}</p>}
-            {router.pathname === '/' ? '' : <p className='text-xs text-blue-grey-200 mt-2'>Currently, we don&apos;t have enough data to disclose company name. For privacy reason, we will divulge company name only when we have more than 3 answers per company</p>}
+            {router.pathname === '/' ? '' : <p className='text-xs text-blue-grey-200 mt-2'>Currently, we don&apos;t have enough data to disclose company name. For privacy reason, we will divulge company name only when we have more than 3 answers per company. You can click on a location to discover the average salary there. Scroll down to the bottom to select a particular area!</p>}
             <div className="mt-8 flex flex-col">
                 <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -91,7 +92,7 @@ const Table = (props: TableProps) => {
                                             <td className="whitespace-nowrap px-2 py-2 text-sm text-blue-grey-500">€ {transaction.bonus}</td>
                                             <td className="whitespace-nowrap px-2 py-2 text-sm text-blue-grey-500">{transaction.years_of_experience}</td>
                                             <td className="whitespace-nowrap px-2 py-2 text-sm text-blue-grey-500">{transaction.seniority}</td>
-                                            <td className="whitespace-nowrap px-2 py-2 text-sm text-blue-grey-500">{transaction.department}</td>
+                                            <td className="whitespace-nowrap px-2 py-2 text-sm text-blue-grey-500 hover:text-blue-grey-800"> <Link href={`/salaries/france/${transaction.department.toLowerCase()}`}><a>{transaction.department}</a></Link></td>
                                             <td className="whitespace-nowrap px-2 py-2 text-sm text-blue-grey-500">{transaction.office_setup}</td>
                                         </tr>
                                     )) : ''}
