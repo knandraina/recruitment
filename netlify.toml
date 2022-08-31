@@ -5,7 +5,7 @@ NEXT_PUBLIC_NODE_ENV="production"
 NEXT_PUBLIC_SEGMENT_WRITE_KEY="TWD4SIZ3Pt2TTzBOJZ6L2iiqmh4ZPVln"
 
 [context.deploy-preview.environment]
-NEXT_PUBLIC_MONGODB_URL="mongodb+srv://knandraina:Tsyadinomo0@cluster0.owfo1rt.mongodb.net/test"
+NEXT_PUBLIC_MONGODB_URL="mongodb+srv://knandraina:Tsyadinomo0@cluster0.13k7yp8.mongodb.net/test"
 NEXT_PUBLIC_NODE_ENV="development"
 NEXT_PUBLIC_SEGMENT_WRITE_KEY="l9AnFLhpWlu8mt67R6LRR49PH9e8wOPq"
 

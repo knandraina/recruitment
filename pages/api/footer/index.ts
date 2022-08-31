@@ -14,7 +14,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     } else {
         response.shift();
         const resultsString = response.join()
-        const resultsDepartment = await Compensation.distinct(resultsString);
+        const resultsDepartment = await Compensation.distinct('department');
         res.status(200).json({ post: resultsDepartment })
     }
 
