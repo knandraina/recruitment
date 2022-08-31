@@ -73,16 +73,20 @@ const FormCompensation = () => {
     const handleSubmit = async (e: React.BaseSyntheticEvent) => {
         try {
             e.preventDefault();
-        const anonymousId = (await analytics.user()).anonymousId()
-        await axios.post('/api/new-compensation', { compensation, anonymousId })
-        setCompensation(newCompensation);
 
-        Router.push('/salaries/france')    
+            const anonymousId = (await analytics.user()).anonymousId()
+            await analytics.track('Form Submitted Selected', {
+                compensation
+            })
+            await axios.post('/api/new-compensation', { compensation, anonymousId })
+            setCompensation(newCompensation);
+
+            Router.push('/salaries/france')
         } catch (error: any) {
             setHandleError(error.response.data)
             throw error
         }
-        
+
     }
 
     return (
@@ -98,7 +102,7 @@ const FormCompensation = () => {
                     </p>
                     <p className="text-blue-grey-300">Currently, we don&apos;t have enough data to disclose company name. For privacy reason, we will divulge company name only when we have more than 3 answers per company</p>
                     <Gender value={compensation.gender} handleChange={handleChange} />
-                    <CompanyName value={compensation.name} handleChange={handleChange} error={handleError.name ? handleError.name : undefined }/>
+                    <CompanyName value={compensation.name} handleChange={handleChange} error={handleError.name ? handleError.name : undefined} />
                     <Industry value={compensation.industry} handleChange={handleChange} />
                     <div className="grid grid-cols-2 gap-2">
                         <div>
@@ -110,22 +114,22 @@ const FormCompensation = () => {
                     </div>
                     <Title value={compensation.role} handleChange={handleChange} />
                     <ContractType value={compensation.contract} handleChange={handleChange} />
-                    <Salary value={compensation.revenue} handleChange={handleChange} error={handleError.revenue ? handleError.revenue : undefined }/>
+                    <Salary value={compensation.revenue} handleChange={handleChange} error={handleError.revenue ? handleError.revenue : undefined} />
                     <div className="grid grid-cols-2 gap-2">
                         <div>
-                            <Bonus value={compensation.bonus} handleChange={handleChange} error={handleError.bonus ? handleError.bonus : undefined }/>
+                            <Bonus value={compensation.bonus} handleChange={handleChange} error={handleError.bonus ? handleError.bonus : undefined} />
                         </div>
                         <div>
-                            <StockOption value={compensation.stock_option} handleChange={handleChange} error={handleError.stock_option ? handleError.stock_option : undefined } />
+                            <StockOption value={compensation.stock_option} handleChange={handleChange} error={handleError.stock_option ? handleError.stock_option : undefined} />
                         </div>
                     </div>
                     <Technology value={compensation.technology_used} handleChange={handleChange} />
                     <div className="grid grid-cols-2 gap-2">
                         <div>
-                            <YearsInCompany value={compensation.years_in_company} handleChange={handleChange} error={handleError.years_in_company ? handleError.years_in_company : undefined } />
+                            <YearsInCompany value={compensation.years_in_company} handleChange={handleChange} error={handleError.years_in_company ? handleError.years_in_company : undefined} />
                         </div>
                         <div>
-                            <YearsOfExperience value={compensation.years_of_experience} handleChange={handleChange} error={handleError.years_of_experience ? handleError.years_of_experience : undefined }/>
+                            <YearsOfExperience value={compensation.years_of_experience} handleChange={handleChange} error={handleError.years_of_experience ? handleError.years_of_experience : undefined} />
                         </div>
                     </div>
                     <Seniority value={compensation.seniority} handleChange={handleChange} />

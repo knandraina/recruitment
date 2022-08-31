@@ -15,8 +15,19 @@ var base = new Airtable({ apiKey: 'keyEhtbC8BEcOHnfU' }).base('appkuQ9Rzvw0sjelz
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
-        const {errors, isValid} = await validateCompensation(req.body.compensation);
+        const { anonymousId } = req.body
+        const { errors, isValid } = await validateCompensation(req.body.compensation);
         if (!isValid) {
+
+            await analytics.track({
+                anonymousId: anonymousId,
+                event: 'Form Submitted Failure',
+                properties: {
+                    type: 'new salary',
+                    errors
+                }
+            })
+
             return res.status(500).json(errors);
         }
 
@@ -44,7 +55,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             product_feedback
         } = req.body.compensation
 
-        const { anonymousId } = req.body
+
 
         const response = await addNewCompensation(
             revenue,
@@ -72,6 +83,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             anonymousId: anonymousId,
             event: 'Form Submitted Successful',
             properties: {
+                type: 'new salary',
                 revenue,
                 bonus,
                 stock_option,
@@ -103,7 +115,16 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         })
         res.status(200).json({ response })
     } catch (error) {
-        return res.status(400).json({error})
+        const { anonymousId } = req.body
+        await analytics.track({
+            anonymousId: anonymousId,
+            event: 'Form Submitted Failure',
+            properties: {
+                type: 'new salary',
+                error
+            }
+        })
+        return res.status(400).json({ error })
     }
 
 
