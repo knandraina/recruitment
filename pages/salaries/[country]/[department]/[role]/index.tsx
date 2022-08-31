@@ -58,8 +58,8 @@ const RoleData = (props: any) => {
     return (
         <>
             <NextSeo
-                title={`Discover ${props.role} salaries in ${props.country}`}
-                description={`Leverage our database to know the sofware engineer wage in ${props.country}`}
+                title={`Discover ${props.role} salaries in ${props.department}`}
+                description={`Leverage our database to know the ${props.role} wage in ${props.department}`}
             />
             <OptimizedPage area={props.department} compensation={props.compensation} median={props.median} role={props.role}/>
             <Table compensation={props} department={props.department} role={props.role}/>
