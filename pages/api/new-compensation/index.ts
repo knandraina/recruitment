@@ -15,10 +15,11 @@ var base = new Airtable({ apiKey: 'keyEhtbC8BEcOHnfU' }).base('appkuQ9Rzvw0sjelz
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
-        const { anonymousId } = req.body
+        const { anonymousId } = req.body;
+        console.log(anonymousId);
         const { errors, isValid } = await validateCompensation(req.body.compensation);
         if (!isValid) {
-
+            console.log('test')
             await analytics.track({
                 anonymousId: anonymousId,
                 event: 'Form Submitted Failure',
