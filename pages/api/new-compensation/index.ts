@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import validateCompensation from '../../../lib/validation/compensation';
+import validateCompensation from '../../../lib/compensation';
 
 import connectDB from '../../../middleware/connectDB';
 import Company from '../../../models/company';
