@@ -39,7 +39,7 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
 export const getStaticPaths: GetStaticPaths = async () => {
 
     await connectionDB();
-    const path: Array<any> = await loadDepartmentData()
+    const path: Array<any> = await loadDepartmentData();
     return {
         paths: path,
         fallback: false, // can also be true or 'blocking'

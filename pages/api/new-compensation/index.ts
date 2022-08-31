@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import validateCompensation from '../../../lib/compensation';
 
 import connectDB from '../../../middleware/connectDB';
 import Company from '../../../models/company';
@@ -14,6 +15,11 @@ var base = new Airtable({ apiKey: 'keyEhtbC8BEcOHnfU' }).base('appkuQ9Rzvw0sjelz
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
+        const {errors, isValid} = await validateCompensation(req.body.compensation);
+        if (!isValid) {
+            return res.status(500).json(errors);
+        }
+
         const {
             revenue,
             bonus,
@@ -97,7 +103,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         })
         res.status(200).json({ response })
     } catch (error) {
-        console.log(error);
+        return res.status(400).json({error})
     }
 
 

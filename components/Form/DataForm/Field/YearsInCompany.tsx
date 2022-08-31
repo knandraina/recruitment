@@ -1,6 +1,7 @@
 interface YearsInCompanyProps {
     value: string | undefined,
-    handleChange: Function
+    handleChange: Function,
+    error?: any
 }
 
 const YearsInCompany = (props: YearsInCompanyProps) => {
@@ -22,11 +23,14 @@ const YearsInCompany = (props: YearsInCompanyProps) => {
                     inputMode="numeric"
                     id="years_in_company"
                     min="0"
-                    className="shadow-sm focus:ring-light-blue-500 focus:border-light-blue-500 block w-full sm:text-sm border-blue-grey-300 rounded-lg border-none"
+                    className={`shadow-sm focus:ring-light-blue-500 focus:border-light-blue-500 block w-full sm:text-sm rounded-lg border-none ${props.error != undefined ? 'ring-2 ring-red-500' : ''}`}
                     placeholder="1"
                     onChange={handleChange}
                     value={props.value}
                 />
+                  {(props.error != undefined) 
+                ? <p className="text-red-500 text-xs"> {props.error}</p> 
+                : '' }
             </div>
         </div>
     )
