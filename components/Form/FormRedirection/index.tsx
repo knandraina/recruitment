@@ -24,8 +24,8 @@ const FormRedirection = (props: formRedirectionProps) => {
     }
 
     return (
-        <form className="grid grid-cols-2 gap-4 mt-4">
-            <Input value={props.department} handleChange={handleChange} /> <Button value={props.textButton} handleSubmit={handleSubmit} />
+        <form className="grid grid-cols-3 gap-4 mt-4">
+            <div className="col-start-0 col-span-2"><Input value={props.department} handleChange={handleChange} /></div> <Button value={props.textButton} handleSubmit={handleSubmit} />
         </form>
     )
 }

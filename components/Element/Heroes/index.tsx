@@ -64,8 +64,8 @@ const Heroes = (props: HeroesProps) => {
 
                             </div>
                         </div>
-                        <div className="grid grid-cols-12">
-                            <div className="col-start-0 col-span-7">
+                        <div className="px-4 sm:px-6 grid grid-cols-12">
+                            <div className="col-start-0 col-span-9">
                                 <div className="grid grid-cols-2 gap-4 mt-4">
                                     <FormRedirection department={department} handleChange={handleChange} textButton={'Explore the data'} /> <div className="gap-4 mt-4"><SecondaryButton value='Join our community to better negociate salary' handleSubmit={handleSubmit} /></div>
                                 </div>
