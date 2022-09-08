@@ -92,7 +92,7 @@ const Table = (props: TableProps) => {
                                                 {transaction.gender}
                                             </td>
                                             <td className="whitespace-nowrap px-2 py-2 text-xs font-medium text-blue-grey-900">
-                                                {<Link href={`/salaries/france/${transaction.department.toLowerCase()}/${transaction.category_role}`}><a>{transaction.category_role}, Back-end</a></Link>}
+                                                {<Link href={`/salaries/france/${transaction.department.toLowerCase()}/${transaction.category_role}`}><a>{transaction.category_role}</a></Link>}
                                                 {/* test */}
                                             </td>
                                             <td className="whitespace-nowrap px-2 py-2 text-xs text-blue-grey-900 text-left">€ {transaction.revenue}</td>
