@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { useState } from "react";
+import Router from 'next/router'
 
 import FormRedirection from "../../Form/FormRedirection";
+import SecondaryButton from "../SecondaryButton";
 
 interface HeroesProps {
     table: any
@@ -13,6 +15,10 @@ const Heroes = (props: HeroesProps) => {
 
     async function handleChange(area: string) {
         setDepartment(area);
+    }
+
+    const handleSubmit = async () => {
+        Router.push('https://framaforms.org/ask-to-join-our-community-1662650400')
     }
 
 
@@ -53,10 +59,17 @@ const Heroes = (props: HeroesProps) => {
                                     <p className="mt-3 text-base text-blue-grey-200 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
                                         Stop asking yourself if you are paid correctly or not. Leverage our database to get confidence when you ask for your next raise or to know if your next company will pay you well compared to competitor.
                                     </p>
-                                    <FormRedirection department={department} handleChange={handleChange} textButton={'Explore the data'} />
-                                    <Link href={'/new-salary'} className='mt-2'><a className="text-blue-grey-400 text-sm">Share your salary</a></Link>
+
                                 </div>
 
+                            </div>
+                        </div>
+                        <div className="grid grid-cols-12">
+                            <div className="col-start-0 col-span-7">
+                                <div className="grid grid-cols-2 gap-4 mt-4">
+                                    <FormRedirection department={department} handleChange={handleChange} textButton={'Explore the data'} /> <div className="gap-4 mt-4"><SecondaryButton value='Join our community to better negociate salary' handleSubmit={handleSubmit} /></div>
+                                </div>
+                                <Link href={'/new-salary'} className='mt-2'><a className="text-blue-grey-400 text-sm">Share your salary</a></Link>
                             </div>
                         </div>
                     </div>
