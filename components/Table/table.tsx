@@ -85,22 +85,22 @@ const Table = (props: TableProps) => {
                                 <tbody className="divide-y divide-blue-grey-200 bg-blue-grey-50">
                                     {props.compensation ? props.compensation.post.map((transaction: any) => (
                                         <tr key={transaction._id}>
-                                            <td className="whitespace-nowrap px-2 py-2 text-sm font-medium text-blue-grey-900">
+                                            <td className="whitespace-nowrap px-2 py-2 text-xs font-medium text-blue-grey-900">
                                                 {transaction.company.compensation.length < 3 ? 'Private' : transaction.anonymous === false ? transaction.company.name : 'Private'}
                                             </td>
-                                            <td className="whitespace-nowrap px-2 py-2 text-sm font-medium text-blue-grey-900">
+                                            <td className="whitespace-nowrap px-2 py-2 text-xs font-medium text-blue-grey-900">
                                                 {transaction.gender}
                                             </td>
-                                            <td className="whitespace-nowrap px-2 py-2 text-sm font-medium text-blue-grey-900">
-                                                {<Link href={`/salaries/france/${transaction.department.toLowerCase()}/${transaction.category_role}`}><a>{transaction.category_role}</a></Link>}
+                                            <td className="whitespace-nowrap px-2 py-2 text-xs font-medium text-blue-grey-900">
+                                                {<Link href={`/salaries/france/${transaction.department.toLowerCase()}/${transaction.category_role}`}><a>{transaction.category_role}, Back-end</a></Link>}
                                                 {/* test */}
                                             </td>
-                                            <td className="whitespace-nowrap px-2 py-2 text-sm text-blue-grey-900 text-left">€ {transaction.revenue}</td>
-                                            <td className="whitespace-nowrap px-2 py-2 text-sm text-blue-grey-500">€ {transaction.bonus}</td>
-                                            <td className="whitespace-nowrap px-2 py-2 text-sm text-blue-grey-500">{transaction.years_of_experience}</td>
-                                            <td className="whitespace-nowrap px-2 py-2 text-sm text-blue-grey-500">{transaction.seniority}</td>
-                                            <td className="whitespace-nowrap px-2 py-2 text-sm text-blue-grey-500 hover:text-blue-grey-800"> <Link href={`/salaries/france/${transaction.department.toLowerCase()}`}><a>{transaction.department}</a></Link></td>
-                                            <td className="whitespace-nowrap px-2 py-2 text-sm text-blue-grey-500">{transaction.office_setup}</td>
+                                            <td className="whitespace-nowrap px-2 py-2 text-xs text-blue-grey-900 text-left">€ {transaction.revenue}</td>
+                                            <td className="whitespace-nowrap px-2 py-2 text-xs text-blue-grey-500">€ {transaction.bonus}</td>
+                                            <td className="whitespace-nowrap px-2 py-2 text-xs text-blue-grey-500">{transaction.years_of_experience}</td>
+                                            <td className="whitespace-nowrap px-2 py-2 text-xs text-blue-grey-500">{transaction.seniority}</td>
+                                            <td className="whitespace-nowrap px-2 py-2 text-xs text-blue-grey-500 hover:text-blue-grey-800"> <Link href={`/salaries/france/${transaction.department.toLowerCase()}`}><a>{transaction.department}</a></Link></td>
+                                            <td className="whitespace-nowrap px-2 py-2 text-xs text-blue-grey-500">{transaction.office_setup}</td>
                                         </tr>
                                     )) : ''}
                                 </tbody>
