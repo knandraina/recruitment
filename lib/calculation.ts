@@ -14,7 +14,7 @@ export async function metricsCompensation(response: any) {
 
     return {
         medianCompensation,
-        meanCompensation
+        meanCompensation,
     }
 }
 
