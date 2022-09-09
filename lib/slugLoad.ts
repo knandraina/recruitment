@@ -12,7 +12,7 @@ export const buildPath = async (response: any) => {
 
     const concatenation = pathFromDepartmentGender.concat(pathFromCountryGender, pathFromCountryDepartment, pathFromCountryRole, pathFromCountryRoleGender, pathFromCountryDepartmentRoleGender, pathFromCountryDepartmentRole)
 
-    return concatenation.map(data => {
+    return concatenation.map((data:any) => {
         return {
           params: {slug: data}
         }
@@ -20,13 +20,13 @@ export const buildPath = async (response: any) => {
 }
 
 const findUniqueValues = async (response: any) => {
-    const uniqueDepartment = response.map(item => item.department_lower_case)
-        .filter((value, index, self) => self.indexOf(value) === index)
+    const uniqueDepartment = response.map( (item: any) => item.department_lower_case)
+        .filter((value:any, index:any, self: any) => self.indexOf(value) === index)
 
-    const uniqueGender = response.map(item => item.gender)
-        .filter((value, index, self) => self.indexOf(value) === index)
-    const uniqueRole = response.map(item => item.category_role)
-        .filter((value, index, self) => self.indexOf(value) === index)
+    const uniqueGender = response.map((item:any) => item.gender)
+        .filter((value:any, index:any, self:any) => self.indexOf(value) === index)
+    const uniqueRole = response.map((item:any) => item.category_role)
+        .filter((value:any, index:any, self:any) => self.indexOf(value) === index)
 
     return {
         uniqueDepartment,
@@ -36,7 +36,7 @@ const findUniqueValues = async (response: any) => {
 }
 
 const countryDepartmentRolePath = async (uniqueRole: any, uniqueDepartment: any) => {
-    const france_department_role = uniqueDepartment.map( (area) => {
+    const france_department_role = uniqueDepartment.map( (area:any) => {
         return uniqueRole.map( (role:any) => {
             return {
                 france: 'france',
@@ -46,7 +46,7 @@ const countryDepartmentRolePath = async (uniqueRole: any, uniqueDepartment: any)
         })
       })
       
-      const france_department_role_to_array = france_department_role.map((data, i, arr) => {
+      const france_department_role_to_array = france_department_role.map((data:any, i:any, arr:any) => {
         return data.map(( items: any, j: number) => {
           return Object.values(arr[i][j])
         })
@@ -58,9 +58,9 @@ const countryDepartmentRolePath = async (uniqueRole: any, uniqueDepartment: any)
 }
 
 const countryDepartmentRoleGenderPath = (uniqueRole: any, uniqueGender: any, uniqueDepartment: any) => {
-    const france_department_role_gender = uniqueDepartment.map( area => {
-        return uniqueRole.map( title => {
-          return uniqueGender.map( gender => {
+    const france_department_role_gender = uniqueDepartment.map( (area:any) => {
+        return uniqueRole.map( (title: any) => {
+          return uniqueGender.map( (gender: any) => {
             return {
               france:'france',
               area,
@@ -73,9 +73,9 @@ const countryDepartmentRoleGenderPath = (uniqueRole: any, uniqueGender: any, uni
       
       
       
-      const france_department_role_gender_to_array = france_department_role_gender.map((data, i, arr) => {
-        return data.map((items, j) => {
-          return items.map((res,x) => {
+      const france_department_role_gender_to_array = france_department_role_gender.map((data:any, i:any, arr:any) => {
+        return data.map((items:any, j:any) => {
+          return items.map((res:any,x:any) => {
             return Object.values(arr[i][j][x])
           })
         })
@@ -88,14 +88,14 @@ const countryDepartmentRoleGenderPath = (uniqueRole: any, uniqueGender: any, uni
 }
 
 const countryRoleGenderPath = async (uniqueRole:any, uniqueGender: any) => {
-    const france_role_gender = uniqueRole.map( data => {
-        return uniqueGender.map(items => {
+    const france_role_gender = uniqueRole.map( (data:any) => {
+        return uniqueGender.map((items:any) => {
           return {france: 'france', data, items: items.toLowerCase() }
         })
       })
       
-      const france_role_gender_to_array = france_role_gender.map((data,i,arr) => {
-        return data.map((items,j ) => {
+      const france_role_gender_to_array = france_role_gender.map((data:any,i:any,arr:any) => {
+        return data.map((items:any,j:any ) => {
           return Object.values(arr[i][j])
         })
       })
@@ -105,11 +105,11 @@ const countryRoleGenderPath = async (uniqueRole:any, uniqueGender: any) => {
 }
 
 const countryRolePath = async (uniqueRole: any) => {
-    const france_role = uniqueRole.map( data => {
+    const france_role = uniqueRole.map( (data:any) => {
         return {france: 'france', data}
       })
       
-      const flat_france_role_to_array = france_role.map((data,i,arr) => {
+      const flat_france_role_to_array = france_role.map((data:any,i:any,arr:any) => {
         return Object.values(arr[i])
       })
 
@@ -117,14 +117,14 @@ const countryRolePath = async (uniqueRole: any) => {
 }
 
 const countryDepartmentPath = async (uniqueDepartment: any)=> {
-    const france_department = uniqueDepartment.map(items => {
+    const france_department = uniqueDepartment.map((items:any) => {
         return {
           france: 'france',
           items
         }
       })
 
-      const flat_country_department_to_array = france_department.map((data, i, arr) =>{
+      const flat_country_department_to_array = france_department.map((data:any, i:any, arr:any) =>{
         return Object.values(arr[i])
       })
 
@@ -132,10 +132,10 @@ const countryDepartmentPath = async (uniqueDepartment: any)=> {
 }
 
 const countryGenderPath = async (uniqueGender: any) => {
-    const country_gender = uniqueGender.map(items => {
+    const country_gender = uniqueGender.map( (items:any) => {
         return {france: 'france', data: items.toLowerCase()}
         })
-      const country_gender_to_array = country_gender.map((data, i, arr) => {
+      const country_gender_to_array = country_gender.map((data:any, i:any, arr:any) => {
         return Object.values(arr[i])
         
       })
@@ -143,17 +143,17 @@ const countryGenderPath = async (uniqueGender: any) => {
       return country_gender_to_array
 }
 
-const 
+
 
 const departmentGenderPath = async (uniqueDepartment: any, uniqueGender: any) => {
-    const department_gender = uniqueDepartment.map(items => {
-        return uniqueGender.map(data => {
+    const department_gender = uniqueDepartment.map((items:any) => {
+        return uniqueGender.map((data:any) => {
             return { france: 'france', items, data: data.toLowerCase() }
         })
     })
 
-    const department_gender_to_array = department_gender.map((data, i, arr) => {
-        return data.map((items, j) => {
+    const department_gender_to_array = department_gender.map((data:any, i:any, arr:any) => {
+        return data.map((items:any, j:any) => {
             return Object.values(arr[i][j])
         })
     })
