@@ -5,8 +5,6 @@ var Airtable = require('airtable');
 var base = new Airtable({ apiKey: process.env.NEXT_PUBLIC_AIRTABLE_KEY }).base('appkuQ9Rzvw0sjelz');
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
-
-    console.log(req.body)
     const { feedback, area } = req.body;
 
     if (feedback != '') {
