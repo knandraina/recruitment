@@ -15,6 +15,7 @@ import { useEffect } from "react";
 import Footer from "../../components/Element/Footer";
 
 
+
 export const getStaticProps: GetStaticProps = async (context: any) => {
     await connectionDB();
     const response = await retrieveData(context.params.slug);

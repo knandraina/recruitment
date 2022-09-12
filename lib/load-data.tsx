@@ -27,9 +27,10 @@ export async function loadDepartmentData() {
                 country: 'france',
                 department: data.department_lower_case,
                 role: data.category_role,
-                title: data.category_role
+                title: data.category_role,
             }
         }
     })
+
     return response
 }

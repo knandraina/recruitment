@@ -13,7 +13,7 @@ const FormRedirection = (props: formRedirectionProps) => {
     async function handleSubmit(e: React.BaseSyntheticEvent) {
         e.preventDefault();
         if (props.department === 'France') {
-            Router.push('/salary/france')
+            Router.push('/salaries/france')
         } else {
             Router.push(`/salary/france/${props.department.toLowerCase()}`)
         }

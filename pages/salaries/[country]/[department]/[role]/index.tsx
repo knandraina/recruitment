@@ -61,8 +61,8 @@ const RoleData = (props: any) => {
                 title={`Discover ${props.role} salaries in ${props.department}`}
                 description={`Leverage our database to know the ${props.role} wage in ${props.department}`}
             />
-            <OptimizedPage area={props.department} compensation={props.compensation} median={props.median} role={props.role}/>
-            <Table compensation={props} department={props.department} role={props.role}/>
+            <OptimizedPage area={props.department} compensation={props.compensation} median={props.median} role={props.role} />
+            <Table compensation={props} department={props.department} role={props.role} />
             <FormRedirection department={department} handleChange={handleChange} textButton={"Explore Data"} />
             <Footer />
         </>
