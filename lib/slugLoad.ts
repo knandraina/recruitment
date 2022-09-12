@@ -1,7 +1,8 @@
 import Compensation from "../models/compensation"
 
 export const buildPath = async () => {
-    const response = await Compensation.find({approved: true}).populate('company')
+    const response = await Compensation.find({ approved: true }).populate('company')
+
     const resultsDepartment = response.map((data: any) => {
         return {
             params: {
@@ -29,6 +30,8 @@ export const buildPath = async () => {
         }
     })
 
+
+
     let answerDepartment: Array<string> = [];
 
     resultsDepartment.forEach((x: any) => {
@@ -53,9 +56,51 @@ export const buildPath = async () => {
         }
     })
 
-    return answerDepartment.concat(answerRole,answerGender)
+    const resultsDepartmentGender = response.map((data: any) => {
+        return {
+            params: {
+                country: 'france',
+                index: data.department_lower_case,
+                gender: data.gender.toLowerCase()
+            }
+        }
+    })
+
+    let answerDepartmentGender: Array<string> = [];
+
+    resultsDepartmentGender.forEach((x: any) => {
+        if (!answerDepartmentGender.some(y => JSON.stringify(y) === JSON.stringify(x))) {
+            answerDepartmentGender.push(x)
+        }
+    })
+
+    const resultsRoleGender = response.map((data: any) => {
+        return {
+            params: {
+                country: 'france',
+                index: data.category_role,
+                gender: data.gender.toLowerCase()
+            }
+        }
+    })
+
+    let answerRoleGender: Array<string> = [];
+
+    resultsRoleGender.forEach((x: any) => {
+        if (!answerRoleGender.some(y => JSON.stringify(y) === JSON.stringify(x))) {
+            answerRoleGender.push(x)
+        }
+    })
+
+
+
+    return {
+        answerDepartment: answerDepartment.concat(answerRole, answerGender),
+        answerGenderDepartmentRole: answerRoleGender.concat(answerDepartmentGender)
+    }
 
 }
+
 
 export const findUniqueValues = async (response: any) => {
 

@@ -20,7 +20,7 @@ const Table = (props: TableProps) => {
                     {router.pathname === '/' ? '' : <p className='text-s text-blue-grey-700 mt-2'>{`${props.participant ? props.participant : props.compensation.post.length} ${props.compensation.post.length > 1 ? 'salaries' : 'salary'} from ${props.gender? props.gender : ''} ${props.role ? props.role : 'Software engineer'} has been posted in ${props.department ? props.department : props.country}.`}</p>}
                     {router.pathname === '/' ? '' : <p className='text-xs text-blue-grey-200 mt-2'>Currently, we don&apos;t have enough data to disclose company name. For privacy reason, we will divulge company name only when we have more than 3 answers per company. You can click on a location to discover the average salary there. </p>}
 
-                   {(router.pathname.indexOf('salaries') > -1 ) && (props.role || props.gender) ? 
+                   {(router.pathname.indexOf('salaries') > -1 ) ? 
                     <p className='text-xs text-blue-grey-200 mt-2'>{`Maybe you wanted to visit the ${props.role ? props.role : props.gender ? props.gender : ''} in France`}. <Link href={`/salary/france/${props.role ? props.role: props.gender}`}>Click here</Link></p>
                    : ''} 
                     
@@ -95,7 +95,7 @@ const Table = (props: TableProps) => {
                                                 {transaction.company.compensation.length < 3 ? 'Private' : transaction.anonymous === false ? transaction.company.name : 'Private'}
                                             </td>
                                             <td className="whitespace-nowrap px-2 py-2 text-xs font-medium text-blue-grey-900 hover:text-blue-grey-200">
-                                                <Link href={`/salaries/france/${transaction.department_lower_case}/${transaction.gender.toLowerCase()}`}>
+                                                <Link href={`/salary/france/${transaction.department_lower_case}/${transaction.gender.toLowerCase()}`}>
                                                     <a className=''>{transaction.gender}</a>
                                                 </Link>
                                             </td>
