@@ -21,7 +21,6 @@ const _ = require("lodash");
 export const getStaticProps: GetStaticProps = async (context: any) => {
     const country: String = context.params.country;
     const index: string = context.params.index;
-    console.log(context)
     await connectionDB();
     const response = await retrieveData(index);
     const key = Object.keys(response)[1];

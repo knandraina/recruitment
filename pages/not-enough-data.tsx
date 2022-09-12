@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 const NotEnoughData = () => {
 
 
@@ -13,12 +15,14 @@ const NotEnoughData = () => {
                                 <p className="mt-1 text-base text-gray-500">Unfortunately, we do not have data for this request. Feel free to submit your salary!</p>
                             </div>
                             <div className="mt-10 flex space-x-3 sm:border-l sm:border-transparent sm:pl-6">
+                                <Link  href="/new-salary">
                                 <a
-                                    href="/new-salary"
+                                   
                                     className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                                 >
                                     Submit your salary
                                 </a>
+                                </Link>
                             </div>
                         </div>
                     </main>
