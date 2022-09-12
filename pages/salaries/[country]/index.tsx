@@ -15,9 +15,9 @@ const _ = require("lodash");
 
 
 // `getStaticPaths` requires using `getStaticProps`
-export const getStaticProps: GetStaticProps = async (context: any) => {
-    const country: String = context.params.country
-    await connectionDB();
+export const getStaticProps: GetStaticProps  = async (context: any) => {
+    const country: String = context.params.country  
+    await connectionDB();   
     const response = await loadData('');
 
     const { meanCompensation, medianCompensation } = await metricsCompensation(response)
@@ -56,7 +56,6 @@ const FrenchData = (props: any) => {
             />
             <OptimizedPage area={props.country} compensation={props.compensation} median={props.median} />
             <Table compensation={props} department={'France'}/>
-            <FormRedirection department={department} handleChange={handleChange} textButton={"Explore Data"} />
             <Footer />
         </>
     )

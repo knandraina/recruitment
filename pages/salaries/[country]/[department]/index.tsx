@@ -61,7 +61,6 @@ const DepartmentData = (props: any) => {
             />
             <OptimizedPage area={props.department} compensation={props.compensation} median={props.median} />
             <Table compensation={props} department={props.department}/>
-            <FormRedirection department={department} handleChange={handleChange} textButton={"Explore Data"} />
             <Footer />
         </>
     )

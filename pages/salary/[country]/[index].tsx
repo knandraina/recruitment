@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next'
 
-import { loadData } from '../../../lib/load-data'
 import connectionDB from '../../../lib/connectionDB'
 import { metricsCompensation } from '../../../lib/calculation';
 import Compensation from '../../../models/compensation';
@@ -22,7 +21,9 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
     const country: String = context.params.country;
     const index: string = context.params.index;
     await connectionDB();
-    const response = await retrieveData(index);
+    const res = await Compensation.find({approved: true}).populate('company')
+    const response = await retrieveData(index, res);
+
     const key = Object.keys(response)[1];
     
     const { meanCompensation, medianCompensation } = await metricsCompensation(response.compensation)
@@ -30,7 +31,8 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
     return {
         // Passed to the page component as props
         props: {
-            post: response.compensation,
+            post: response.compensation.slice(0,100),
+            participant: response.compensation.length - 1,
             country,
             compensation: Math.round(meanCompensation),
             median: Math.round(medianCompensation),
@@ -41,9 +43,9 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
     await connectionDB();
-    const response = await Compensation.find({}).populate('company')
-    const path = await buildPath(response);
-
+    
+    const path = await buildPath();
+    console.log(path);
     return {
         paths: path,
         fallback: false, // can also be true or 'blocking'
@@ -64,8 +66,7 @@ const FrenchData = (props: any) => {
                 description="Leverage our database to know the sofware engineer wage in France"
             />
             <OptimizedPage country={'France'} compensation={props.compensation} median={props.median} area={props.department} role={props.category_role} gender={props.gender} />
-            <Table compensation={props} department={props.department} role={props.category_role} gender={props.gender} country={'France'} />
-            <FormRedirection department={department} handleChange={handleChange} textButton={"Explore Data"} />
+            <Table compensation={props} department={props.department} role={props.category_role} gender={props.gender} country={'France'} participant={props.participant}/>
             <Footer />
         </>
     )

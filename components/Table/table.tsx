@@ -7,7 +7,8 @@ interface TableProps {
     department?: any,
     role?: any,
     gender?: any
-    country?: any
+    country?: any,
+    participant?: any
 }
 
 const Table = (props: TableProps) => {
@@ -16,7 +17,7 @@ const Table = (props: TableProps) => {
         <div className="px-4 sm:px-6 lg:px-8">
             <div className='grid grid-cols-12'>
                 <div className='col-start-2 col-span-10'>
-                    {router.pathname === '/' ? '' : <p className='text-s text-blue-grey-700 mt-2'>{`${props.compensation.post.length} ${props.compensation.post.length > 1 ? 'salaries' : 'salary'} from ${props.gender? props.gender : ''} ${props.role ? props.role : 'Software engineer'} has been posted in ${props.department ? props.department : props.country}.`}</p>}
+                    {router.pathname === '/' ? '' : <p className='text-s text-blue-grey-700 mt-2'>{`${props.participant ? props.participant : props.compensation.post.length} ${props.compensation.post.length > 1 ? 'salaries' : 'salary'} from ${props.gender? props.gender : ''} ${props.role ? props.role : 'Software engineer'} has been posted in ${props.department ? props.department : props.country}.`}</p>}
                     {router.pathname === '/' ? '' : <p className='text-xs text-blue-grey-200 mt-2'>Currently, we don&apos;t have enough data to disclose company name. For privacy reason, we will divulge company name only when we have more than 3 answers per company. You can click on a location to discover the average salary there. </p>}
 
                    {(router.pathname.indexOf('salaries') > -1 ) && (props.role || props.gender) ? 

@@ -1,39 +1,60 @@
-export const buildPath = async (response: any) => {
-    const res = await findUniqueValues(response);
-    const { uniqueDepartment, uniqueGender, uniqueRole } = res
+import Compensation from "../models/compensation"
 
-    const resultsDepartment = await uniqueDepartment.map((data: any) => {
+export const buildPath = async () => {
+    const response = await Compensation.find({approved: true}).populate('company')
+    const resultsDepartment = response.map((data: any) => {
         return {
             params: {
                 country: 'france',
-                index: data,
+                index: data.department_lower_case
             }
         }
     })
 
-    const resultsGender = await uniqueGender.map((data: any) => {
+    const resultsGender = response.map((data: any) => {
         return {
             params: {
                 country: 'france',
-                index: data.toLowerCase()
+                index: data.gender.toLowerCase()
             }
         }
     })
 
-    const resultsRole = await uniqueRole.map((data: any) => {
+    const resultsRole = response.map((data: any) => {
         return {
             params: {
                 country: 'france',
-                index: data,
+                index: data.category_role
             }
         }
     })
 
+    let answerDepartment: Array<string> = [];
 
-    const concatenation = resultsGender.concat(resultsDepartment, resultsRole  )
+    resultsDepartment.forEach((x: any) => {
+        if (!answerDepartment.some(y => JSON.stringify(y) === JSON.stringify(x))) {
+            answerDepartment.push(x)
+        }
+    })
 
+    let answerRole: Array<string> = [];
 
-    return concatenation
+    resultsRole.forEach((x: any) => {
+        if (!answerRole.some(y => JSON.stringify(y) === JSON.stringify(x))) {
+            answerRole.push(x)
+        }
+    })
+
+    let answerGender: Array<string> = [];
+
+    resultsGender.forEach((x: any) => {
+        if (!answerGender.some(y => JSON.stringify(y) === JSON.stringify(x))) {
+            answerGender.push(x)
+        }
+    })
+
+    return answerDepartment.concat(answerRole,answerGender)
+
 }
 
 export const findUniqueValues = async (response: any) => {

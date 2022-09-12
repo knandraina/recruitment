@@ -63,7 +63,6 @@ const RoleData = (props: any) => {
             />
             <OptimizedPage area={props.department} compensation={props.compensation} median={props.median} role={props.role} />
             <Table compensation={props} department={props.department} role={props.role} />
-            <FormRedirection department={department} handleChange={handleChange} textButton={"Explore Data"} />
             <Footer />
         </>
     )
