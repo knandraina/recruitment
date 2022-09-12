@@ -4,16 +4,19 @@ import Link from 'next/link';
 
 interface TableProps {
     compensation: any,
-    department: any,
-    role?: any
+    department?: any,
+    role?: any,
+    gender?: any
+    country?: any
 }
 
 const Table = (props: TableProps) => {
+    console.log(props, 'oui')
     const router = useRouter()
-
     return (
         <div className="px-4 sm:px-6 lg:px-8">
-            {router.pathname === '/' ? '' : <p className='text-s text-blue-grey-700 mt-2'>{`${props.compensation.post.length} ${props.compensation.post.length > 1 ? 'salaries' : 'salary'} from ${props.role ? props.role : 'Software engineer' } has been posted in ${props.department}.`}</p>}
+            
+            {router.pathname === '/' ? '' : <p className='text-s text-blue-grey-700 mt-2'>{`${props.compensation.post.length} ${props.compensation.post.length > 1 ? 'salaries' : 'salary'} from ${props.role ? props.role : 'Software engineer' } has been posted in ${props.department ?  props.department : props.country }.`}</p>}
             {router.pathname === '/' ? '' : <p className='text-xs text-blue-grey-200 mt-2'>Currently, we don&apos;t have enough data to disclose company name. For privacy reason, we will divulge company name only when we have more than 3 answers per company. You can click on a location to discover the average salary there. Scroll down to the bottom to select a particular area!</p>}
             <div className="mt-8 flex flex-col">
                 <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">

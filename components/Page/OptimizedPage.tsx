@@ -1,8 +1,10 @@
 interface OptimizedPageProps {
-    area: string,
+    area?: string,
     compensation: number,
     median: number,
     role?: string
+    gender?: string,
+    country?: string
 }
 
 const Page = (props: OptimizedPageProps) => {
@@ -11,9 +13,9 @@ const Page = (props: OptimizedPageProps) => {
             <div className="grid grid-cols-1 gap-4 px-4 sm:px-6 lg:px-8">
                 <div>
                     <h1 className="text-2xl tracking-tight font-bold text-blue-grey-800 sm:text-4xl md:text-3xl mt-4">
-                        <span className="block xl:inline">{`${props.role ? props.role :'Software Engineer'} salary in ${props.area}`}</span>{' '}
+                        <span className="block xl:inline">{`${props.role ? props.role :'Software Engineer'} salary ${props.gender ? `for ${props.gender}` : ''} in ${props.area ? props.area : props.country}`}</span>{' '}
                     </h1>
-                    <p className="text-s text-blue-grey-700 mt-2">{`How much does a ${props.role ? props.role :'Software Engineer'} make in the ${props.area}?`}</p>
+                    <p className="text-s text-blue-grey-700 mt-2">{`How much does a ${props.role ? props.role :'Software Engineer'} make in the ${props.area ? props.area : props.country}?`}</p>
                 </div>
             </div>
             <div className="grid grid-cols-2 px-4 content-center">
