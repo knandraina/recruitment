@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router'
 import Link from 'next/link';
+import { cp } from 'fs/promises';
 
 interface TableProps {
     compensation: any,
@@ -12,6 +13,7 @@ interface TableProps {
 }
 
 const Table = (props: TableProps) => {
+    console.log(props)
     const router = useRouter()
     return (
         <div className="px-4 sm:px-6 lg:px-8">
@@ -20,9 +22,9 @@ const Table = (props: TableProps) => {
                     {router.pathname === '/' ? '' : <p className='text-s text-blue-grey-700 mt-2'>{`${props.participant ? props.participant : props.compensation.post.length} ${props.compensation.post.length > 1 ? 'salaries' : 'salary'} from ${props.gender? props.gender : ''} ${props.role ? props.role : 'Software engineer'} has been posted in ${props.department ? props.department : props.country}.`}</p>}
                     {router.pathname === '/' ? '' : <p className='text-xs text-blue-grey-200 mt-2'>Currently, we don&apos;t have enough data to disclose company name. For privacy reason, we will divulge company name only when we have more than 3 answers per company. You can click on a location to discover the average salary there. </p>}
 
-                   {(router.pathname.indexOf('salaries') > -1 ) ? 
-                    <p className='text-xs text-blue-grey-200 mt-2'>{`Maybe you wanted to visit the ${props.role ? props.role : props.gender ? props.gender : ''} in France`}. <Link href={`/salary/france/${props.role ? props.role: props.gender}`}>Click here</Link></p>
-                   : ''} 
+                   { props.gender || props.role ? 
+                    <p className='text-xs text-blue-grey-200 mt-2'>{`Maybe you wanted to visit the ${props.role ? props.role : props.gender ? props.gender : ''} in France`}. <Link href={`/salary/france/${props.role ? props.role: props.gender.toLowerCase()}`}>Click here</Link></p>
+                   : ''}  
                     
                 </div>
             </div>
