@@ -28,10 +28,12 @@ const validateCompensation = async (data: any) => {
         errors.years_of_experience = 'Years of experience is required.'
     }
     
-
-    if (!Validator.isEmail(data.email)) {
-        errors.email = 'Enter a valid email'
+    if (data.email.length){
+        if (!Validator.isEmail(data.email)) {
+            errors.email = 'Enter a valid email'
+        }
     }
+    
 
     if (Validator.isEmpty(data.place_of_work)) {
         errors.place_of_work = 'Place of work is required'

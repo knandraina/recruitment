@@ -17,9 +17,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
         const { anonymousId } = req.body;
         const { errors, isValid } = await validateCompensation(req.body.compensation);
-
+        console.log(errors, isValid)
         if (!isValid) {
-
+            
             analytics.track({
                 anonymousId: anonymousId,
                 event: 'Form Submitted Failure',
@@ -116,6 +116,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         })
         res.status(200).json({ response })
     } catch (error) {
+        console.log(error)
         const { anonymousId } = req.body
         await analytics.track({
             anonymousId: anonymousId,
