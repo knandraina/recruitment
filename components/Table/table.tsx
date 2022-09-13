@@ -22,7 +22,7 @@ const Table = (props: TableProps) => {
                     {router.pathname === '/' ? '' : <p className='text-xs text-blue-grey-200 mt-2'>Currently, we don&apos;t have enough data to disclose company name. For privacy reason, we will divulge company name only when we have more than 3 answers per company. You can click on a location to discover the average salary there. </p>}
 
                    { Object.keys(router.query).length > 2 && props.gender || props.role ? 
-                    <p className='text-xs text-blue-grey-200 mt-2'>{`Maybe you wanted to visit the ${props.role ? props.role : props.gender } salary in France`}. <Link href={`/salary/france/${props.role ? props.role: props.gender.toLowerCase()}`}>Click here</Link></p>
+                    <p className='text-xs text-blue-grey-200 mt-2'>{`Maybe you wanted to visit the ${props.role ? props.role : props.gender } salary in France`}. <Link href={`/salaries/france/${props.role ? props.role: props.gender.toLowerCase()}`}>Click here</Link></p>
                    : ''}  
                     
                 </div>
