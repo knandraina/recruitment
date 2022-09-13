@@ -120,7 +120,10 @@ export const buildPath = async () => {
 
     return {
         answerDepartment: answerDepartment.concat(answerRole, answerGender),
-        answerDepartmentRole: answerRoleGender.concat(answerDepartmentGender, answerDepartmentRole)
+        answerDepartmentRole: answerRoleGender.concat(answerDepartmentGender, answerDepartmentRole),
+        answerDepartmentGender, 
+        answerDepartmentRoles: answerDepartmentRole,
+        answerRoleGender
     }
 }
 
