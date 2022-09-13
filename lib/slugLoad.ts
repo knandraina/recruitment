@@ -1,13 +1,16 @@
 import Compensation from "../models/compensation"
 
 export const buildPath = async () => {
+
+    // two parameters
+
     const response = await Compensation.find({ approved: true }).populate('company')
 
     const resultsDepartment = response.map((data: any) => {
         return {
             params: {
                 country: 'france',
-                index: data.department_lower_case
+                department: data.department_lower_case
             }
         }
     })
@@ -16,7 +19,7 @@ export const buildPath = async () => {
         return {
             params: {
                 country: 'france',
-                index: data.gender.toLowerCase()
+                department: data.gender.toLowerCase()
             }
         }
     })
@@ -25,7 +28,7 @@ export const buildPath = async () => {
         return {
             params: {
                 country: 'france',
-                index: data.category_role
+                department: data.category_role
             }
         }
     })
@@ -56,12 +59,16 @@ export const buildPath = async () => {
         }
     })
 
+
+
+    // three parameters
+
     const resultsDepartmentGender = response.map((data: any) => {
         return {
             params: {
                 country: 'france',
-                index: data.department_lower_case,
-                gender: data.gender.toLowerCase()
+                department: data.department_lower_case,
+                role: data.gender.toLowerCase()
             }
         }
     })
@@ -78,11 +85,12 @@ export const buildPath = async () => {
         return {
             params: {
                 country: 'france',
-                index: data.category_role,
-                gender: data.gender.toLowerCase()
+                department: data.category_role,
+                role: data.gender.toLowerCase()
             }
         }
     })
+
 
     let answerRoleGender: Array<string> = [];
 
@@ -92,13 +100,28 @@ export const buildPath = async () => {
         }
     })
 
+    const resultsDepartmentRole = response.map((data: any) => {
+        return {
+            params: {
+                country: 'france',
+                department: data.department_lower_case,
+                role: data.category_role
+            }
+        }
+    }) 
 
+    let answerDepartmentRole: Array<string> = [];
+
+    resultsDepartmentRole.forEach((x: any) => {
+        if (!answerDepartmentRole.some(y => JSON.stringify(y) === JSON.stringify(x))) {
+            answerDepartmentRole.push(x)
+        }
+    })
 
     return {
         answerDepartment: answerDepartment.concat(answerRole, answerGender),
-        answerGenderDepartmentRole: answerRoleGender.concat(answerDepartmentGender)
+        answerDepartmentRole: answerRoleGender.concat(answerDepartmentGender, answerDepartmentRole)
     }
-
 }
 
 

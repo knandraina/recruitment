@@ -13,7 +13,6 @@ interface TableProps {
 }
 
 const Table = (props: TableProps) => {
-    console.log(props)
     const router = useRouter()
     return (
         <div className="px-4 sm:px-6 lg:px-8">

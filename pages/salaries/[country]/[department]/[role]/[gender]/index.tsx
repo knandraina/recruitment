@@ -7,7 +7,6 @@ import { metricsCompensation } from '../../../../../../lib/calculation';
 
 import Table from '../../../../../../components/Table/table';
 import OptimizedPage from '../../../../../../components/Page/OptimizedPage'
-import FormRedirection from '../../../../../../components/Form/FormRedirection';
 import Footer from '../../../../../../components/Element/Footer';
 
 import { NextSeo } from 'next-seo';
@@ -16,18 +15,17 @@ import { NextSeo } from 'next-seo';
 // `getStaticPaths` requires using `getStaticProps`
 export const getStaticProps: GetStaticProps = async (context: any) => {
     const country: String = context.params.country;
-    const department_lower_case: String = context.params.department;
     const role: string = context.params.role
     const gender: string = context.params.gender;
     await connectionDB();
-    const response = await loadData(department_lower_case, role, gender);
-    const department = await response[0].department
-    const { meanCompensation, medianCompensation } = await metricsCompensation(response)
+    const response: any = await loadData(context.params);
+    const department = await response.compensation[0].department
+    const { meanCompensation, medianCompensation } = await metricsCompensation(response.compensation)
 
     return {
         // Passed to the page component as props
         props: {
-            post: response,
+            post: response.compensation,
             country,
             department,
             role,
@@ -42,7 +40,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
     await connectionDB();
     const path: Array<any> = await loadDepartmentData();
-    console.log(path)
     return {
         paths: path,
         fallback: false, // can also be true or 'blocking'
@@ -52,20 +49,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 const GenderData = (props: any) => {
 
-    const [department, setDepartment] = useState<string>(props.department);
-
-    const handleChange = async (department: string) => {
-        setDepartment(department)
-    }
-
     return (
         <>
-            <NextSeo
-                title={`Discover ${props.role} salaries in ${props.department}`}
-                description={`Leverage our database to know the ${props.role} wage in ${props.department}`}
+           <NextSeo
+                title={`Discover ${props.gender? props.gender : ''} ${props.role ? props.role : 'Software Engineer'} salaries in ${props.department ? props.department : props.country}`}
+                description={`Leverage our database to know the ${props.role ? props.role : 'Software Engineer'} wage in ${props.department ? props.department : props.country}`}
             />
-            <OptimizedPage area={props.department} compensation={props.compensation} median={props.median} role={props.role} gender={props.gender} />
-            <Table compensation={props} department={props.department} role={props.role} gender={props.gender}/>
+            <OptimizedPage country={'France'} compensation={props.compensation} median={props.median} area={props.department} role={props.category_role} gender={props.gender}/>
+            <Table compensation={props} department={props.department} role={props.category_role} gender={props.gender} country={'France'} participant={props.participant}/>
             <Footer />
         </>
     )

@@ -1,35 +1,34 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
-import { useState } from 'react';
 
-import { loadData, loadDepartmentData } from '../../../../../lib/load-data'
+import { loadData } from '../../../../../lib/load-data'
 import connectionDB from '../../../../../lib/connectionDB'
 import { metricsCompensation } from '../../../../../lib/calculation';
 
 import Table from '../../../../../components/Table/table';
 import OptimizedPage from '../../../../../components/Page/OptimizedPage'
-import FormRedirection from '../../../../../components/Form/FormRedirection';
 import Footer from '../../../../../components/Element/Footer';
 
 import { NextSeo } from 'next-seo';
+import { buildPath } from '../../../../../lib/slugLoad';
 
 
 // `getStaticPaths` requires using `getStaticProps`
 export const getStaticProps: GetStaticProps = async (context: any) => {
     const country: String = context.params.country;
-    const department_lower_case: String = context.params.department;
-    const role: string = context.params.role
     await connectionDB();
-    const response = await loadData(department_lower_case, role);
-    const department = await response[0].department
-    const { meanCompensation, medianCompensation } = await metricsCompensation(response)
+    const response: any = await loadData(context.params);
+    const keyOne = Object.keys(response)[1];
+    const keyTwo = Object.keys(response)[2];
+
+    const { meanCompensation, medianCompensation } = await metricsCompensation(response.compensation)
 
     return {
         // Passed to the page component as props
         props: {
-            post: response,
+            post: response.compensation,
             country,
-            department,
-            role,
+            [keyOne]: Object.values(response)[1],
+            [keyTwo]:Object.values(response)[2],
             compensation: Math.round(meanCompensation),
             median: Math.round(medianCompensation)
         },
@@ -39,9 +38,9 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
 export const getStaticPaths: GetStaticPaths = async () => {
 
     await connectionDB();
-    const path: Array<any> = await loadDepartmentData();
+    const path = await buildPath();
     return {
-        paths: path,
+        paths: path.answerDepartmentRole,
         fallback: false, // can also be true or 'blocking'
     }
 }
@@ -49,20 +48,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 const RoleData = (props: any) => {
 
-    const [department, setDepartment] = useState<string>(props.department);
-
-    const handleChange = async (department: string) => {
-        setDepartment(department)
-    }
-
     return (
         <>
             <NextSeo
-                title={`Discover ${props.role} salaries in ${props.department}`}
-                description={`Leverage our database to know the ${props.role} wage in ${props.department}`}
+                title={`Discover ${props.gender? props.gender : ''} ${props.role ? props.role : 'Software Engineer'} salaries in ${props.department ? props.department : props.country}`}
+                description={`Leverage our database to know the ${props.role ? props.role : 'Software Engineer'} wage in ${props.department ? props.department : props.country}`}
             />
-            <OptimizedPage area={props.department} compensation={props.compensation} median={props.median} role={props.role} />
-            <Table compensation={props} department={props.department} role={props.role} />
+            <OptimizedPage country={'France'} compensation={props.compensation} median={props.median} area={props.department} role={props.category_role} gender={props.gender}/>
+            <Table compensation={props} department={props.department} role={props.category_role} gender={props.gender} country={'France'} participant={props.participant}/>
             <Footer />
         </>
     )
