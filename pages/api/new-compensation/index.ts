@@ -17,7 +17,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
         const { anonymousId } = req.body;
         const { errors, isValid } = await validateCompensation(req.body.compensation);
+
         if (!isValid) {
+
             analytics.track({
                 anonymousId: anonymousId,
                 event: 'Form Submitted Failure',
@@ -171,6 +173,7 @@ async function addNewCompensation(
         anonymous,
         technology_used,
     );
+    
 
     const res = await linkCompensationToCompany(compensation._id, company._id)
     return compensation
@@ -188,6 +191,7 @@ async function createCompany(
     industry: string,
 ) {
     const company = await Company.findOne({ unique_name: name.toLowerCase() });
+    
     if (!company) {
         const results = await Company.create({
             name: name,
