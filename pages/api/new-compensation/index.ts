@@ -17,7 +17,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
         const { anonymousId } = req.body;
         const { errors, isValid } = await validateCompensation(req.body.compensation);
-        console.log(errors, isValid)
         if (!isValid) {
             
             analytics.track({
@@ -100,7 +99,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
                 company_size,
                 company_stage,
                 industry,
-                technology_used,
+                technology_used: 'Javascript',
                 anonymous,
                 feedback_job_form,
                 solution_tested,
@@ -116,7 +115,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         })
         res.status(200).json({ response })
     } catch (error) {
-        console.log(error)
         const { anonymousId } = req.body
         await analytics.track({
             anonymousId: anonymousId,
@@ -235,7 +233,7 @@ async function createCompensation(
         seniority,
         place_of_work,
         office_setup,
-        technology_used: technology_used.join(),
+        technology_used: 'Javascript',
         contract: contract,
         anonymous: anonymous === 'true',
         company: company._id,

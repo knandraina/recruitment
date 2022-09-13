@@ -123,7 +123,7 @@ const FormCompensation = () => {
                             <StockOption value={compensation.stock_option} handleChange={handleChange} error={handleError.stock_option ? handleError.stock_option : undefined} />
                         </div>
                     </div>
-                    <Technology value={compensation.technology_used} handleChange={handleChange} />
+                    {/* <Technology value={compensation.technology_used} handleChange={handleChange} /> */}
                     <div className="grid grid-cols-2 gap-2">
                         <div>
                             <YearsInCompany value={compensation.years_in_company} handleChange={handleChange} error={handleError.years_in_company ? handleError.years_in_company : undefined} />
