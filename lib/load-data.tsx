@@ -11,7 +11,6 @@ export async function loadData(params: any) {
         uniqueGender,
         uniqueRole } = uniqueValue
 
-        console.log(params, 'test')
 
     if (Object.keys(params).length === 1) {
         return {compensation: JSON.parse(JSON.stringify(res))};

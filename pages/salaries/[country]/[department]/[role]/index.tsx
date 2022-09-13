@@ -55,7 +55,7 @@ const RoleData = (props: any) => {
                 description={`Leverage our database to know the ${props.role ? props.role : 'Software Engineer'} wage in ${props.department ? props.department : props.country}`}
             />
             <OptimizedPage country={'France'} compensation={props.compensation} median={props.median} area={props.department} role={props.category_role} gender={props.gender}/>
-            <Table compensation={props} department={props.department} role={props.category_role} gender={props.gender} country={'France'} participant={props.participant}/>
+            <Table compensation={props} department={props.department} role={props.role} gender={props.gender} country={'France'} participant={props.participant}/>
             <Footer />
         </>
     )

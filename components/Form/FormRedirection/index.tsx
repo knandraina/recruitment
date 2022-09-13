@@ -15,7 +15,7 @@ const FormRedirection = (props: formRedirectionProps) => {
         if (props.department === 'France') {
             Router.push('/salaries/france')
         } else {
-            Router.push(`/salary/france/${props.department.toLowerCase()}`)
+            Router.push(`/salaries/france/${props.department.toLowerCase()}`)
         }
     }
 

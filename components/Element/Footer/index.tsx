@@ -122,7 +122,7 @@ export default function Footer() {
                                 <ul role="list" className="mt-4 space-y-4">
                                     {variable.length ? variable[0].map((item: any, i: number) => (
                                         <li key={i}>
-                                            <Link href={`/salary/france/${item.toLowerCase()}`}>
+                                            <Link href={`/salaries/france/${item.toLowerCase()}`}>
                                                 <a className="text-base text-blue-grey-300 hover:text-blue-grey-800">
                                                     {`Salary in ${item}`}
                                                 </a>
@@ -135,7 +135,7 @@ export default function Footer() {
                                 <ul role="list" className="mt-4 space-y-4">
                                     {variable.length ? variable[1].map((item: any, i: number) => (
                                         <li key={i}>
-                                            <Link href={`/salary/france/${item.toLowerCase()}`}>
+                                            <Link href={`/salaries/france/${item.toLowerCase()}`}>
                                                 <a className="text-base text-blue-grey-300 hover:text-blue-grey-800">
                                                     {`Salary in ${item}`}
                                                 </a>
@@ -150,7 +150,7 @@ export default function Footer() {
                                 <ul role="list" className="mt-4 space-y-4">
                                     {variable.length ? variable[2].map((item: any, i: number) => (
                                         <li key={i}>
-                                            <Link href={`/salary/france/${item.toLowerCase()}`}>
+                                            <Link href={`/salaries/france/${item.toLowerCase()}`}>
                                                 <a className="text-base text-blue-grey-300 hover:text-blue-grey-800">
                                                     {`Salary in ${item}`}
                                                 </a>
@@ -163,7 +163,7 @@ export default function Footer() {
                                 <ul role="list" className="mt-4 space-y-4">
                                     {variable.length ? variable[3].map((item: any, i: number) => (
                                         <li key={i}>
-                                            <Link href={`/salary/france/${item.toLowerCase()}`}>
+                                            <Link href={`/salaries/france/${item.toLowerCase()}`}>
                                                 <a className="text-base text-blue-grey-300 hover:text-blue-grey-800">
                                                     {`Salary in ${item}`}
                                                 </a>
