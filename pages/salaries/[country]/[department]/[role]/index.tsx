@@ -28,7 +28,7 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
             post: response.compensation,
             country,
             [keyOne]: Object.values(response)[1],
-            [keyTwo]:Object.values(response)[2],
+            [keyTwo]: Object.values(response)[2],
             compensation: Math.round(meanCompensation),
             median: Math.round(medianCompensation)
         },
@@ -47,15 +47,27 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 
 const RoleData = (props: any) => {
-
+    console.log(props)
     return (
         <>
             <NextSeo
-                title={`Discover ${props.gender? props.gender : ''} ${props.role ? props.role : 'Software Engineer'} salaries in ${props.department ? props.department : props.country}`}
+                title={`Discover ${props.gender ? props.gender : ''} ${props.role ? props.role : 'Software Engineer'} salaries in ${props.department ? props.department : props.country}`}
                 description={`Leverage our database to know the ${props.role ? props.role : 'Software Engineer'} wage in ${props.department ? props.department : props.country}`}
             />
-            <OptimizedPage country={'France'} compensation={props.compensation} median={props.median} area={props.department} role={props.category_role} gender={props.gender}/>
-            <Table compensation={props} department={props.department} role={props.role} gender={props.gender} country={'France'} participant={props.participant}/>
+            <OptimizedPage
+                country={'France'}
+                compensation={props.compensation}
+                median={props.median}
+                area={props.department}
+                role={props.role}
+                gender={props.gender} />
+            <Table
+                compensation={props}
+                department={props.department}
+                role={props.role}
+                gender={props.gender}
+                country={'France'}
+                participant={props.participant} />
             <Footer />
         </>
     )

@@ -120,6 +120,13 @@ export default function Footer() {
                         <div className="md:grid md:grid-cols-2 md:gap-8">
                             <div>
                                 <ul role="list" className="mt-4 space-y-4">
+                                    <li>
+                                    <Link href={`/directory`}>
+                                                <a className="text-base text-blue-grey-300 hover:text-blue-grey-800">
+                                                    Directory
+                                                </a>
+                                            </Link>
+                                    </li>
                                     {variable.length ? variable[0].map((item: any, i: number) => (
                                         <li key={i}>
                                             <Link href={`/salaries/france/${item.toLowerCase()}`}>

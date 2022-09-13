@@ -17,7 +17,7 @@ const _ = require("lodash");
 // `getStaticPaths` requires using `getStaticProps`
 export const getStaticProps: GetStaticProps = async (context: any) => {
     await connectionDB();
-    const response:any = await loadData(context.params);
+    const response: any = await loadData(context.params);
 
     const { meanCompensation, medianCompensation } = await metricsCompensation(response.compensation)
 
@@ -48,8 +48,20 @@ const FrenchData = (props: any) => {
                 title={`Discover ${props.gender ? props.gender : ''} ${props.role ? props.role : 'Software Engineer'} salaries in ${props.department ? props.department : props.country}`}
                 description={`Leverage our database to know the ${props.role ? props.role : 'Software Engineer'} wage in ${props.department ? props.department : props.country}`}
             />
-            <OptimizedPage country={'France'} compensation={props.compensation} median={props.median} area={props.department} role={props.category_role} gender={props.gender} />
-            <Table compensation={props} department={props.department} role={props.role} gender={props.gender} country={'France'} participant={props.participant} />
+            <OptimizedPage
+                country={'France'}
+                compensation={props.compensation}
+                median={props.median}
+                area={props.department}
+                role={props.role}
+                gender={props.gender} />
+            <Table
+                compensation={props}
+                department={props.department}
+                role={props.role}
+                gender={props.gender}
+                country={'France'}
+                participant={props.participant} />
             <Footer />
         </>
     )
