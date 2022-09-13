@@ -142,7 +142,7 @@ const FormCompensation = () => {
                         </div>
                     </div>
                     <Anonymized value={compensation.anonymous} handleChange={handleChange} />
-                    <Email value={compensation.email} handleChange={handleChange} />
+                    <Email value={compensation.email} handleChange={handleChange}  error={handleError.email ? handleError.email : undefined}/>
                     <FeedbackJobForm value={compensation.feedback_job_form} handleChange={handleChange} />
                     <SolutionTested value={compensation.solution_tested} handleChange={handleChange} />
                     <ProductFeedback value={compensation.product_feedback} handleChange={handleChange} />
