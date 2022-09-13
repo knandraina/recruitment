@@ -8,6 +8,7 @@ interface OptimizedPageProps {
 }
 
 const Page = (props: OptimizedPageProps) => {
+    console.log(props)
     return (
         <>
             <div className="grid grid-cols-12 gap-4 px-4 sm:px-6 lg:px-8">

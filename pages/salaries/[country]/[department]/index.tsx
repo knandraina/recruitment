@@ -23,7 +23,7 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
     return {
         // Passed to the page component as props
         props: {
-            post: response.compensation.slice(0,150),
+            post: response.compensation.slice(0, 150),
             participant: response.compensation.length,
             country,
             [key]: Object.values(response)[1],
@@ -46,15 +46,27 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 
 const DepartmentData = (props: any) => {
-    
+
     return (
         <>
-           <NextSeo
-                title={`Discover ${props.gender? props.gender : ''} ${props.role ? props.role : 'Software Engineer'} salaries in ${props.department ? props.department : props.country}`}
+            <NextSeo
+                title={`Discover ${props.gender ? props.gender : ''} ${props.role ? props.role : 'Software Engineer'} salaries in ${props.department ? props.department : props.country}`}
                 description={`Leverage our database to know the ${props.role ? props.role : 'Software Engineer'} wage in ${props.department ? props.department : props.country}`}
             />
-            <OptimizedPage country={'France'} compensation={props.compensation} median={props.median} area={props.department} role={props.category_role} gender={props.gender}/>
-            <Table compensation={props} department={props.department} role={props.role} gender={props.gender} country={'France'} participant={props.participant}/>
+            <OptimizedPage
+                country={'France'}
+                compensation={props.compensation}
+                median={props.median}
+                area={props.department}
+                role={props.role}
+                gender={props.gender} />
+            <Table
+                compensation={props}
+                department={props.department}
+                role={props.role}
+                gender={props.gender}
+                country={'France'}
+                participant={props.participant} />
             <Footer />
         </>
     )
