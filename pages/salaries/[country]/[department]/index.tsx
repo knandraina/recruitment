@@ -1,33 +1,32 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
-import { useState } from 'react';
 
-import { loadData, loadDepartmentData } from '../../../../lib/load-data'
+import { loadData } from '../../../../lib/load-data'
 import connectionDB from '../../../../lib/connectionDB'
 import { metricsCompensation } from '../../../../lib/calculation';
 
 import Table from '../../../../components/Table/table';
 import OptimizedPage from '../../../../components/Page/OptimizedPage'
-import FormRedirection from '../../../../components/Form/FormRedirection';
 import Footer from '../../../../components/Element/Footer';
 
 import { NextSeo } from 'next-seo';
+import { buildPath } from '../../../../lib/slugLoad';
 
 
 // `getStaticPaths` requires using `getStaticProps`
 export const getStaticProps: GetStaticProps = async (context: any) => {
     const country: String = context.params.country;
-    const department_lower_case: String = context.params.department;
     await connectionDB();
-    const response = await loadData(department_lower_case);
-    const department = await response[0].department
-    const { meanCompensation, medianCompensation } = await metricsCompensation(response)
+    const response: any = await loadData(context.params);
+    const key = Object.keys(response)[1];
+    const { meanCompensation, medianCompensation } = await metricsCompensation(response.compensation)
 
     return {
         // Passed to the page component as props
         props: {
-            post: response,
+            post: response.compensation.slice(0,150),
+            participant: response.compensation.length,
             country,
-            department,
+            [key]: Object.values(response)[1],
             compensation: Math.round(meanCompensation),
             median: Math.round(medianCompensation)
         },
@@ -37,31 +36,25 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
 export const getStaticPaths: GetStaticPaths = async () => {
 
     await connectionDB();
-    const path: Array<any> = await loadDepartmentData()
+    // const path: Array<any> = await loadDepartmentData();
+    const path = await buildPath()
     return {
-        paths: path,
+        paths: path.answerDepartment,
         fallback: false, // can also be true or 'blocking'
     }
 }
 
 
 const DepartmentData = (props: any) => {
-
-    const [department, setDepartment] = useState<string>(props.department);
-
-    const handleChange = async (department: string) => {
-        setDepartment(department)
-    }
-
+    
     return (
         <>
-            <NextSeo
-                title={`Discover Software engineer salaries in ${props.department}`}
-                description={`Leverage our database to know the sofware engineer wage in ${props.department}`}
+           <NextSeo
+                title={`Discover ${props.gender? props.gender : ''} ${props.role ? props.role : 'Software Engineer'} salaries in ${props.department ? props.department : props.country}`}
+                description={`Leverage our database to know the ${props.role ? props.role : 'Software Engineer'} wage in ${props.department ? props.department : props.country}`}
             />
-            <OptimizedPage area={props.department} compensation={props.compensation} median={props.median} />
-            <Table compensation={props} department={props.department}/>
-            <FormRedirection department={department} handleChange={handleChange} textButton={"Explore Data"} />
+            <OptimizedPage country={'France'} compensation={props.compensation} median={props.median} area={props.department} role={props.category_role} gender={props.gender}/>
+            <Table compensation={props} department={props.department} role={props.role} gender={props.gender} country={'France'} participant={props.participant}/>
             <Footer />
         </>
     )

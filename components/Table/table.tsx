@@ -4,8 +4,11 @@ import Link from 'next/link';
 
 interface TableProps {
     compensation: any,
-    department: any,
-    role?: any
+    department?: any,
+    role?: any,
+    gender?: any
+    country?: any,
+    participant?: any
 }
 
 const Table = (props: TableProps) => {
@@ -15,12 +18,16 @@ const Table = (props: TableProps) => {
         <div className="px-4 sm:px-6 lg:px-8">
             <div className='grid grid-cols-12'>
                 <div className='col-start-2 col-span-10'>
-                    {router.pathname === '/' ? '' : <p className='text-s text-blue-grey-700 mt-2'>{`${props.compensation.post.length} ${props.compensation.post.length > 1 ? 'salaries' : 'salary'} from ${props.role ? props.role : 'Software engineer'} has been posted in ${props.department}.`}</p>}
-                    {router.pathname === '/' ? '' : <p className='text-xs text-blue-grey-200 mt-2'>Currently, we don&apos;t have enough data to disclose company name. For privacy reason, we will divulge company name only when we have more than 3 answers per company. You can click on a location to discover the average salary there. Scroll down to the bottom to select a particular area!</p>}
+                    {router.pathname === '/' ? '' : <p className='text-s text-blue-grey-700 mt-2'>{`${props.participant ? props.participant : props.compensation.post.length} ${props.compensation.post.length > 1 ? 'salaries' : 'salary'} from ${props.gender? props.gender : ''} ${props.role ? props.role : 'Software engineer'} has been posted in ${props.department ? props.department : props.country}.`}</p>}
+                    {router.pathname === '/' ? '' : <p className='text-xs text-blue-grey-200 mt-2'>Currently, we don&apos;t have enough data to disclose company name. For privacy reason, we will divulge company name only when we have more than 3 answers per company. You can click on a location to discover the average salary there. </p>}
+
+                   { Object.keys(router.query).length > 2 && props.gender || props.role ? 
+                    <p className='text-xs text-blue-grey-200 mt-2'>{`Maybe you wanted to visit the ${props.role ? props.role : props.gender } salary in France`}. <Link href={`/salaries/france/${props.role ? props.role: props.gender.toLowerCase()}`}>Click here.</Link></p>
+                   : ''}  
+                    
                 </div>
             </div>
             <div className="mt-8 flex flex-col grid grid-cols-12">
-                {/* <div></div> */}
                 <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8 col-start-2 col-span-10">
                     <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                         <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
@@ -88,18 +95,19 @@ const Table = (props: TableProps) => {
                                             <td className="whitespace-nowrap px-2 py-2 text-xs font-medium text-blue-grey-900">
                                                 {transaction.company.compensation.length < 3 ? 'Private' : transaction.anonymous === false ? transaction.company.name : 'Private'}
                                             </td>
-                                            <td className="whitespace-nowrap px-2 py-2 text-xs font-medium text-blue-grey-900">
-                                                {transaction.gender}
+                                            <td className="whitespace-nowrap px-2 py-2 text-xs font-medium text-blue-grey-900 hover:text-blue-grey-200">
+                                                <Link href={`/salaries/france/${transaction.department_lower_case}/${transaction.gender.toLowerCase()}`}>
+                                                    <a className=''>{transaction.gender}</a>
+                                                </Link>
                                             </td>
-                                            <td className="whitespace-nowrap px-2 py-2 text-xs font-medium text-blue-grey-900">
-                                                {<Link href={`/salaries/france/${transaction.department.toLowerCase()}/${transaction.category_role}`}><a>{transaction.category_role}</a></Link>}
-                                                {/* test */}
+                                            <td className="whitespace-nowrap px-2 py-2 text-xs font-medium text-blue-grey-900 hover:text-blue-grey-200">
+                                                {<Link href={`/salaries/france/${transaction.department_lower_case}/${transaction.category_role}`}><a>{transaction.category_role}</a></Link>}
                                             </td>
                                             <td className="whitespace-nowrap px-2 py-2 text-xs text-blue-grey-900 text-left">€ {transaction.revenue}</td>
                                             <td className="whitespace-nowrap px-2 py-2 text-xs text-blue-grey-500">€ {transaction.bonus}</td>
                                             <td className="whitespace-nowrap px-2 py-2 text-xs text-blue-grey-500">{transaction.years_of_experience}</td>
                                             <td className="whitespace-nowrap px-2 py-2 text-xs text-blue-grey-500">{transaction.seniority}</td>
-                                            <td className="whitespace-nowrap px-2 py-2 text-xs text-blue-grey-500 hover:text-blue-grey-800"> <Link href={`/salaries/france/${transaction.department.toLowerCase()}`}><a>{transaction.department}</a></Link></td>
+                                            <td className="whitespace-nowrap px-2 py-2 text-xs text-blue-grey-500 hover:text-blue-grey-200"> <Link href={`/salaries/france/${transaction.department.toLowerCase()}`}><a>{transaction.department}</a></Link></td>
                                             <td className="whitespace-nowrap px-2 py-2 text-xs text-blue-grey-500">{transaction.office_setup}</td>
                                         </tr>
                                     )) : ''}

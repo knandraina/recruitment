@@ -1,25 +1,25 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
+import { useState } from 'react';
 
-import { loadData } from '../../../../../lib/load-data'
-import connectionDB from '../../../../../lib/connectionDB'
-import { metricsCompensation } from '../../../../../lib/calculation';
+import { loadData, loadDepartmentData } from '../../../../../../lib/load-data'
+import connectionDB from '../../../../../../lib/connectionDB'
+import { metricsCompensation } from '../../../../../../lib/calculation';
 
-import Table from '../../../../../components/Table/table';
-import OptimizedPage from '../../../../../components/Page/OptimizedPage'
-import Footer from '../../../../../components/Element/Footer';
+import Table from '../../../../../../components/Table/table';
+import OptimizedPage from '../../../../../../components/Page/OptimizedPage'
+import Footer from '../../../../../../components/Element/Footer';
 
 import { NextSeo } from 'next-seo';
-import { buildPath } from '../../../../../lib/slugLoad';
 
 
 // `getStaticPaths` requires using `getStaticProps`
 export const getStaticProps: GetStaticProps = async (context: any) => {
     const country: String = context.params.country;
+    const role: string = context.params.role
+    const gender: string = context.params.gender;
     await connectionDB();
     const response: any = await loadData(context.params);
-    const keyOne = Object.keys(response)[1];
-    const keyTwo = Object.keys(response)[2];
-
+    const department = await response.compensation[0].department
     const { meanCompensation, medianCompensation } = await metricsCompensation(response.compensation)
 
     return {
@@ -27,8 +27,9 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
         props: {
             post: response.compensation,
             country,
-            [keyOne]: Object.values(response)[1],
-            [keyTwo]:Object.values(response)[2],
+            department,
+            role,
+            gender,
             compensation: Math.round(meanCompensation),
             median: Math.round(medianCompensation)
         },
@@ -38,19 +39,19 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
 export const getStaticPaths: GetStaticPaths = async () => {
 
     await connectionDB();
-    const path = await buildPath();
+    const path: Array<any> = await loadDepartmentData();
     return {
-        paths: path.answerDepartmentRole,
+        paths: path,
         fallback: false, // can also be true or 'blocking'
     }
 }
 
 
-const RoleData = (props: any) => {
+const GenderData = (props: any) => {
 
     return (
         <>
-            <NextSeo
+           <NextSeo
                 title={`Discover ${props.gender? props.gender : ''} ${props.role ? props.role : 'Software Engineer'} salaries in ${props.department ? props.department : props.country}`}
                 description={`Leverage our database to know the ${props.role ? props.role : 'Software Engineer'} wage in ${props.department ? props.department : props.country}`}
             />
@@ -61,4 +62,4 @@ const RoleData = (props: any) => {
     )
 }
 
-export default RoleData;
+export default GenderData;

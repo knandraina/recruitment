@@ -1,4 +1,4 @@
-import { useState } from 'react';
+
 import { GetStaticProps, GetStaticPaths } from 'next'
 
 import { loadData } from '../../../lib/load-data'
@@ -16,17 +16,17 @@ const _ = require("lodash");
 
 // `getStaticPaths` requires using `getStaticProps`
 export const getStaticProps: GetStaticProps = async (context: any) => {
-    const country: String = context.params.country
     await connectionDB();
-    const response = await loadData('');
+    const response:any = await loadData(context.params);
 
-    const { meanCompensation, medianCompensation } = await metricsCompensation(response)
+    const { meanCompensation, medianCompensation } = await metricsCompensation(response.compensation)
 
     return {
         // Passed to the page component as props
         props: {
-            post: response,
-            country,
+            post: response.compensation.slice(0, 150),
+            participant: response.compensation.length,
+            country: 'France',
             compensation: Math.round(meanCompensation),
             median: Math.round(medianCompensation)
         },
@@ -42,21 +42,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 const FrenchData = (props: any) => {
 
-    const [department, setDepartment] = useState<string>(props.department);
-
-    const handleChange = async (department: string) => {
-        setDepartment(department)
-    }
-
     return (
         <>
             <NextSeo
-                title={`Discover Software engineer salary in ${props.country}`}
-                description="Leverage our database to know the sofware engineer wage in France"
+                title={`Discover ${props.gender ? props.gender : ''} ${props.role ? props.role : 'Software Engineer'} salaries in ${props.department ? props.department : props.country}`}
+                description={`Leverage our database to know the ${props.role ? props.role : 'Software Engineer'} wage in ${props.department ? props.department : props.country}`}
             />
-            <OptimizedPage area={props.country} compensation={props.compensation} median={props.median} />
-            <Table compensation={props} department={'France'}/>
-            <FormRedirection department={department} handleChange={handleChange} textButton={"Explore Data"} />
+            <OptimizedPage country={'France'} compensation={props.compensation} median={props.median} area={props.department} role={props.category_role} gender={props.gender} />
+            <Table compensation={props} department={props.department} role={props.role} gender={props.gender} country={'France'} participant={props.participant} />
             <Footer />
         </>
     )
