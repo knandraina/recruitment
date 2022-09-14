@@ -18,13 +18,29 @@ const Table = (props: TableProps) => {
         <div className="px-4 sm:px-6 lg:px-8">
             <div className='grid grid-cols-12'>
                 <div className='col-start-2 col-span-10'>
-                    {router.pathname === '/' ? '' : <p className='text-s text-blue-grey-700 mt-2'>{`${props.participant ? props.participant : props.compensation.post.length} ${props.compensation.post.length > 1 ? 'salaries' : 'salary'} from ${props.gender? props.gender : ''} ${props.role ? props.role : 'Software engineer'} has been posted in ${props.department ? props.department : props.country}.`}</p>}
+                    {router.pathname === '/' ? '' : <p className='text-s text-blue-grey-700 mt-2'>{`${props.participant ? props.participant : props.compensation.post.length} ${props.compensation.post.length > 1 ? 'salaries' : 'salary'} from ${props.gender ? props.gender : ''} ${props.role ? props.role : 'Software engineer'} has been posted in ${props.department ? props.department : props.country}.`}</p>}
                     {router.pathname === '/' ? '' : <p className='text-xs text-blue-grey-200 mt-2'>Currently, we don&apos;t have enough data to disclose company name. For privacy reason, we will divulge company name only when we have more than 3 answers per company. You can click on a location to discover the average salary there. </p>}
 
-                   { Object.keys(router.query).length > 2 && props.gender || props.role ? 
-                    <p className='text-xs text-blue-grey-200 mt-2'>{`Maybe you wanted to visit the ${props.role ? props.role : props.gender } salary in France`}. <Link href={`/salaries/france/${props.role ? props.role: props.gender.toLowerCase()}`}>Click here.</Link></p>
-                   : ''}  
-                    
+                    {Object.keys(router.query).length > 2 && props.gender || props.role ?
+                        <p className='text-xs text-blue-grey-200 mt-2'>{`Maybe you wanted to visit the ${props.role ? props.role : props.gender} salary in France`}. <Link href={`/salaries/france/${props.role ? props.role : props.gender.toLowerCase()}`}>Click here.</Link></p>
+                        : ''}
+                    <div className='grid grid-cols-12 flex items-center mt-6'>
+                        <p className='text-s text-blue-grey-600 mt-2 col-span-4'>If you want to get help to negociate your next salary, feel free to join our membership </p>
+                        <div>
+                            <div className="rounded-md shadow">
+                                <Link href="https://framaforms.org/annual-membership-help-1663166740">
+                                    <a
+                                        className="flex items-center justify-center rounded-md border border-transparent bg-green-500 px-5 py-3 text-base font-medium text-blue-grey-50 hover:bg-cyan-700"
+                                    >
+                                        Get Access
+                                    </a>
+                                </Link>
+
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
             <div className="mt-8 flex flex-col grid grid-cols-12">
