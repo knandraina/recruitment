@@ -19,7 +19,7 @@ export default function Pricing() {
                             Simple no-tricks pricing
                         </h2>
                         <p className="mt-4 text-xl text-blue-grey-600">
-                            If you're not satisfied, contact us within the first 14 days and we'll send you a full refund.
+                            If you&apos;re not satisfied, contact us within the first 14 days and we&apos;ll send you a full refund.
                         </p>
                     </div>
                 </div>
@@ -37,7 +37,7 @@ export default function Pricing() {
                                 <div className="mt-8">
                                     <div className="flex items-center">
                                         <h4 className="flex-shrink-0 bg-blue-grey pr-4 text-base font-semibold text-indigo-600">
-                                            What's included
+                                            What&apos;s included
                                         </h4>
                                         <div className="flex-1 border-t-2 border-blue-grey-200" />
                                     </div>
