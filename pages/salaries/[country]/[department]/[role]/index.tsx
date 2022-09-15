@@ -30,7 +30,8 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
             [keyOne]: Object.values(response)[1],
             [keyTwo]: Object.values(response)[2],
             compensation: Math.round(meanCompensation),
-            median: Math.round(medianCompensation)
+            median: Math.round(medianCompensation),
+            city_link_department: response.city_link_department
         },
     }
 }
@@ -51,8 +52,8 @@ const RoleData = (props: any) => {
     return (
         <>
             <NextSeo
-                title={`Discover ${props.gender ? props.gender : ''} ${props.role ? props.role : 'Software Engineer'} salaries in ${props.department ? props.department : props.country}`}
-                description={`Leverage our database to know the ${props.role ? props.role : 'Software Engineer'} wage in ${props.department ? props.department : props.country}`}
+                title={`Discover ${props.gender ? props.gender : ''} ${props.role ? props.role : 'Software Engineer'} salaries in ${props.city_link_department ? props.city_link_department : props.department ? props.department : props.country}`}
+                description={`Leverage our database to know the ${props.role ? props.role : 'Software Engineer'} wage in ${props.city_link_department ? props.city_link_department :''} ${props.department ? props.department : props.country}`}
             />
             <OptimizedPage
                 country={'France'}
@@ -60,14 +61,18 @@ const RoleData = (props: any) => {
                 median={props.median}
                 area={props.department}
                 role={props.role}
-                gender={props.gender} />
+                gender={props.gender}
+                city_link_department={props.city_link_department}
+                 />
             <Table
                 compensation={props}
                 department={props.department}
                 role={props.role}
                 gender={props.gender}
                 country={'France'}
-                participant={props.participant} />
+                participant={props.participant}
+                city_link_department={props.city_link_department}
+                 />
             <Footer />
         </>
     )

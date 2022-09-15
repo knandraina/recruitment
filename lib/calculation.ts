@@ -1,4 +1,5 @@
 const _ = require("lodash");
+import { quantile } from "simple-statistics";
 
 export async function metricsCompensation(response: any) {
     const compensation = await response.map((data: any) => {
@@ -11,11 +12,23 @@ export async function metricsCompensation(response: any) {
     });
 
     const medianCompensation = await median(orderCompensation);
+    const seventhPercentileCompensation = await seventhPercentile(orderCompensation)
+    const ninetythPercentileCompensation = await ninetythPercentile(orderCompensation)
 
     return {
         medianCompensation,
         meanCompensation,
+        seventhPercentileCompensation,
+        ninetythPercentileCompensation
     }
+}
+
+const seventhPercentile = async (orderCompensation: Array<number>) => {
+    return quantile(orderCompensation, 0.75);
+}
+
+const ninetythPercentile = async (orderCompensation: Array<number>) => {
+    return quantile(orderCompensation, 0.9);
 }
 
 async function median(values: Array<any>) {

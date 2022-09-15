@@ -27,7 +27,9 @@ export async function loadData(params: any) {
             }
             return {
                 compensation: response,
-                department: response[0].department
+                department: response[0].department,
+                city_link_department: response[0].city_linked_to_department
+
             }
         }
         return {
@@ -47,6 +49,7 @@ export async function loadData(params: any) {
                 compensation: response,
                 department: response[0].department,
                 role: Object.values(params)[2],
+                city_link_department: response[0].city_linked_to_department
             }
 
         } else if (responseRole && responseGender) {
@@ -62,7 +65,8 @@ export async function loadData(params: any) {
             return {
                 compensation: response,
                 department: response[0].department,
-                gender: secondObject
+                gender: secondObject,
+                city_link_department: response[0].city_linked_to_department
             }
 
         }
