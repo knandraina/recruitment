@@ -17,7 +17,8 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
     const country: String = context.params.country;
     await connectionDB();
     const response: any = await loadData(context.params);
-    
+    const lengthKey = Object.keys(response).length
+    const city_link_department = response.hasOwnProperty('city_link_department') ? Object.values(response)[lengthKey - 1]: null ;
     const key = Object.keys(response)[1];
     const { meanCompensation, medianCompensation } = await metricsCompensation(response.compensation)
 
@@ -30,7 +31,7 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
             [key]: Object.values(response)[1],
             compensation: Math.round(meanCompensation),
             median: Math.round(medianCompensation),
-            city_link_department: response.city_link_department
+            city_link_department
         },
     }
 }
