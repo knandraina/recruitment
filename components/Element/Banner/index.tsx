@@ -1,23 +1,59 @@
 import Link from "next/link";
 
-const Banner = () => {
+const Banner = (props: any) => {
 
     return (
-        <div className='grid grid-cols-12 flex items-center mt-6 bg-blue-grey-70 py-6 px-2 rounded-lg shadow'>
-        <p className='text-s text-blue-grey-600 mt-2 col-span-7'>If you want to get help to negociate your next salary, feel free to join our membership </p>
-        <div>
-            <div className="rounded-md shadow w-40 lg:w-60 ">
-                <Link href="https://framaforms.org/annual-membership-help-1663166740">
-                    <a
-                        className=" flex items-center justify-center rounded-md border border-transparent bg-green-500 px-5 py-3 text-base font-medium text-blue-grey-50 hover:bg-cyan-700"
-                    >
-                        Get Access
-                    </a>
-                </Link>
+        <div className="grid grid-cols-12 px-4 content-center">
+            <div className="bg-blue-grey-70 place-items-stretch col-start-2 col-span-9 lg:col-start-4 lg:col-span-6 rounded-lg shadow mt-10">
+                <div className="items-center flex flex-row h-40 gap-4 lg:gap-10">
+                    <div className="hidden lg:block"></div>
+                    <div className="">
+                        <p className="text-xl text-light-blue-400 mt-2 text-left content-center">{props.data.compensation} €</p>
+                        <p className="text-blue-grey-200 text-sm text-left content-center">Average salary</p>
+                    </div>
+                    <div className="hidden lg:block">
+                        <p className="text-l text-light-blue-400 mt-2 text-left content-center">{props.data.median / 1000}K €</p>
+                        <p className="text-blue-grey-200 text-sm text-left content-center">50th</p>
+                    </div>
+                    <div className="hidden lg:block">
+                        <p className="text-l text-light-blue-400 mt-2 text-left content-center">{props.data.seventhPercentileCompensation / 1000}K €</p>
+                        <p className="text-blue-grey-200  text-sm text-left content-center">75th</p>
+                    </div>
+                    <div className="hidden lg:block">
+                        <p className="text-l text-light-blue-400 mt-2 text-left content-center">{props.data.ninetythPercentileCompensation / 1000}K €</p>
+                        <p className="text-blue-grey-200 text-sm text-left content-center">90th</p>
+                    </div>
+                    <div>
+                        <div>
+                            <div className="rounded-md shadow w-40 lg:w-60 ">
+                                <Link href="https://framaforms.org/annual-membership-help-1663166740">
+                                    <a
+                                        className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-blue-grey-50 bg-green-500 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-500"
+                                    >
+                                        Get help to raise your salary
+                                    </a>
+                                </Link>
 
+                            </div>
+                        </div>
+                        <div className="mt-2">
+                            <div>
+                                <div className="rounded-md shadow w-40 lg:w-60 ">
+                                    <Link href="https://framaforms.org/annual-membership-help-1663166740">
+                                        <a
+                                            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-blue-grey-500 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-500"
+                                        >
+                                            Share your salary
+                                        </a>
+                                    </Link>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
     )
 }
 

@@ -56,7 +56,10 @@ const FrenchData = (props: any) => {
                 median={props.median}
                 area={props.department}
                 role={props.role}
-                gender={props.gender} />
+                gender={props.gender} 
+                seventhPercentileCompensation={props.seventhPercentileCompensation}
+                ninetythPercentileCompensation={props.ninetythPercentileCompensation}
+                />
             <Table
                 compensation={props}
                 department={props.department}
