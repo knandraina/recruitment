@@ -7,7 +7,6 @@ import { metricsCompensation } from '../../../lib/calculation';
 
 import Table from '../../../components/Table/table';
 import OptimizedPage from '../../../components/Page/OptimizedPage'
-import FormRedirection from '../../../components/Form/FormRedirection';
 import Footer from '../../../components/Element/Footer';
 import * as ss from 'simple-statistics'
 

@@ -20,7 +20,7 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
     const lengthKey = Object.keys(response).length
     const city_link_department = response.hasOwnProperty('city_link_department') ? Object.values(response)[lengthKey - 1]: null ;
     const key = Object.keys(response)[1];
-    const { meanCompensation, medianCompensation } = await metricsCompensation(response.compensation)
+    const { meanCompensation, medianCompensation,seventhPercentileCompensation, ninetythPercentileCompensation } = await metricsCompensation(response.compensation);
 
     return {
         // Passed to the page component as props
@@ -31,7 +31,9 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
             [key]: Object.values(response)[1],
             compensation: Math.round(meanCompensation),
             median: Math.round(medianCompensation),
-            city_link_department
+            city_link_department,
+            seventhPercentileCompensation,
+            ninetythPercentileCompensation
         },
     }
 }
@@ -64,6 +66,8 @@ const DepartmentData = (props: any) => {
                 role={props.role}
                 gender={props.gender}
                 city_link_department={props.city_link_department}
+                seventhPercentileCompensation={props.seventhPercentileCompensation}
+                ninetythPercentileCompensation={props.ninetythPercentileCompensation}
                  />
             <Table
                 compensation={props}
