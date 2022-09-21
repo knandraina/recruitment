@@ -5,7 +5,7 @@ const Banner = (props: any) => {
     return (
         <div className="grid grid-cols-12 px-4 content-center">
             <div className="bg-blue-grey-70 place-items-stretch col-start-2 col-span-9 lg:col-start-4 lg:col-span-6 rounded-lg shadow mt-10">
-                <div className="items-center flex flex-row h-40 gap-4 lg:gap-10">
+                <div className="items-center flex flex-row h-40 gap-4 lg:gap-10 2xl:gap-28">
                     <div className="hidden lg:block"></div>
                     <div className="">
                         <p className="text-xl text-light-blue-400 mt-2 text-left content-center">{props.data.compensation} €</p>
