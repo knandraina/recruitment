@@ -18,16 +18,17 @@ export default function SelectMenu(props: SelectMenuProps) {
     const handleChange = async (results: string) => {
         props.handleChange('menu_one', results);
     }
+    console.log(props)
 
     return (
         <div className='w-80'>
-            <Listbox value={props.url} onChange={handleChange}>
+            <Listbox value={props.url !== '' ? props.url : 'Choose a department'} onChange={handleChange}>
                 {({ open }) => (
                     <>
                         <Listbox.Label className="block text-sm font-medium text-blue-grey-700"></Listbox.Label>
                         <div className="relative mt-1">
                             <Listbox.Button className="relative w-full h-10 cursor-default rounded-md border border-blue-grey-300 bg-blue-grey-50 py-2 pl-3 pr-10 text-left shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 sm:text-sm">
-                                <span className="block truncate">{props.url}</span>
+                                <span className="block truncate">{props.url !== '' ? props.url : 'Choose a department'}</span>
                                 <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                                     <ChevronUpDownIcon className="h-5 w-5 text-blue-grey-400" aria-hidden="true" />
                                 </span>

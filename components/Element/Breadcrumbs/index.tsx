@@ -134,9 +134,6 @@ export default function Breadcrumbs() {
         const k = all.findIndex((e: any) => e.data === gender);
         const responseGender = k !== -1 ? all[k].entity : '';
 
-
-        console.log('responseDepartment', responseDepartment, 'responseRole', responseRole, 'responseGender', responseGender );
-
         if (responseDepartment === 'department' && responseRole === 'role' && responseGender === 'gender') {
             setDepartment(department)
             setRole(role);
@@ -146,32 +143,32 @@ export default function Breadcrumbs() {
             setGender(role);
             setDepartment('');
         } else if (responseDepartment === 'department' && responseRole === 'role') {
-            console.log('breadcums', 1)
+           
             setGender('');
             setDepartment(department)
             setRole(role);
         } else if (responseDepartment === 'department' && responseRole === 'gender') {
-            console.log('breadcums', 10)
+
             setGender(role);
             setDepartment(department)
             setRole('');
         } else if (responseDepartment === 'department') {
-            console.log('breadcums', 2)
+
             setDepartment(department)
             setGender('')
             setRole('');
         } else if (responseDepartment === 'role') {
-            console.log('breadcums', 3)
+
             setRole(department)
             setDepartment('')
             setGender('')
         } else if (responseDepartment === 'gender'){
-            console.log('breadcums', 4, department)
+
             setGender(department)
             setDepartment('')
             setRole('')
         }        
-        console.log('nome')
+
     }, [])
 
 
@@ -184,29 +181,29 @@ export default function Breadcrumbs() {
             const k = all.findIndex((e: any) => e.data === genderPath);
             const responseGender = k !== -1 ? all[k].entity : '';
 
-            console.log('responseDepartment', responseDepartment, 'responseRole', responseRole, 'responseGender', responseGender)
+
             setDepartment(results);
 
             if (responseGender !== '' && responseRole !== '') {
-                console.log('test 2')
+
                 router.push(`/salaries/france/${results}/${rolePath}/${genderPath}`);
             } else if (responseDepartment === 'department' && responseRole !== '') {
-                console.log('test 1')
+
                 router.push(`/salaries/france/${results}/${rolePath}`);
             } else if (responseDepartment === 'department' && responseRole === 'role' && responseGender === 'gender') {
-                console.log('test 3')
+
                 router.push(`/salaries/france/${results}/${rolePath}/${genderPath}`)
             } else if (responseDepartment === 'role' && responseRole === 'gender') {
-                console.log(5)
+
                 router.push(`/salaries/france/${results}/${departmentPath}/${rolePath}`)
             } else if (responseDepartment === 'role' || responseDepartment === 'gender') {
-                console.log('test 7')
+
                 router.push(`/salaries/france/${results}/${departmentPath}`)
             } else if (responseDepartment === '' && responseRole === '' && responseGender === '') {
-                console.log('test 9')
+
                 router.push(`/salaries/france/${results}`)
             } else {
-                console.log('test 8')
+
                 router.push(`/salaries/france/${results}`)
             }
 
@@ -220,38 +217,38 @@ export default function Breadcrumbs() {
             const k = all.findIndex((e: any) => e.data === genderPath);
             const responseGender = k !== -1 ? all[k].entity : '';
 
-            console.log(responseDepartment, responseRole, responseGender)
+
 
             if (responseDepartment === 'department' && responseRole === 'role' && responseGender === 'gender') {
-                console.log(11)
+
                 router.push(`/salaries/france/${departmentPath}/${results}/${genderPath}`)
 
             } else if (responseDepartment === 'department' && responseRole === 'gender') {
-                console.log(12)
+
                 router.push(`/salaries/france/${departmentPath}/${results}/${rolePath}`)
 
             } else if (responseDepartment === 'gender' && responseRole === 'role') {
-                console.log(13)
+
                 router.push(`/salaries/france/${results}/${departmentPath}`);
 
             } else if (responseDepartment === 'role' && responseRole === 'gender' ) {
-                console.log(14)
+
                 router.push(`/salaries/france/${results}/${rolePath}`);
 
             } else if (responseDepartment === 'department' && responseRole === 'role') {
-                console.log(15)
+
                 router.push(`/salaries/france/${departmentPath}/${results}`)
 
             } else if (responseDepartment === 'gender') {
-                console.log(16)
+
                 router.push(`/salaries/france/${results}/${departmentPath}`);
 
             } else if (responseDepartment === 'department') {
-                console.log(17)
+
                 router.push(`/salaries/france/${departmentPath}/${results}`);
 
             } else if ((responseDepartment === 'role' && responseGender === '' && responseRole === '') || (responseDepartment === '' && responseGender === '' && responseRole === '')) {
-                console.log(18)
+
                 router.push(`/salaries/france/${results}`);
             } 
 
@@ -264,29 +261,29 @@ export default function Breadcrumbs() {
             const k = all.findIndex((e: any) => e.data === genderPath);
             const responseGender = k !== -1 ? all[k].entity : '';
 
-            console.log(responseDepartment, 'responseDepartment', responseRole, 'responseRole', responseGender, 'responseGender')
+
 
             setGender(results);
             if (responseDepartment === '' && responseGender === '' && responseRole === '') {
-                console.log(1)
+
                 router.push(`/salaries/france/${results}`);
             } else if (responseDepartment === 'gender' && responseGender === '' && responseRole === '') {
-                console.log('2')
+
                 router.push(`/salaries/france/${results}`);
             } else if (responseDepartment === 'department' && responseRole === 'role') {
-                console.log(3)
+
                 router.push(`/salaries/france/${departmentPath}/${rolePath}/${results}`)
             } else if (responseDepartment === 'department' && responseRole === 'role' && responseGender === 'gender') {
-                console.log(4)
+
                 router.push(`/salaries/france/${departmentPath}/${rolePath}/${results}`)
             } else if (responseDepartment !== 'gender' && responseRole === '') {
-                console.log('5')
+
                 router.push(`/salaries/france/${departmentPath}/${results}`);
             } else if (responseDepartment !== 'gender' && responseRole === 'gender') {
-                console.log(6)
+
                 router.push(`/salaries/france/${departmentPath}/${results}`);
             }
-            console.log(7)
+
 
 
         }

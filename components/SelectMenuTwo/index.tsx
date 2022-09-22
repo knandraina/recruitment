@@ -19,37 +19,8 @@ interface SelectMenuTwoProps {
 
 export default function SelectMenuTwo(props: SelectMenuTwoProps) {
     const router = useRouter();
-
-    const departmentPath = router.query.department;
-    const rolePath = router.query.role ? router.query.role : ''
-
+    
     const [choiceForUser, setChoiceForUser] = useState(props.choice)
-
-    useEffect(() => {
-
-        // const department = props.choice;
-        // const i = department.findIndex((e: any) => e.data === rolePath);
-        // const response = i !== -1 ? department[i].entity : '';
-        // const j = department.findIndex((e: any) => e.data === departmentPath);
-        // const responseJ = department[j].entity
-
-        // if (response === 'gender') {
-        //     let arr = department.filter((item: any) => item.data !== 'gender');
-        //     arr = arr.filter((item: any) => item.entity !== responseJ);
-        //     setChoiceForUser(arr)
-        // } else if (response === 'role') {
-        //     let arr = department.filter((item: any) => item.entity !== 'role');
-        //     arr = arr.filter((item: any) => item.entity !== responseJ);
-        //     setChoiceForUser(arr)
-        // } else if (response === 'department') {
-        //     let arr = department.filter((item: any) => item.entity !== 'department');
-        //     arr = arr.filter((item: any) => item.entity !== responseJ);
-        //     setChoiceForUser(arr)
-        // }
-
-        // let arr = department.filter((item: any) => item.entity !== responseJ);
-        // setChoiceForUser(arr)
-    }, [])
 
     
     const handleChange = async (results: string) => {
@@ -58,13 +29,13 @@ export default function SelectMenuTwo(props: SelectMenuTwoProps) {
 
     return (
         <div className='w-80'>
-            <Listbox value={props.url} onChange={handleChange}>
+            <Listbox value={props.url !== '' ? props.url : 'Choose a role'} onChange={handleChange}>
                 {({ open }) => (
                     <>
                         <Listbox.Label className="block text-sm font-medium text-blue-grey-700"></Listbox.Label>
                         <div className="relative mt-1 w-full">
                             <Listbox.Button className="relative w-full h-10 cursor-default rounded-md border border-blue-grey-300 bg-blue-grey-50 py-2 pl-3 pr-10 text-left shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 sm:text-sm">
-                                <span className="block truncate">{props.url}</span>
+                                <span className="block truncate">{props.url !== '' ? props.url : 'Choose a role'}</span>
                                 <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                                     <ChevronUpDownIcon className="h-5 w-5 text-blue-grey-400" aria-hidden="true" />
                                 </span>
