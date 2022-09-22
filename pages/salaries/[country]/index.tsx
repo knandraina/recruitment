@@ -7,7 +7,6 @@ import { metricsCompensation } from '../../../lib/calculation';
 
 import Table from '../../../components/Table/table';
 import OptimizedPage from '../../../components/Page/OptimizedPage'
-import FormRedirection from '../../../components/Form/FormRedirection';
 import Footer from '../../../components/Element/Footer';
 import * as ss from 'simple-statistics'
 
@@ -28,8 +27,8 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
             post: response.compensation.slice(0, 150),
             participant: response.compensation.length,
             country: 'France',
-            compensation: Math.round(meanCompensation),
-            median: Math.round(medianCompensation),
+            compensation: meanCompensation,
+            median: medianCompensation,
             seventhPercentileCompensation,
             ninetythPercentileCompensation
         },
@@ -56,7 +55,10 @@ const FrenchData = (props: any) => {
                 median={props.median}
                 area={props.department}
                 role={props.role}
-                gender={props.gender} />
+                gender={props.gender} 
+                seventhPercentileCompensation={props.seventhPercentileCompensation}
+                ninetythPercentileCompensation={props.ninetythPercentileCompensation}
+                />
             <Table
                 compensation={props}
                 department={props.department}

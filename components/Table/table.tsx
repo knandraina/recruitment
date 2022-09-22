@@ -27,13 +27,6 @@ const Table = (props: TableProps) => {
                     {Object.keys(router.query).length > 2 && props.gender || props.role ?
                         <p className='text-xs text-blue-grey-200 mt-2'>{`Maybe you wanted to visit the ${props.role ? props.role : props.gender} salary in France`}. <Link href={`/salaries/france/${props.role ? props.role : props.gender.toLowerCase()}`}>Click here.</Link></p>
                         : ''}
-                    {router.pathname != '/' ?
-                       <Banner /> :
-                        ''
-                    }
-
-
-
                 </div>
             </div>
             <div className="mt-8 flex flex-col grid grid-cols-12">
