@@ -18,10 +18,6 @@ interface OptimizedPageProps {
 
 const Page = (props: OptimizedPageProps) => {
 
-    const handleSubmit = async () => {
-
-    }
-
     return (
         <>
             <div className="grid grid-cols-12 gap-4 px-4 sm:px-6 lg:px-8">
