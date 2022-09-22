@@ -18,7 +18,6 @@ export default function SelectMenu(props: SelectMenuProps) {
     const handleChange = async (results: string) => {
         props.handleChange('menu_one', results);
     }
-    console.log(props)
 
     return (
         <div className='w-80'>

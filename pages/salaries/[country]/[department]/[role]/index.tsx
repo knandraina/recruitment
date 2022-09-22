@@ -30,8 +30,8 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
             country,
             [keyOne]: Object.values(response)[1],
             [keyTwo]: Object.values(response)[2],
-            compensation: Math.round(meanCompensation),
-            median: Math.round(medianCompensation),
+            compensation: meanCompensation,
+            median: medianCompensation,
             city_link_department,
             seventhPercentileCompensation,
             ninetythPercentileCompensation

@@ -5,21 +5,47 @@ export async function metricsCompensation(response: any) {
     const compensation = await response.map((data: any) => {
         return data.revenue
     })
-    const meanCompensation = _.mean(compensation)
+    let meanCompensation = _.mean(compensation)
 
     const orderCompensation = await compensation.sort(function (a: number, b: number) {
         return a - b;
     });
 
-    const medianCompensation = await median(orderCompensation);
-    const seventhPercentileCompensation = await seventhPercentile(orderCompensation)
-    const ninetythPercentileCompensation = await ninetythPercentile(orderCompensation)
+    let medianCompensation = await median(orderCompensation);
+    let seventhPercentileCompensation = await seventhPercentile(orderCompensation)
+    let ninetythPercentileCompensation = await ninetythPercentile(orderCompensation)
+
+
+    meanCompensation = (Math.trunc(meanCompensation)).toLocaleString('fr-FR', {
+        style: 'currency',
+        currency: 'EUR',
+        minimumFractionDigits: 0 
+    })
+
+    
+    medianCompensation = (Math.trunc(medianCompensation/1000)).toLocaleString('fr-FR', {
+        style: 'currency',
+        currency: 'EUR',
+        minimumFractionDigits: 0 
+    })
+    
+    const formatSeventhPercentileCompensation = (Math.trunc(seventhPercentileCompensation/1000)).toLocaleString('fr-FR', {
+        style: 'currency',
+        currency: 'EUR',
+        minimumFractionDigits: 0 
+    })
+
+    const formatNinetythPercentileCompensation = (Math.trunc(ninetythPercentileCompensation/1000)).toLocaleString('fr-FR', {
+        style: 'currency',
+        currency: 'EUR',
+        minimumFractionDigits: 0 
+    })
 
     return {
         medianCompensation,
         meanCompensation,
-        seventhPercentileCompensation,
-        ninetythPercentileCompensation
+        seventhPercentileCompensation: formatSeventhPercentileCompensation,
+        ninetythPercentileCompensation: formatNinetythPercentileCompensation
     }
 }
 

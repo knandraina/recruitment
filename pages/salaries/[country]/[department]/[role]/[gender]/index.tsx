@@ -32,8 +32,8 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
             department,
             role,
             gender,
-            compensation: Math.round(meanCompensation),
-            median: Math.round(medianCompensation),
+            compensation: meanCompensation,
+            median: medianCompensation,
             city_link_department,
             seventhPercentileCompensation,
             ninetythPercentileCompensation

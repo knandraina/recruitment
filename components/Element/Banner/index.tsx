@@ -8,19 +8,19 @@ const Banner = (props: any) => {
                 <div className="items-center flex flex-row h-40 gap-4 lg:gap-10 2xl:gap-28">
                     <div className="hidden lg:block"></div>
                     <div className="">
-                        <p className="text-xl text-light-blue-400 mt-2 text-left content-center">{props.data.compensation} €</p>
+                        <p className="text-xl text-light-blue-400 mt-2 text-left content-center">{props.data.compensation}</p>
                         <p className="text-blue-grey-200 text-sm text-left content-center">Average salary</p>
                     </div>
                     <div className="hidden lg:block">
-                        <p className="text-l text-light-blue-400 mt-2 text-left content-center">{props.data.median / 1000}K €</p>
+                        <p className="text-l text-light-blue-400 mt-2 text-left content-center">{props.data.median}K</p>
                         <p className="text-blue-grey-200 text-sm text-left content-center">50th</p>
                     </div>
                     <div className="hidden lg:block">
-                        <p className="text-l text-light-blue-400 mt-2 text-left content-center">{props.data.seventhPercentileCompensation / 1000}K €</p>
+                        <p className="text-l text-light-blue-400 mt-2 text-left content-center">{props.data.seventhPercentileCompensation}K</p>
                         <p className="text-blue-grey-200  text-sm text-left content-center">75th</p>
                     </div>
                     <div className="hidden lg:block">
-                        <p className="text-l text-light-blue-400 mt-2 text-left content-center">{props.data.ninetythPercentileCompensation / 1000}K €</p>
+                        <p className="text-l text-light-blue-400 mt-2 text-left content-center">{props.data.ninetythPercentileCompensation}K</p>
                         <p className="text-blue-grey-200 text-sm text-left content-center">90th</p>
                     </div>
                     <div>
