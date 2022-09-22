@@ -19,7 +19,7 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
     await connectionDB();
     const response: any = await loadData(context.params);
 
-    const { meanCompensation, medianCompensation,seventhPercentileCompensation, ninetythPercentileCompensation } = await metricsCompensation(response.compensation);
+    const { meanBonus, meanCompensation, medianCompensation,seventhPercentileCompensation, ninetythPercentileCompensation } = await metricsCompensation(response.compensation);
 
     return {
         // Passed to the page component as props
@@ -30,7 +30,8 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
             compensation: meanCompensation,
             median: medianCompensation,
             seventhPercentileCompensation,
-            ninetythPercentileCompensation
+            ninetythPercentileCompensation,
+            bonus: meanBonus
         },
     }
 }
@@ -58,6 +59,7 @@ const FrenchData = (props: any) => {
                 gender={props.gender} 
                 seventhPercentileCompensation={props.seventhPercentileCompensation}
                 ninetythPercentileCompensation={props.ninetythPercentileCompensation}
+                bonus={props.bonus}
                 />
             <Table
                 compensation={props}
@@ -65,7 +67,10 @@ const FrenchData = (props: any) => {
                 role={props.role}
                 gender={props.gender}
                 country={'France'}
-                participant={props.participant} />
+                participant={props.participant} 
+                bonus={props.bonus}
+                />
+                 
             <Footer />
         </>
     )

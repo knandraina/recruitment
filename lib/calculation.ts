@@ -5,7 +5,15 @@ export async function metricsCompensation(response: any) {
     const compensation = await response.map((data: any) => {
         return data.revenue
     })
+
+    const bonus = await response.map((data: any) => {
+        return data.bonus
+    });
+
     let meanCompensation = _.mean(compensation)
+
+    let meanBonus = _.mean(bonus)
+
 
     const orderCompensation = await compensation.sort(function (a: number, b: number) {
         return a - b;
@@ -17,6 +25,12 @@ export async function metricsCompensation(response: any) {
 
 
     meanCompensation = (Math.trunc(meanCompensation)).toLocaleString('fr-FR', {
+        style: 'currency',
+        currency: 'EUR',
+        minimumFractionDigits: 0 
+    })
+
+    meanBonus = (Math.trunc(meanBonus)).toLocaleString('fr-FR', {
         style: 'currency',
         currency: 'EUR',
         minimumFractionDigits: 0 
@@ -45,7 +59,8 @@ export async function metricsCompensation(response: any) {
         medianCompensation,
         meanCompensation,
         seventhPercentileCompensation: formatSeventhPercentileCompensation,
-        ninetythPercentileCompensation: formatNinetythPercentileCompensation
+        ninetythPercentileCompensation: formatNinetythPercentileCompensation,
+        meanBonus
     }
 }
 
