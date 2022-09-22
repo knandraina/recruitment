@@ -43,7 +43,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
     await connectionDB();
     // const path: Array<any> = await loadDepartmentData();
     const path = await buildPath()
-    console.log(path.answerDepartment)
     return {
         paths: path.answerDepartment,
         fallback: false, // can also be true or 'blocking'

@@ -27,28 +27,28 @@ export default function SelectMenuTwo(props: SelectMenuTwoProps) {
 
     useEffect(() => {
 
-        const department = props.choice;
-        const i = department.findIndex((e: any) => e.data === rolePath);
-        const response = i !== -1 ? department[i].entity : '';
-        const j = department.findIndex((e: any) => e.data === departmentPath);
-        const responseJ = department[j].entity
+        // const department = props.choice;
+        // const i = department.findIndex((e: any) => e.data === rolePath);
+        // const response = i !== -1 ? department[i].entity : '';
+        // const j = department.findIndex((e: any) => e.data === departmentPath);
+        // const responseJ = department[j].entity
 
-        if (response === 'gender') {
-            let arr = department.filter((item: any) => item.data !== 'gender');
-            arr = arr.filter((item: any) => item.entity !== responseJ);
-            setChoiceForUser(arr)
-        } else if (response === 'role') {
-            let arr = department.filter((item: any) => item.entity !== 'role');
-            arr = arr.filter((item: any) => item.entity !== responseJ);
-            setChoiceForUser(arr)
-        } else if (response === 'department') {
-            let arr = department.filter((item: any) => item.entity !== 'department');
-            arr = arr.filter((item: any) => item.entity !== responseJ);
-            setChoiceForUser(arr)
-        }
+        // if (response === 'gender') {
+        //     let arr = department.filter((item: any) => item.data !== 'gender');
+        //     arr = arr.filter((item: any) => item.entity !== responseJ);
+        //     setChoiceForUser(arr)
+        // } else if (response === 'role') {
+        //     let arr = department.filter((item: any) => item.entity !== 'role');
+        //     arr = arr.filter((item: any) => item.entity !== responseJ);
+        //     setChoiceForUser(arr)
+        // } else if (response === 'department') {
+        //     let arr = department.filter((item: any) => item.entity !== 'department');
+        //     arr = arr.filter((item: any) => item.entity !== responseJ);
+        //     setChoiceForUser(arr)
+        // }
 
-        let arr = department.filter((item: any) => item.entity !== responseJ);
-        setChoiceForUser(arr)
+        // let arr = department.filter((item: any) => item.entity !== responseJ);
+        // setChoiceForUser(arr)
     }, [])
 
     

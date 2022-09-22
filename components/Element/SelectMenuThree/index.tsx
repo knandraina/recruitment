@@ -27,30 +27,30 @@ export default function SelectMenuThree(props: SelectMenuTwoProps) {
     const [choiceForUser, setChoiceForUser] = useState(props.choice)
 
     useEffect(() => {
-        const department = props.choice;
-        const i = department.findIndex((e: any) => e.data === rolePath);
-        const response = i !== -1 ? department[i].entity : '';
-        const j = department.findIndex((e: any) => e.data === departmentPath);
-        const responseJ = j !== -1 ? department[j].entity : '';
+        // const department = props.choice;
+        // const i = department.findIndex((e: any) => e.data === rolePath);
+        // const response = i !== -1 ? department[i].entity : '';
+        // const j = department.findIndex((e: any) => e.data === departmentPath);
+        // const responseJ = j !== -1 ? department[j].entity : '';
         
-        if (response === 'gender' && responseJ === 'department') {
-            let arr = department.filter((item: any) => item.entity !== 'gender');
-                arr = arr.filter((item: any) => item.entity !== 'department');
-            setChoiceForUser(arr)
-        } else if (response === 'role' && responseJ === 'gender') {
-            let arr = department.filter((item: any) => item.entity !== 'role');
-                arr = arr.filter((item: any) => item.entity !== 'gender');
-            setChoiceForUser(arr)
-        } else if (response === 'department' && responseJ === 'role') {
-            let arr = department.filter((item: any) => item.entity !== 'department');
-                arr = arr.filter((item: any) => item.entity !== 'role');
-            setChoiceForUser(arr)
-        }
+        // if (response === 'gender' && responseJ === 'department') {
+        //     let arr = department.filter((item: any) => item.entity !== 'gender');
+        //         arr = arr.filter((item: any) => item.entity !== 'department');
+        //     setChoiceForUser(arr)
+        // } else if (response === 'role' && responseJ === 'gender') {
+        //     let arr = department.filter((item: any) => item.entity !== 'role');
+        //         arr = arr.filter((item: any) => item.entity !== 'gender');
+        //     setChoiceForUser(arr)
+        // } else if (response === 'department' && responseJ === 'role') {
+        //     let arr = department.filter((item: any) => item.entity !== 'department');
+        //         arr = arr.filter((item: any) => item.entity !== 'role');
+        //     setChoiceForUser(arr)
+        // }
 
-        let arr = department.filter((item: any) => item.entity !== 'department');
-        arr = arr.filter((item: any) => item.entity !== 'role');
+        // let arr = department.filter((item: any) => item.entity !== 'department');
+        // arr = arr.filter((item: any) => item.entity !== 'role');
 
-        setChoiceForUser(arr);
+        // setChoiceForUser(arr);
 
 
     },[])
