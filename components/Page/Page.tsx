@@ -11,8 +11,11 @@ const Page = ({ children }: any) => {
 
             <div className='min-h-screen bg-blue-grey-50'>
                 <NavBar />
-                {router.pathname !== '/' && router.pathname !== '/new-salary' && router.pathname !== '/directory' ? <Breadcrumbs /> : ''}
-                
+                <div className="grid grid-cols-12 gap-4 px-4 sm:px-6 lg:px-8">
+                    <div className="col-start-2 col-span-10">
+                        {router.pathname !== '/' && router.pathname !== '/new-salary' && router.pathname !== '/directory' ? <Breadcrumbs /> : ''}
+                    </div>
+                </div>
                 {children}
             </div>
         </>
