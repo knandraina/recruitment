@@ -24,7 +24,8 @@ interface ICompensation {
     department: string,
     department_lower_case: string,
     approved: boolean,
-    city_linked_to_department: string
+    city_linked_to_department: string,
+    seo?: Array<string>[]
 }
 
 const CompensationSchema = new Schema<ICompensation>({
@@ -46,7 +47,8 @@ const CompensationSchema = new Schema<ICompensation>({
     department: { type: String, required: true, default: 'Paris' },
     department_lower_case: {type: String, required: true, unique: true, default: 'paris'},
     approved: {type: Boolean, required: true, default: false},
-    city_linked_to_department: {type: String, required: true, default: 'paris'}
+    city_linked_to_department: {type: String, required: true, default: 'paris'},
+    seo:[{type: String}]
 })
 
 export default mongoose.models.Compensation || mongoose.model('Compensation', CompensationSchema);

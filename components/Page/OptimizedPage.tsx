@@ -11,7 +11,8 @@ interface OptimizedPageProps {
     city_link_department?: string,
     seventhPercentileCompensation?: any,
     ninetythPercentileCompensation?: any,
-    bonus?: any
+    bonus?: any,
+    seo?: any
 }
 
 const Page = (props: OptimizedPageProps) => {
@@ -25,7 +26,7 @@ const Page = (props: OptimizedPageProps) => {
                     </h1>
                 </div>
             </div>
-          <Banner data={props}/>
+            <Banner data={props} />
             <div className="px-4 sm:px-6 lg:px-8">
                 <div className="mt-8 flex flex-col grid grid-cols-12">
                     <div className="col-start-2 col-span-10">
