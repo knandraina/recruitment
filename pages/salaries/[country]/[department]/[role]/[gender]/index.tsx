@@ -37,7 +37,8 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
             city_link_department,
             seventhPercentileCompensation,
             ninetythPercentileCompensation,
-            bonus: meanBonus
+            bonus: meanBonus,
+            seo:response.compensation[0].seo
         },
     }
 }
@@ -58,8 +59,8 @@ const GenderData = (props: any) => {
     return (
         <>
             <NextSeo
-                title={`Discover ${props.gender ? props.gender : ''} ${props.role ? props.role : 'Software Engineer'} salaries in ${props.city_link_department ? props.city_link_department : props.department ? props.department : props.country}`}
-                description={`Leverage our database to know the ${props.role ? props.role : 'Software Engineer'} wage in ${props.city_link_department ? props.city_link_department : props.department ? props.department : props.country}`}
+                title={`Discover ${props.gender ? props.gender : ''} ${props.role ? props.seo[0] : 'Software Engineer'} salaries in ${props.city_link_department ? props.city_link_department : props.department ? props.department : props.country}`}
+                description={`Leverage our database to know the ${props.role ? props.seo[0] : 'Software Engineer'} wage in ${props.city_link_department ? props.city_link_department : props.department ? props.department : props.country}`}
             />
             <OptimizedPage
                 country={'France'}
@@ -72,6 +73,7 @@ const GenderData = (props: any) => {
                 seventhPercentileCompensation={props.seventhPercentileCompensation}
                 ninetythPercentileCompensation={props.ninetythPercentileCompensation}
                 bonus={props.bonus}
+                seo={props.seo}
                  />
             <Table
                 compensation={props}
@@ -82,6 +84,7 @@ const GenderData = (props: any) => {
                 participant={props.participant}
                 city_link_department={props.city_link_department}
                 bonus={props.bonus}
+                seo={props.seo}
                  />
             <Footer />
         </>

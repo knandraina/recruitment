@@ -8,6 +8,7 @@
 pages/test
 pages/api/company
 pages/salary/slug
+pages/api/play
 
 # testing
 /coverage
