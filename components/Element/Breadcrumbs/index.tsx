@@ -99,7 +99,6 @@ const all = [
     { entity: 'role', data: 'DevOps' },
     { entity: 'role', data: 'AdminSys' },
     { entity: 'role', data: 'Data Analyst' },
-    { entity: 'role', data: 'Software Engineer' },
     { entity: 'role', data: 'Software Architect' },
     { entity: 'role', data: 'Data Scientist' },
     { entity: 'role', data: 'Machine Learning Engineer' },
