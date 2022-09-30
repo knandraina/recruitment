@@ -9,7 +9,7 @@ const ContentSecurityPolicy = `
     style-src 'self' 'unsafe-inline' *.googleapis.com;
     img-src * blob: data:;
     media-src 'none';
-    connect-src *.segment.com;
+    connect-src 'self' data: *.segment.com;
     font-src * data:';
 `;
 
