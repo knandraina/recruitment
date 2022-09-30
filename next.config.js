@@ -2,14 +2,14 @@ let securityHeaders = []
 
 const ContentSecurityPolicy = `
     default-src 'self';
-    script-src 'self' 'unsafe-eval' 'unsafe-inline' *.youtube.com *.twitter.com *.segment.com;
-    child-src *.youtube.com *.google.com *.twitter.com *.segment.com;
-    frame-src *.segment.com;
+    script-src 'self' 'unsafe-eval' 'unsafe-inline' *.youtube.com *.twitter.com *.segment.com https://netlify-cdp-loader.netlify.app/netlify.js;
+    child-src *.youtube.com *.google.com *.twitter.com *.segment.com https://netlify-cdp-loader.netlify.app/netlify.js;
+    frame-src *.segment.com https://netlify-cdp-loader.netlify.app/netlify.js;
     style-src 'self' 'unsafe-inline' *.googleapis.com;
     img-src * blob: data:;
     media-src 'none';
     connect-src *;
-    font-src 'self';
+    font-src * 'unsafe-inline';
 `;
 
 securityHeaders = ContentSecurityPolicy
