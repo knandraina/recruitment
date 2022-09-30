@@ -4,7 +4,6 @@ const ContentSecurityPolicy = `
     default-src 'self';
     script-src 'self' 'unsafe-eval' 'unsafe-inline' *.youtube.com *.twitter.com *.segment.com *.netlify.app/*;
     child-src *.youtube.com *.google.com *.twitter.com *.segment.com;
-    frame-src *.segment.com;
     style-src 'self' 'unsafe-inline' *.googleapis.com;
     img-src * blob: data:;
     media-src 'none';
