@@ -4,12 +4,12 @@ const ContentSecurityPolicy = `
     default-src 'self';
     script-src 'self' 'unsafe-eval' 'unsafe-inline' *.youtube.com *.twitter.com *.segment.com ;
     script-src-elem *;
-    connect-src 'self' https://cdn.segment.com/v1/projects/;
-    frame-src https://app.netlify.com/;
-    child-src *.youtube.com *.google.com *.twitter.com *.segment.com;
-    style-src 'self' 'unsafe-inline' *.googleapis.com;
-    img-src * blob: data:;
-    media-src 'none';
+    connect-src 'self' https://cdn.segment.com/v1/projects/ https://api.segment.io/v1/' ;
+    frame-src https://app.netlify.com/ ;
+    child-src *.youtube.com *.google.com *.twitter.com *.segment.com ;
+    style-src 'self' 'unsafe-inline' *.googleapis.com ;
+    img-src * blob: data: ;
+    media-src 'none' ;
 `;
 
 securityHeaders = ContentSecurityPolicy
