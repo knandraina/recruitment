@@ -1,7 +1,7 @@
 let securityHeaders = []
 
 const ContentSecurityPolicy = `
-    default-src 'self';
+    default-src 'self' 'self' 'unsafe-inline' https://cdn.segment.com/v1/projects/PzoD1qlC1wpvDGhNckresPQM3zcX8I1s/settings;
     script-src 'self' 'unsafe-eval' 'unsafe-inline' *.youtube.com *.twitter.com *.segment.com ;
     script-src-elem *;
     connect-src *;
