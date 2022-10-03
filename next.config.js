@@ -4,7 +4,7 @@ const ContentSecurityPolicy = `
     default-src 'self';
     script-src 'self' 'unsafe-eval' 'unsafe-inline' *.youtube.com *.twitter.com *.segment.com ;
     script-src-elem *;
-    connect-src 'self' https://cdn.segment.com/v1/projects/PzoD1qlC1wpvDGhNckresPQM3zcX8I1s/settings 'unsafe-inline' 'unsafe-eval';
+    connect-src 'self' https://cdn.segment.com/v1/projects/PzoD1qlC1wpvDGhNckresPQM3zcX8I1s/settings;
     frame-src https://app.netlify.com/;
     child-src *.youtube.com *.google.com *.twitter.com *.segment.com;
     style-src 'self' 'unsafe-inline' *.googleapis.com;
