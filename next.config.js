@@ -1,11 +1,10 @@
 let securityHeaders = []
 
 const ContentSecurityPolicy = `
-    default-src 'self' 'self' 'unsafe-inline' https://cdn.segment.com/v1/projects/PzoD1qlC1wpvDGhNckresPQM3zcX8I1s/settings;
+    default-src 'self';
     script-src 'self' 'unsafe-eval' 'unsafe-inline' *.youtube.com *.twitter.com *.segment.com ;
     script-src-elem *;
-    connect-src *;
-    report-uri https://cdn.segment.com/v1/projects/PzoD1qlC1wpvDGhNckresPQM3zcX8I1s/settings;
+    connect-src 'self'https://cdn.segment.com/v1/projects/PzoD1qlC1wpvDGhNckresPQM3zcX8I1s/settings 'unsafe-inline' 'unsafe-eval';
     frame-src https://app.netlify.com/;
     child-src *.youtube.com *.google.com *.twitter.com *.segment.com;
     style-src 'self' 'unsafe-inline' *.googleapis.com;
