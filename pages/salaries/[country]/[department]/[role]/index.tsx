@@ -29,7 +29,7 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
     return {
         // Passed to the page component as props
         props: {
-            post: response.compensation,
+            post: response.compensation.slice(0, 50),
             country,
             [keyOne]: Object.values(response)[1],
             [keyTwo]: Object.values(response)[2],
