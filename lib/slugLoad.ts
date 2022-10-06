@@ -43,8 +43,6 @@ export const buildPath = async () => {
         }
     })
 
-    console.log(answerDepartment.length, 'test')
-
     let answerRole: Array<string> = [];
 
     resultsRole.forEach((x: any) => {

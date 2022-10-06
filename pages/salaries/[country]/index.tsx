@@ -8,9 +8,12 @@ import { metricsCompensation } from '../../../lib/calculation';
 import Table from '../../../components/Table/table';
 import OptimizedPage from '../../../components/Page/OptimizedPage'
 import Footer from '../../../components/Element/Footer';
+import { VerticalBar } from '../../../components/Element/VerticalBar';
+
 import * as ss from 'simple-statistics'
 
 import { NextSeo } from 'next-seo';
+import { main } from '../../../lib/graphicData';
 const _ = require("lodash");
 
 
@@ -18,7 +21,7 @@ const _ = require("lodash");
 export const getStaticProps: GetStaticProps = async (context: any) => {
     await connectionDB();
     const response: any = await loadData(context.params);
-
+    const intervalGraph = await main(response.compensation);
     const { meanBonus, meanCompensation, medianCompensation,seventhPercentileCompensation, ninetythPercentileCompensation } = await metricsCompensation(response.compensation);
 
     return {
@@ -32,7 +35,8 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
             seventhPercentileCompensation,
             ninetythPercentileCompensation,
             bonus: meanBonus,
-            seo:response.compensation[0].seo
+            seo:response.compensation[0].seo,
+            intervalGraph
         },
     }
 }
@@ -63,6 +67,7 @@ const FrenchData = (props: any) => {
                 bonus={props.bonus}
                 seo={props.seo}
                 />
+                <VerticalBar compensation={props.intervalGraph}/>
             <Table
                 compensation={props}
                 department={props.department}

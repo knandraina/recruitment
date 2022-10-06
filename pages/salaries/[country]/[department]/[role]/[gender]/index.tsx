@@ -4,10 +4,12 @@ import { useState } from 'react';
 import { loadData, loadDepartmentData } from '../../../../../../lib/load-data'
 import connectionDB from '../../../../../../lib/connectionDB'
 import { metricsCompensation } from '../../../../../../lib/calculation';
+import { main } from '../../../../../../lib/graphicData';
 
 import Table from '../../../../../../components/Table/table';
 import OptimizedPage from '../../../../../../components/Page/OptimizedPage'
 import Footer from '../../../../../../components/Element/Footer';
+import { VerticalBar } from '../../../../../../components/Element/VerticalBar';
 
 import { NextSeo } from 'next-seo';
 
@@ -19,10 +21,11 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
     const gender: string = context.params.gender;
     await connectionDB();
     const response: any = await loadData(context.params);
+    const intervalGraph = await main(response.compensation);
     const lengthKey = Object.keys(response).length
-    const city_link_department = response.hasOwnProperty('city_link_department') ? Object.values(response)[lengthKey - 1]: null ;
+    const city_link_department = response.hasOwnProperty('city_link_department') ? Object.values(response)[lengthKey - 1] : null;
     const department = await response.compensation[0].department
-    const { meanBonus, meanCompensation, medianCompensation,seventhPercentileCompensation, ninetythPercentileCompensation } = await metricsCompensation(response.compensation);
+    const { meanBonus, meanCompensation, medianCompensation, seventhPercentileCompensation, ninetythPercentileCompensation } = await metricsCompensation(response.compensation);
 
     return {
         // Passed to the page component as props
@@ -38,7 +41,8 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
             seventhPercentileCompensation,
             ninetythPercentileCompensation,
             bonus: meanBonus,
-            seo:response.compensation[0].seo
+            seo: response.compensation[0].seo,
+            intervalGraph
         },
     }
 }
@@ -74,7 +78,8 @@ const GenderData = (props: any) => {
                 ninetythPercentileCompensation={props.ninetythPercentileCompensation}
                 bonus={props.bonus}
                 seo={props.seo}
-                 />
+            />
+            <VerticalBar compensation={props.intervalGraph} />
             <Table
                 compensation={props}
                 department={props.department}
@@ -85,7 +90,7 @@ const GenderData = (props: any) => {
                 city_link_department={props.city_link_department}
                 bonus={props.bonus}
                 seo={props.seo}
-                 />
+            />
             <Footer />
         </>
     )
