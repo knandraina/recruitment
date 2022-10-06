@@ -3,6 +3,7 @@ import { GetStaticProps, GetStaticPaths } from 'next'
 import { loadData } from '../../../../lib/load-data'
 import connectionDB from '../../../../lib/connectionDB'
 import { metricsCompensation } from '../../../../lib/calculation';
+import { main } from '../../../../lib/graphicData';
 
 import Table from '../../../../components/Table/table';
 import OptimizedPage from '../../../../components/Page/OptimizedPage'
@@ -10,6 +11,7 @@ import Footer from '../../../../components/Element/Footer';
 
 import { NextSeo } from 'next-seo';
 import { buildPath } from '../../../../lib/slugLoad';
+import { VerticalBar } from '../../../../components/Element/VerticalBar';
 
 
 // `getStaticPaths` requires using `getStaticProps`
@@ -17,6 +19,7 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
     const country: String = context.params.country;
     await connectionDB();
     const response: any = await loadData(context.params);
+    const intervalGraph = await main(response.compensation);
     const lengthKey = Object.keys(response).length
     const city_link_department = response.hasOwnProperty('city_link_department') ? Object.values(response)[lengthKey - 1]: null ;
     const key = Object.keys(response)[1];
@@ -25,7 +28,7 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
     return {
         // Passed to the page component as props
         props: {
-            post: response.compensation.slice(0, 150),
+            post: response.compensation.slice(0, 50),
             participant: response.compensation.length,
             country,
             [key]: Object.values(response)[1],
@@ -35,7 +38,8 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
             seventhPercentileCompensation,
             ninetythPercentileCompensation,
             bonus: meanBonus,
-            seo:response.compensation[0].seo
+            seo:response.compensation[0].seo,
+            intervalGraph
         },
     }
 }
@@ -73,6 +77,7 @@ const DepartmentData = (props: any) => {
                 bonus={props.bonus}
                 seo={props.seo}
                  />
+                 <VerticalBar compensation={props.intervalGraph}/>
             <Table
                 compensation={props}
                 department={props.department}
