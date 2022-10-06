@@ -7,6 +7,8 @@ import Link from 'next/link';
 import _ from "lodash";
 
 
+const data = ['Alpes-Maritimes', 'Alpes-de-Haute-Provence', 'Bas-Rhin', 'Baviere', 'Bouches-du-Rhone', 'Charente-Maritime', "Cotes-d'Armor", 'Drome', 'Gironde', 'Haut-de-Seine', 'Haute-Garonne', 'Herault', 'Ille-et-Vilaine', 'Indre-et-loire', 'Isere', 'Loire-Atlantique', 'Loiret', 'Lorraine', 'Maine et Loire', 'Meurthe-et-Moselle', 'Morbihan', 'Moselle', 'Nord', 'Paris', 'Pyrenees-Atlantiques', 'Rhone', 'Rhone-Alpes', 'Savoie', 'Seine-Maritime', 'Var', 'Vaucluse', 'Vienne']
+
 export default function Footer() {
     const router = useRouter();
 
@@ -15,10 +17,10 @@ export default function Footer() {
     useEffect(() => {
         async function fetchData() {
             const response = Object.keys(router.query);
-            const results = await axios.post('/api/footer', { res: response })
-            const department = results.data.post;
+            // const results = await axios.post('/api/footer', { res: response })
+            // const department = results.data.post;
 
-            const departmentDivided = _.chunk(department, Math.ceil(department.length / 4))
+            const departmentDivided = _.chunk(data, Math.ceil(data.length / 4))
             setVariable(departmentDivided);
         }
         fetchData()
