@@ -52,7 +52,7 @@ const FrenchData = (props: any) => {
     return (
         <>
             <NextSeo
-                title={`Discover ${props.gender ? props.gender : ''} ${props.role ? props.seo[0] : 'Software Engineer'} salaries in ${props.city_link_department ? props.city_link_department : props.department ? props.department : props.country}`}
+                title={`Discover ${props.gender ? props.gender : ''} ${props.role ? props.seo[0] : 'Software Engineer'} salary in ${props.city_link_department ? props.city_link_department : props.department ? props.department : props.country}`}
                 description={`Leverage our database to know the ${props.role ? props.seo[0]: 'Software Engineer'} wage in ${props.department ? props.department : props.country}`}
             />
             <OptimizedPage
