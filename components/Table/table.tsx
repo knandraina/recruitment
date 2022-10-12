@@ -51,54 +51,54 @@ const Table = (props: TableProps) => {
                                             scope="col"
                                             className="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-blue-grey-900 sm:pl-6"
                                         >
-                                            Company name
+                                            {props.t('company_name')}
                                         </th>
                                         <th
                                             scope="col"
                                             className="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-blue-grey-900"
                                         >
-                                            Gender
+                                            {props.t('gender')}
                                         </th>
                                         <th
                                             scope="col"
                                             className="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-blue-grey-900"
                                         >
-                                            Category Role
+                                            {props.t('role')}
                                         </th>
                                         <th
                                             scope="col"
                                             className="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-blue-grey-900"
                                         >
-                                            Salary
+                                            {props.t('salary')}
                                         </th>
                                         <th
                                             scope="col"
                                             className="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-blue-grey-900"
                                         >
-                                            Bonus                                        </th>
+                                            {props.t('bonus')}                                       </th>
                                         <th
                                             scope="col"
                                             className="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-blue-grey-900"
                                         >
-                                            Years of experience
+                                            {props.t('years_of_experience')}
                                         </th>
                                         <th
                                             scope="col"
                                             className="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-blue-grey-900"
                                         >
-                                            Seniority
+                                            {props.t('seniority')}
                                         </th>
                                         <th
                                             scope="col"
                                             className="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-blue-grey-900"
                                         >
-                                            Location
+                                            {props.t('location')}
                                         </th>
                                         <th
                                             scope="col"
                                             className="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-blue-grey-900"
                                         >
-                                            Office
+                                            {props.t('office')}
                                         </th>
                                     </tr>
                                 </thead>

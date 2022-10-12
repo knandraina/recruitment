@@ -1,6 +1,9 @@
 import Link from "next/link";
+import { withTranslation } from 'react-i18next';
 
 const Banner = (props: any) => {
+
+    console.log(props)
 
     return (
         <div className="grid grid-cols-12 px-4 content-center">
@@ -30,7 +33,7 @@ const Banner = (props: any) => {
                                     <a
                                         className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-blue-grey-50 bg-green-500 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-500"
                                     >
-                                        Get help to raise your salary
+                                        {props.t('main_cta_banner')}
                                     </a>
                                 </Link>
 
@@ -43,7 +46,7 @@ const Banner = (props: any) => {
                                         <a
                                             className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-blue-grey-500 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-500"
                                         >
-                                            Share your salary
+                                            {props.t('second_cta_banner')}
                                         </a>
                                     </Link>
 
@@ -57,4 +60,4 @@ const Banner = (props: any) => {
     )
 }
 
-export default Banner;
+export default withTranslation()(Banner)

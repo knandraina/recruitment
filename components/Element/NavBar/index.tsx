@@ -1,4 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
+import { withTranslation, WithTranslation } from 'next-i18next';
 import { useState } from 'react'
 import { Disclosure, Menu } from '@headlessui/react'
 import Button from '../Button'
@@ -6,7 +7,7 @@ import Modal from '../Modal';
 import SecondaryButton from '../SecondaryButton';
 
 
-export default function NavBar() {
+function NavBar() {
 
     const [modal, setModal] = useState(false);
 
@@ -66,3 +67,6 @@ export default function NavBar() {
         </Disclosure>
     )
 }
+
+
+export default withTranslation()(NavBar);

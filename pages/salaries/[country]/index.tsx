@@ -30,7 +30,7 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
     return {
         // Passed to the page component as props
         props: {
-            ...(await serverSideTranslations(locale, ['common','seo','optimizedPage', 'footer'])),
+            ...(await serverSideTranslations(locale, ['common','seo', 'footer'])),
             post: response.compensation.slice(0, 50),
             participant: response.compensation.length,
             country: 'France',

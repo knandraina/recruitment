@@ -3,5 +3,18 @@
     "variable_text": "{{description}}",
     "h1": "{{role}} salary {{gender}} in {{area}}.",
     "summary_salary": "The average bonus for {{gender}} {{role}} in {{area}} is {{bonus}}. {{participant}} {{plural}} from {{gender}} {{role}} has been posted in {{area}}.",
-    "note": "Currently, we don&apos;t have enough data to disclose company name. For privacy reason, we will divulge company name only when we have more than 3 answers per company."
+    "note": "Currently, we don&apos;t have enough data to disclose company name. For privacy reason, we will divulge company name only when we have more than 3 answers per company.",
+    "company_name": "Company name",
+    "gender": "Gender",
+    "role": "Category Role",
+    "salary": "Salary",
+    "bonus": "Bonus",
+    "years_of_experience": "Years of experience",
+    "seniority": "Seniority",
+    "location": "Location",
+    "office": "Office",
+    "average": "Average salary",
+    "main_cta_banner": "Get help to raise your salary",
+    "second_cta_banner": "Share your salary",
+    "feedback": "Share your feedback"
 }
