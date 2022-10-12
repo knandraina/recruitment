@@ -1,0 +1,4 @@
+{
+    "headline": "Salaire {{role}} {{gender}} {{department}}",
+    "description_headline": "`Utilisez notre base de données pour connaitre le salaire d'un {{role}} {{department}}`"
+}

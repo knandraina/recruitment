@@ -1,4 +1,5 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import { loadData } from '../../../../../lib/load-data'
 import connectionDB from '../../../../../lib/connectionDB'
@@ -10,6 +11,8 @@ import Footer from '../../../../../components/Element/Footer';
 import { main } from '../../../../../lib/graphicData';
 
 import { NextSeo } from 'next-seo';
+import { useTranslation } from 'next-i18next';
+
 import { buildPath } from '../../../../../lib/slugLoad';
 import { VerticalBar } from '../../../../../components/Element/VerticalBar';
 
@@ -18,6 +21,7 @@ import { VerticalBar } from '../../../../../components/Element/VerticalBar';
 export const getStaticProps: GetStaticProps = async (context: any) => {
     const country: String = context.params.country;
     await connectionDB();
+    const locale = context.locale
     const response: any = await loadData(context.params);
     const intervalGraph = await main(response.compensation);
     const lengthKey = Object.keys(response).length
@@ -29,6 +33,7 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
     return {
         // Passed to the page component as props
         props: {
+            ...(await serverSideTranslations(locale, ['common','seo','optimizedPage', 'footer'])),
             post: response.compensation.slice(0, 50),
             country,
             [keyOne]: Object.values(response)[1],
@@ -40,7 +45,8 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
             ninetythPercentileCompensation,
             bonus: meanBonus,
             seo: response.compensation[0].seo,
-            intervalGraph
+            intervalGraph,
+            locale
         },
     }
 }
@@ -50,8 +56,18 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
     await connectionDB();
     const path = await buildPath();
+
+    const fr = path.answerDepartmentRole.map( (items: any) => {
+        return  {...items, locale: 'fr'}
+    })
+    const en = path.answerDepartmentRole.map( (items: any) => {
+        return  {...items, locale: 'en'}
+    })
+
+    const languagePath = fr.concat(en)
+
     return {
-        paths: path.answerDepartmentRole,
+        paths: languagePath,
         fallback: false, // can also be true or 'blocking'
     }
 }
@@ -59,11 +75,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 const RoleData = (props: any) => {
 
+    const { t } = useTranslation('seo')
+
     return (
         <>
             <NextSeo
-                title={`Discover ${props.gender ? props.gender : ''} ${props.role ? props.seo[0] : 'Software Engineer'} salary in ${props.city_link_department ? props.city_link_department : props.department ? props.department : props.country}`}
-                description={`Leverage our database to know the ${props.role ? props.seo[0] : 'Software Engineer'} wage in ${props.city_link_department ? props.city_link_department : props.department ? props.department : props.country}`}
+                title={t('headline', {role: props.role ? props.seo[props.locale].first_role : 'Software Engineer', gender: props.gender ? props.gender : '', department: props.city_link_department ? props.city_link_department : props.department ? props.department : props.country})}
+                description={t('description_headline', {role: props.role ? props.seo[props.locale].first_role : 'Software Engineer', department: props.department ? props.department : props.country})}
             />
             <OptimizedPage
                 country={'France'}
@@ -77,6 +95,7 @@ const RoleData = (props: any) => {
                 ninetythPercentileCompensation={props.ninetythPercentileCompensation}
                 bonus={props.bonus}
                 seo={props.seo}
+                locale={props.locale}
             />
             <VerticalBar compensation={props.intervalGraph} />
             <Table
@@ -89,6 +108,7 @@ const RoleData = (props: any) => {
                 city_link_department={props.city_link_department}
                 bonus={props.bonus}
                 seo={props.seo}
+                locale={props.locale}
             />
             <Footer />
         </>

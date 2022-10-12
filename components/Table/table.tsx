@@ -1,10 +1,14 @@
+
+import { withTranslation } from 'react-i18next';
 import React from 'react';
 import { useRouter } from 'next/router'
 import Link from 'next/link';
 import Banner from '../Element/Banner';
+import Salary from '../Form/DataForm/Field/Salary';
 
 
 interface TableProps {
+    area?: string,
     compensation: any,
     department?: any,
     role?: any,
@@ -13,22 +17,27 @@ interface TableProps {
     participant?: any,
     city_link_department?: string
     bonus?: any,
-    seo?: any
+    seo?: any,
+    t?: any,
+    locale?: any
 }
 
 const Table = (props: TableProps) => {
     const router = useRouter()
+    const salaries: any = {
+        fr:
+            { singular: 'salaire', plural: 'salaires' },
+        en: {
+            singular: 'salary', plural: 'salaries'
+        }
+    }
 
     return (
         <div className="px-4 sm:px-6 lg:px-8">
             <div className='grid grid-cols-12'>
                 <div className='col-start-2 col-span-10'>
-                    {router.pathname === '/' ? '' : <p className='text-s text-blue-grey-700 mt-2'>{`The average bonus for ${props.gender ? props.gender : ''} ${props.role ? props.seo[1] : 'Software engineer'} in ${props.city_link_department ? props.city_link_department : props.department ? props.department : props.country}  is ${props.bonus}. `}{`${props.participant ? props.participant : props.compensation.post.length} ${props.compensation.post.length > 1 ? 'salaries' : 'salary'} from ${props.gender ? props.gender : ''} ${props.role ? props.seo[1] : 'Software engineer'} has been posted in ${props.city_link_department ? props.city_link_department : props.department ? props.department : props.country}.`} You can filter by location, gender, role, to discover more.</p>}
-                    {router.pathname === '/' ? '' : <p className='text-xs text-blue-grey-200 mt-2'>Currently, we don&apos;t have enough data to disclose company name. For privacy reason, we will divulge company name only when we have more than 3 answers per company. </p>}
-
-                    {Object.keys(router.query).length > 2 && props.gender || props.role ?
-                        <p className='text-xs text-blue-grey-200 mt-2'>{`Maybe you wanted to visit the ${props.role ? props.role : props.gender} salary in France`}. <Link href={`/salaries/france/${props.role ? props.role : props.gender.toLowerCase()}`}>Click here.</Link></p>
-                        : ''}
+                    {router.pathname === '/' ? '' : <p className='text-s text-blue-grey-700 mt-2'>{props.t('summary_salary', { gender: props.gender ? props.gender : '', role: props.role ? props.seo[props.locale].second_role.toLowerCase() : 'Software engineer', area: props.city_link_department ? ` à ${props.city_link_department}` : props.area ? `à ${props.area}` : `en ${props.country}`, bonus: props.bonus, participant: props.participant ? props.participant : props.compensation.post.length, plural: props.compensation.post.length > 1 ? salaries[props.locale].plural : salaries[props.locale].singular })}</p>}
+                    {router.pathname === '/' ? '' : <p className='text-xs text-blue-grey-200 mt-2'>{props.t('note')}</p>}
                 </div>
             </div>
             <div className="mt-8 flex flex-col grid grid-cols-12">
@@ -125,4 +134,4 @@ const Table = (props: TableProps) => {
         </div>
     )
 }
-export default Table;
+export default withTranslation()(Table);

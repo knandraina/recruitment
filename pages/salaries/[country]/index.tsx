@@ -23,7 +23,6 @@ const _ = require("lodash");
 export const getStaticProps: GetStaticProps = async (context: any) => {
     await connectionDB();
     const locale = context.locale
-    console.log(context)
     const response: any = await loadData(context.params);
     const intervalGraph = await main(response.compensation);
     const { meanBonus, meanCompensation, medianCompensation, seventhPercentileCompensation, ninetythPercentileCompensation } = await metricsCompensation(response.compensation);
@@ -31,7 +30,7 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
     return {
         // Passed to the page component as props
         props: {
-            ...(await serverSideTranslations(locale, ['common', 'footer'])),
+            ...(await serverSideTranslations(locale, ['common','seo','optimizedPage', 'footer'])),
             post: response.compensation.slice(0, 50),
             participant: response.compensation.length,
             country: 'France',
@@ -42,24 +41,26 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
             bonus: meanBonus,
             seo: response.compensation[0].seo,
             intervalGraph,
+            locale
         },
     }
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
     return {
-        paths: [{ params: { country: 'france' }, locale: 'fr' }, { params: { country: 'france' }, locale: 'en' }],
+        paths: [{ params: { country: 'france' }, locale: 'fr' }, 
+                { params: { country: 'france' }, locale: 'en' }],
         fallback: false, // can also be true or 'blocking'
     }
 }
 
 const FrenchData = (props: any) => {
-    const { t } = useTranslation('common')
+    const { t } = useTranslation('seo')
     return (
         <>
             <NextSeo
-                title={t('headline', {role: props.role ? props.seo[0] : 'Software Engineer', gender: props.gender ? props.gender : '', department: props.city_link_department ? props.city_link_department : props.department ? props.department : props.country})}
-                description={t('description_headline', {role: props.role ? props.seo[0] : 'Software Engineer', department: props.department ? props.department : props.country})}
+                title={t('headline', {role: props.role ? props[props.locale].fr.first_role : 'Software Engineer', gender: props.gender ? props.gender : '', department: props.city_link_department ? props.city_link_department : props.department ? props.department : props.country})}
+                description={t('description_headline', {role: props.role ? props[props.locale].fr.first_role : 'Software Engineer', department: props.department ? props.department : props.country})}
             />
             <OptimizedPage
                 country={'France'}
@@ -72,9 +73,11 @@ const FrenchData = (props: any) => {
                 ninetythPercentileCompensation={props.ninetythPercentileCompensation}
                 bonus={props.bonus}
                 seo={props.seo}
+                locale={props.locale}
             />
             <VerticalBar compensation={props.intervalGraph} />
             <Table
+                area={props.department}
                 compensation={props}
                 department={props.department}
                 role={props.role}
@@ -83,6 +86,7 @@ const FrenchData = (props: any) => {
                 participant={props.participant}
                 bonus={props.bonus}
                 seo={props.seo}
+                locale={props.locale}
             />
 
             <Footer />

@@ -29,7 +29,7 @@ export const buildPath = async () => {
             params: {
                 country: 'france',
                 department: data.category_role
-            }
+            },
         }
     })
 
