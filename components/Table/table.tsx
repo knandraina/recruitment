@@ -15,7 +15,7 @@ interface TableProps {
     gender?: any
     country?: any,
     participant?: any,
-    city_link_department?: string
+    city_link_department?: any
     bonus?: any,
     seo?: any,
     t?: any,
@@ -36,7 +36,7 @@ const Table = (props: TableProps) => {
         <div className="px-4 sm:px-6 lg:px-8">
             <div className='grid grid-cols-12'>
                 <div className='col-start-2 col-span-10'>
-                    {router.pathname === '/' ? '' : <p className='text-s text-blue-grey-700 mt-2'>{props.t('summary_salary', { gender: props.gender ? props.gender : '', role: props.role ? props.seo[props.locale].second_role.toLowerCase() : 'Software engineer', area: props.city_link_department ? ` à ${props.city_link_department}` : props.area ? `à ${props.area}` : `en ${props.country}`, bonus: props.bonus, participant: props.participant ? props.participant : props.compensation.post.length, plural: props.compensation.post.length > 1 ? salaries[props.locale].plural : salaries[props.locale].singular })}</p>}
+                    {router.pathname === '/' ? '' : <p className='text-s text-blue-grey-700 mt-2'>{props.t('summary_salary', { gender: props.gender ? props.gender[props.locale].gender.toLowerCase() : '', role: props.role ? props.seo[props.locale].second_role.toLowerCase() : 'Software engineer', area: props.city_link_department ? `${props.city_link_department[props.locale].area}` : props.area ? `à ${props.area}` : `${props.country}`, bonus: props.bonus, participant: props.participant ? props.participant : props.compensation.post.length, plural: props.compensation.post.length > 1 ? salaries[props.locale].plural : salaries[props.locale].singular })}</p>}
                     {router.pathname === '/' ? '' : <p className='text-xs text-blue-grey-200 mt-2'>{props.t('note')}</p>}
                 </div>
             </div>

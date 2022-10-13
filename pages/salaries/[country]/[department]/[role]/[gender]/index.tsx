@@ -20,10 +20,11 @@ import { useTranslation } from 'next-i18next';
 export const getStaticProps: GetStaticProps = async (context: any) => {
     const country: String = context.params.country;
     const role: string = context.params.role
-    const gender: string = context.params.gender;
+    
     await connectionDB();
     const locale = context.locale
     const response: any = await loadData(context.params);
+    const gender: string = response.compensation[0].sex;
     const intervalGraph = await main(response.compensation);
     const lengthKey = Object.keys(response).length
     const city_link_department = response.hasOwnProperty('city_link_department') ? Object.values(response)[lengthKey - 1] : null;
@@ -75,11 +76,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 const GenderData = (props: any) => {
     const { t } = useTranslation('seo')
-
+    console.log(props)
     return (
         <>
             <NextSeo
-                title={t('headline', {role: props.role ? props.seo[props.locale].first_role : 'Software Engineer', gender: props.gender ? props.gender : '', department: props.city_link_department ? props.city_link_department : props.department ? props.department : props.country})}
+                title={t('headline', {role: props.role ? props.seo[props.locale].first_role : 'Software Engineer', gender: props.gender ? props.gender[props.locale].gender : '', department: props.city_link_department ? props.city_link_department[props.locale].area : props.department ? props.department : props.country})}
                 description={t('description_headline', {role: props.role ? props.seo[props.locale].first_role : 'Software Engineer', department: props.department ? props.department : props.country})}
             />
             <OptimizedPage

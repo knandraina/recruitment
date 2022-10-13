@@ -59,8 +59,8 @@ const FrenchData = (props: any) => {
     return (
         <>
             <NextSeo
-                title={t('headline', {role: props.role ? props[props.locale].fr.first_role : 'Software Engineer', gender: props.gender ? props.gender : '', department: props.city_link_department ? props.city_link_department : props.department ? props.department : props.country})}
-                description={t('description_headline', {role: props.role ? props[props.locale].fr.first_role : 'Software Engineer', department: props.department ? props.department : props.country})}
+                title={t('headline', {role: props.role ? props.seo[props.locale].first_role : 'Software Engineer', gender: props.gender ? props.gender[props.locale].gender : '', department: props.city_link_department ? props.city_link_department[props.locale].area : props.department ? props.department : props.country})}
+                description={t('description_headline', {role: props.role ? props.seo[props.locale].first_role : 'Software Engineer', department: props.department ? props.department : props.country})}
             />
             <OptimizedPage
                 country={'France'}

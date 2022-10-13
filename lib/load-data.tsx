@@ -28,7 +28,7 @@ export async function loadData(params: any) {
             return {
                 compensation: response,
                 department: response[0].department,
-                city_link_department: response[0].city_linked_to_department 
+                city_link_department: response[0].city_linked_to_department_language
 
             }
         }
@@ -49,7 +49,7 @@ export async function loadData(params: any) {
                 compensation: response,
                 department: response[0].department,
                 role: Object.values(params)[2],
-                city_link_department: response[0].city_linked_to_department
+                city_link_department: response[0].city_linked_to_department_language
             }
 
         } else if (responseRole && responseGender) {
@@ -66,7 +66,7 @@ export async function loadData(params: any) {
                 compensation: response,
                 department: response[0].department,
                 gender: secondObject,
-                city_link_department: response[0].city_linked_to_department
+                city_link_department: response[0].city_linked_to_department_language
             }
 
         }
@@ -80,7 +80,7 @@ export async function loadData(params: any) {
 
         return {
             compensation: JSON.parse(JSON.stringify(res)),
-            city_link_department: JSON.parse(JSON.stringify(res[0].city_linked_to_department))
+            city_link_department: JSON.parse(JSON.stringify(res[0].city_linked_to_department_language))
         }
     }
 }

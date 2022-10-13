@@ -1,8 +1,8 @@
 {
     "basic_text": "L'ingénieur logiciel regroupe tous les rôles tels que l'ingénieur front-end, l'ingénieur back-end... . Il existe plusieurs rôles différents en génie logiciel, et chacun offre un objectif spécifique au sein de l'organisation. Ceux qui travaillent dans le domaine du développement d'applications travaillent avec les langages de programmation C # et Java pour résoudre des problèmes logiciels qui ne sont pas basés sur le Web. Les travaux de développement de systèmes consistent à créer et à coder le logiciel d'arrière-plan qui prend en charge le développement d'applications. Les développeurs Web sont responsables de la conception d'applications et de logiciels qui fonctionnent dans une variété de navigateurs Web. Les ingénieurs logiciels travaillant dans le développement de systèmes embarqués créent des logiciels et des systèmes informatiques qui fonctionnent dans des véhicules et d'autres appareils qui ne sont pas informatisés.",
     "variable_text": "{{description}}",
-    "h1": "Salaire d'un {{role}} {{gender}} {{area}}.",
-    "summary_salary": "Le bonus moyen pour un.e {{role}} {{gender}} {{area}} est de {{bonus}}. On recense {{participant}} {{plural}} pour un {{role}} {{gender}} {{area}}.",
+    "h1": "Salaire d'un {{role}} {{gender}} en {{area}}.",
+    "summary_salary": "Le bonus moyen pour un.e {{role}} {{gender}} en {{area}} est de {{bonus}}. On recense {{participant}} {{plural}} pour un {{role}} {{gender}} en {{area}}.",
     "note": "Nous n'avons pas encore assez de données pour afficher le nom de toutes les entreprises. Pour des raisons de respect de la vie privee, nous n'afficherons que les entreprises avec au moins 3 salaires.",
     "company_name": "Nom d'entreprise",
     "gender": "Sexe",

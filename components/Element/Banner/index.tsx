@@ -10,7 +10,7 @@ const Banner = (props: any) => {
                     <div className="hidden lg:block"></div>
                     <div className="">
                         <p className="text-xl text-light-blue-400 mt-2 text-left content-center">{props.data.compensation}</p>
-                        <p className="text-blue-grey-200 text-sm text-left content-center">Average salary</p>
+                        <p className="text-blue-grey-200 text-sm text-left content-center">{props.t('average')}</p>
                     </div>
                     <div className="hidden lg:block">
                         <p className="text-l text-light-blue-400 mt-2 text-left content-center">{props.data.median}K</p>
