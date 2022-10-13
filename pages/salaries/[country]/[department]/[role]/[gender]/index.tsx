@@ -75,6 +75,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 const GenderData = (props: any) => {
     const { t } = useTranslation('seo')
+
     return (
         <>
             <NextSeo

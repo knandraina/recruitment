@@ -3,8 +3,6 @@ import { withTranslation } from 'react-i18next';
 
 const Banner = (props: any) => {
 
-    console.log(props)
-
     return (
         <div className="grid grid-cols-12 px-4 content-center">
             <div className="bg-blue-grey-70 place-items-stretch col-start-2 col-span-9 lg:col-start-4 lg:col-span-6 rounded-lg shadow mt-10">

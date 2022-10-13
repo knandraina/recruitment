@@ -73,8 +73,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 const DepartmentData = (props: any) => {
     const { t } = useTranslation('seo')
-    console.log(props.seo, props.locale, props.seo[props.locale].first_role)
-
+    
     return (
         <>
             <NextSeo
