@@ -1,0 +1,23 @@
+{
+    "basic_text": "Software Engineer gather all the role like Front-end Engineer, Back-end Engineer... . There are several different Software Engineering roles, and each one offers a specific focus within the organization. Those in the applications development field work with C# and Java programming languages to problem solve software that is not web based. Systems development jobs consist of creating and coding the background software that supports the development of applications. Web developers are responsible for designing applications and software that work in a variety of web browsers. Software Engineers working in embedded systems development create software and computing systems that work in vehicles and other devices that are not computer based.",
+    "variable_text": "{{description}}",
+    "h1": "{{role}} salary {{gender}} in {{area}}.",
+    "summary_salary": "The average bonus for {{gender}} {{role}} in {{area}} is {{bonus}}. {{participant}} {{plural}} from {{gender}} {{role}} has been posted in {{area}}.",
+    "note": "Currently, we don&apos;t have enough data to disclose company name. For privacy reason, we will divulge company name only when we have more than 3 answers per company.",
+    "company_name": "Company name",
+    "gender": "Gender",
+    "role": "Category Role",
+    "salary": "Salary",
+    "bonus": "Bonus",
+    "years_of_experience": "Years of experience",
+    "seniority": "Seniority",
+    "location": "Location",
+    "office": "Office",
+    "average": "Average salary",
+    "main_cta_banner": "Get help to raise your salary",
+    "second_cta_banner": "Share your salary",
+    "feedback": "Share your feedback",
+    "tagline": "Level Up your salary",
+    "description": "Stop asking yourself if you are paid correctly or not. Leverage our database to get confidence when you ask for your next raise or to know if your next company will pay you well compared to competitor.",
+    "salary_translation": "Salary in"
+}

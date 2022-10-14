@@ -14,6 +14,7 @@ export default function Footer() {
 
     const [variable, setVariable] = useState<any>('')
 
+
     useEffect(() => {
         async function fetchData() {
             const response = Object.keys(router.query);

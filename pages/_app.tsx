@@ -1,5 +1,7 @@
 
 import type { AppProps } from 'next/app'
+import { appWithTranslation } from 'next-i18next';
+
 
 import { AnalyticsBrowser } from '@segment/analytics-next'
 
@@ -28,4 +30,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   )
 }
 
-export default MyApp
+export default appWithTranslation(MyApp);

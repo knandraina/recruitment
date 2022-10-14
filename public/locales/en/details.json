@@ -1,0 +1,14 @@
+{
+    "company_name": "Company name",
+    "gender": "Gender",
+    "role": "Category Role",
+    "salary": "Salary",
+    "bonus": "Bonus",
+    "years_of_experience": "Years of experience",
+    "seniority": "Seniority",
+    "location": "Location",
+    "office": "Office",
+    "average": "Average salary",
+    "main_cta_banner": "Get help to raise your salary",
+    "second_cta_banner": "Share your salary"
+}

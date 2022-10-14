@@ -1,3 +1,4 @@
+import { withTranslation } from 'react-i18next';
 
 import Banner from "../Element/Banner"
 import Panel from "../Element/Panel"
@@ -7,28 +8,32 @@ interface OptimizedPageProps {
     compensation: number,
     median: number,
     role?: string
-    gender?: string,
+    gender?: any,
     country?: string,
-    city_link_department?: string,
+    city_link_department?: any,
     seventhPercentileCompensation?: any,
     ninetythPercentileCompensation?: any,
     bonus?: any,
-    seo?: any
+    seo?: any,
+    t?: any,
+    locale?: any
 }
 
 const Page = (props: OptimizedPageProps) => {
-    const text = 'Software Engineer gather all the role like Front-end Engineer, Back-end Engineer... . There are several different Software Engineering roles, and each one offers a specific focus within the organization. Those in the applications development field work with C# and Java programming languages to problem solve software that is not web based. Systems development jobs consist of creating and coding the background software that supports the development of applications. Web developers are responsible for designing applications and software that work in a variety of web browsers. Software Engineers working in embedded systems development create software and computing systems that work in vehicles and other devices that are not computer based.'
+
 
     return (
         <>
             <div className="grid grid-cols-12 gap-4 px-4 sm:px-6 lg:px-8">
                 <div className="col-start-2 col-span-10">
                     <h1 className="text-2xl tracking-tight font-bold text-blue-grey-800 sm:text-4xl md:text-3xl mt-4">
-                        <span className="block xl:inline">{`${props.role ? props.seo[0] : 'Software Engineer'} salary ${props.gender ? `for ${props.gender}` : ''} in ${props.city_link_department ? props.city_link_department : props.area ? props.area : props.country}`}.</span>{' '}
+                        {props.locale === 'fr' ?
+                            <span className="block xl:inline">{props.t('h1', { role: props.role ? props.seo.fr.first_role : 'Software Engineer', gender: props.gender ? `${props.gender[props.locale].gender.toLowerCase()}` : '', area: props.city_link_department ? `${props.city_link_department[props.locale].area}` : props.area ? `à ${props.area}` : `${props.country}` })}</span> :
+                            <span className="block xl:inline">{props.t('h1', { role: props.role ? props.seo.en.first_role : 'Software Engineer', gender: props.gender ? `for ${props.gender[props.locale].gender.toLowerCase()}` : '', area: props.city_link_department ? props.city_link_department[props.locale].area : props.area ? props.area : props.country })}</span>}
                     </h1>
                 </div>
             </div>
-            {props.role? <Panel text={props.seo[2]} />: <Panel text={text} />}  
+            {props.role ? <Panel text={props.t('variable_text', { description: props.seo[props.locale].description })} /> : <Panel text={props.t('basic_text')} />}
             <Banner data={props} />
             <div className="px-4 sm:px-6 lg:px-8">
                 <div className="mt-8 flex flex-col grid grid-cols-12">
@@ -40,4 +45,4 @@ const Page = (props: OptimizedPageProps) => {
     )
 }
 
-export default Page
+export default withTranslation()(Page)
