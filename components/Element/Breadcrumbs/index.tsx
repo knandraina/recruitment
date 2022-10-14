@@ -10,6 +10,7 @@ import Link from 'next/link';
 
 
 const departmentChoice = [
+    { entity: '', data: '' },
      { entity: 'department', data: 'bouches-du-rhone' } ,
      { entity: 'department', data: 'paris' } ,
      { entity: 'department', data: 'alpes-maritimes' } ,
@@ -24,7 +25,7 @@ const departmentChoice = [
      { entity: 'department', data: 'maine et loire' } ,
      { entity: 'department', data: 'lorraine' } ,
     {
-      params: { country: 'france', department: 'alpes-de-haute-provence' }
+      params: { country: 'department', department: 'alpes-de-haute-provence' }
     },
      { entity: 'department', data: 'isere' } ,
      { entity: 'department', data: 'vienne' } ,
