@@ -29,7 +29,7 @@ const Page = (props: OptimizedPageProps) => {
                     <h1 className="text-2xl tracking-tight font-bold text-blue-grey-800 sm:text-4xl md:text-3xl mt-4">
                         {props.locale === 'fr' ?
                             <span className="block xl:inline">{props.t('h1', { role: props.role ? props.seo.fr.first_role : 'Software Engineer', gender: props.gender ? `${props.gender[props.locale].gender.toLowerCase()}` : '', area: props.city_link_department ? `${props.city_link_department[props.locale].area}` : props.area ? `à ${props.area}` : `${props.country}` })}</span> :
-                            <span className="block xl:inline">{props.t('h1', { role: props.role ? props.seo.en.first_role.toLowerCase() : 'Software Engineer', gender: props.gender ? `for ${props.gender[props.locale].gender.toLowerCase()}` : '', area: props.city_link_department ? props.city_link_department[props.locale].area : props.area ? props.area : props.country })}</span>}
+                            <span className="block xl:inline">{props.t('h1', { role: props.role ? props.seo.en.first_role : 'Software Engineer', gender: props.gender ? `for ${props.gender[props.locale].gender.toLowerCase()}` : '', area: props.city_link_department ? props.city_link_department[props.locale].area : props.area ? props.area : props.country })}</span>}
                     </h1>
                 </div>
             </div>
