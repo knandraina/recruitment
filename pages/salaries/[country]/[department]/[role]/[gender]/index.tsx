@@ -24,6 +24,7 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
     await connectionDB();
     const locale = context.locale
     const response: any = await loadData(context.params);
+
     const gender: string = response.compensation[0].sex;
     const intervalGraph = await main(response.compensation);
     const lengthKey = Object.keys(response).length
@@ -76,7 +77,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 const GenderData = (props: any) => {
     const { t } = useTranslation('seo')
-    console.log(props)
+
     return (
         <>
             <NextSeo
