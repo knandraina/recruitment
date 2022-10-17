@@ -1,0 +1,14 @@
+{
+    "company_name": "Nom d'entreprise",
+    "gender": "Sexe",
+    "role": "Titre",
+    "salary": "Salaire",
+    "bonus": "Bonus",
+    "years_of_experience": "Années d'experience",
+    "seniority": "Séniorité",
+    "location": "Localisation",
+    "office": "Office",
+    "average": "Salaire moyen",
+    "main_cta_banner": "Demander de l'aide pour augmenter son salaire",
+    "second_cta_banner": "Partagez votre salaire"
+}

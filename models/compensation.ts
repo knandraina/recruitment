@@ -25,7 +25,9 @@ interface ICompensation {
     department_lower_case: string,
     approved: boolean,
     city_linked_to_department: string,
-    seo?: Array<string>[]
+    city_linked_to_department_language: any,
+    seo?: any,
+    sex: any
 }
 
 const CompensationSchema = new Schema<ICompensation>({
@@ -36,6 +38,7 @@ const CompensationSchema = new Schema<ICompensation>({
     role: { type: String, required: true },
     category_role: { type: String, required: true, default: 'Software Engineer' },
     gender: { type: String, enum: ['Male', 'Female', 'Other'], required: true },
+    sex: {type: Object},
     years_in_company: { type: Number, required: true, min: 0 },
     years_of_experience: { type: Number, required: true, min: 0 },
     seniority: { type: String, enum: ['Associate / Junior', 'Intermediate', 'Senior', 'Lead', 'Director / VP', 'CTO'] },
@@ -48,7 +51,8 @@ const CompensationSchema = new Schema<ICompensation>({
     department_lower_case: {type: String, required: true, unique: true, default: 'paris'},
     approved: {type: Boolean, required: true, default: false},
     city_linked_to_department: {type: String, required: true, default: 'paris'},
-    seo:[{type: String}]
+    city_linked_to_department_language: {type: Object},
+    seo:{type: Object}
 })
 
 export default mongoose.models.Compensation || mongoose.model('Compensation', CompensationSchema);

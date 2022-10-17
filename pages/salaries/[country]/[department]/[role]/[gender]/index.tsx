@@ -1,4 +1,5 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useState } from 'react';
 
 import { loadData, loadDepartmentData } from '../../../../../../lib/load-data'
@@ -12,15 +13,19 @@ import Footer from '../../../../../../components/Element/Footer';
 import { VerticalBar } from '../../../../../../components/Element/VerticalBar';
 
 import { NextSeo } from 'next-seo';
+import { useTranslation } from 'next-i18next';
 
 
 // `getStaticPaths` requires using `getStaticProps`
 export const getStaticProps: GetStaticProps = async (context: any) => {
     const country: String = context.params.country;
     const role: string = context.params.role
-    const gender: string = context.params.gender;
+    
     await connectionDB();
+    const locale = context.locale
     const response: any = await loadData(context.params);
+
+    const gender: string = response.compensation[0].sex;
     const intervalGraph = await main(response.compensation);
     const lengthKey = Object.keys(response).length
     const city_link_department = response.hasOwnProperty('city_link_department') ? Object.values(response)[lengthKey - 1] : null;
@@ -30,6 +35,7 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
     return {
         // Passed to the page component as props
         props: {
+            ...(await serverSideTranslations(locale, ['common','seo','optimizedPage', 'footer'])),
             post: response.compensation.slice(0, 50),
             country,
             department,
@@ -42,7 +48,8 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
             ninetythPercentileCompensation,
             bonus: meanBonus,
             seo: response.compensation[0].seo,
-            intervalGraph
+            intervalGraph,
+            locale
         },
     }
 }
@@ -51,20 +58,31 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
     await connectionDB();
     const path: Array<any> = await loadDepartmentData();
+
+    const fr = path.map( (items: any) => {
+        return  {...items, locale: 'fr'}
+    })
+    const en = path.map( (items: any) => {
+        return  {...items, locale: 'en'}
+    })
+
+    const languagePath = fr.concat(en)
+
     return {
-        paths: path,
+        paths: languagePath,
         fallback: false, // can also be true or 'blocking'
     }
 }
 
 
 const GenderData = (props: any) => {
+    const { t } = useTranslation('seo')
 
     return (
         <>
             <NextSeo
-                title={`Discover ${props.gender ? props.gender : ''} ${props.role ? props.seo[0] : 'Software Engineer'} salary in ${props.city_link_department ? props.city_link_department : props.department ? props.department : props.country}`}
-                description={`Leverage our database to know the ${props.role ? props.seo[0] : 'Software Engineer'} wage in ${props.city_link_department ? props.city_link_department : props.department ? props.department : props.country}`}
+                title={t('headline', {role: props.role ? props.seo[props.locale].first_role : 'Software Engineer', gender: props.gender ? props.gender[props.locale].gender : '', department: props.city_link_department ? props.city_link_department[props.locale].area : props.department ? props.department : props.country})}
+                description={t('description_headline', {role: props.role ? props.seo[props.locale].first_role : 'Software Engineer', department: props.department ? props.department : props.country})}
             />
             <OptimizedPage
                 country={'France'}
@@ -78,6 +96,7 @@ const GenderData = (props: any) => {
                 ninetythPercentileCompensation={props.ninetythPercentileCompensation}
                 bonus={props.bonus}
                 seo={props.seo}
+                locale={props.locale}
             />
             <VerticalBar compensation={props.intervalGraph} />
             <Table
@@ -90,6 +109,7 @@ const GenderData = (props: any) => {
                 city_link_department={props.city_link_department}
                 bonus={props.bonus}
                 seo={props.seo}
+                locale={props.locale}
             />
             <Footer />
         </>

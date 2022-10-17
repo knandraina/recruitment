@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { SitemapItemStream } from 'sitemap';
 
 
 const interval = [{ range: '10000-35000', j: 0 }, { range: '35000-50000', k: 0 }, { range: '50000-65000', l: 0 }, { range: '65000-80000', m: 0 }, { range: '80000-95000', n: 0 }, { range: '95000+', o: 0 }];
@@ -8,7 +9,21 @@ export const main = async (compensation: any) => {
     const getAllInterval = await buildInterval(compensation);
     const flatIntervalResult = getAllInterval.flat(2);
     const uniqueValue = await unique(flatIntervalResult, ['range', 'j']);
-    const sumOfSalariesInInterval = _.map(_.countBy(uniqueValue, "range"), (val, key) => ({ range: key, total: val }))
+
+    if (uniqueValue.length === 6) {
+        uniqueValue.forEach( (data: any) => {
+            isNaN(data.j) ? data.j = 0 : data.j = data.j
+        })
+
+        const salaries = uniqueValue.map((item:any) => {
+            return item.j
+          });
+
+        return JSON.parse(JSON.stringify(salaries))
+    } else {
+        const sumOfSalariesInInterval = _.map(_.countBy(uniqueValue, "range"), (val, key) => ({ range: key, total: val }))
+
+
     sumOfSalariesInInterval.forEach(data => {
         data.total = data.total - 1
     })
@@ -16,6 +31,10 @@ export const main = async (compensation: any) => {
     return sumOfSalariesInInterval.map(data => {
         return data.total
     })
+    }
+    
+    
+    
 
 }
 

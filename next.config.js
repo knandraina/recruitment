@@ -1,4 +1,4 @@
-let securityHeaders = []
+const { i18n } = require('./next-i18next.config');
 
 const ContentSecurityPolicy = `
     default-src 'self';
@@ -16,6 +16,7 @@ securityHeaders = ContentSecurityPolicy
 
 
 module.exports = {
+  i18n,
   reactStrictMode: true,
   async headers() {
     return [
