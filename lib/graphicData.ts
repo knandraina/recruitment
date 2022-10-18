@@ -8,13 +8,15 @@ const interval = [{ range: '10000-35000', j: 0 }, { range: '35000-50000', k: 0 }
 export const main = async (compensation: any) => {
     const getAllInterval = await buildInterval(compensation);
     const flatIntervalResult = getAllInterval.flat(2);
+
     const uniqueValue = await unique(flatIntervalResult, ['range', 'j']);
 
     if (uniqueValue.length === 6) {
         uniqueValue.forEach( (data: any) => {
             isNaN(data.j) ? data.j = 0 : data.j = data.j
         })
-        console.log(uniqueValue, compensation)
+        console.log(uniqueValue, 'uniqueValue', compensation, 'compensation')
+        console.log(getAllInterval, 'getAllInterval', flatIntervalResult, 'flatIntervalResult')
         const salaries = uniqueValue.map((item:any) => {
             return item.j
           });
