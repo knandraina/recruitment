@@ -14,7 +14,7 @@ export const main = async (compensation: any) => {
         uniqueValue.forEach( (data: any) => {
             isNaN(data.j) ? data.j = 0 : data.j = data.j
         })
-        console.log(uniqueValue)
+        console.log(uniqueValue, compensation)
         const salaries = uniqueValue.map((item:any) => {
             return item.j
           });
