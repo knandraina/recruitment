@@ -2,11 +2,12 @@ import _ from 'lodash';
 import { SitemapItemStream } from 'sitemap';
 
 
-const interval = [{ range: '10000-35000', j: 0 }, { range: '35000-50000', k: 0 }, { range: '50000-65000', l: 0 }, { range: '65000-80000', m: 0 }, { range: '80000-95000', n: 0 }, { range: '95000+', o: 0 }];
+
 
 
 export const main = async (compensation: any) => {
-    const getAllInterval = await buildInterval(compensation);
+    const interval = [{ range: '10000-35000', j: 0 }, { range: '35000-50000', k: 0 }, { range: '50000-65000', l: 0 }, { range: '65000-80000', m: 0 }, { range: '80000-95000', n: 0 }, { range: '95000+', o: 0 }];
+    const getAllInterval = await buildInterval(compensation, interval);
     const flatIntervalResult = getAllInterval.flat(2);
 
     const uniqueValue = await unique(flatIntervalResult, ['range', 'j']);
@@ -42,7 +43,7 @@ export const main = async (compensation: any) => {
 
 }
 
-const buildInterval = async (compensation: any) => {
+const buildInterval = async (compensation: any, interval: any) => {
     return compensation.map((item: any) => {
         return interval.map((data: any) => {
             if (item.revenue >= 10000 && item.revenue < 35000) {
