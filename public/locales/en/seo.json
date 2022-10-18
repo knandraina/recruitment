@@ -1,4 +1,4 @@
 {
-    "headline": "Discover {{gender}} {{role}} salary in {{department}}",
+    "headline": "{{gender}} {{role}} salary in {{department}}",
     "description_headline": "`Leverage our database to know the {{role}} wage in {{department}}`"
 }
