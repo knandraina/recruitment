@@ -1,14 +1,17 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { withTranslation, WithTranslation } from 'next-i18next';
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { Disclosure, Menu } from '@headlessui/react'
 import Button from '../Button'
 import Modal from '../Modal';
 import SecondaryButton from '../SecondaryButton';
+import Link from 'next/link';
 
 
 function NavBar() {
 
+    const router = useRouter()
     const [modal, setModal] = useState(false);
 
     const handleModal = async (e: React.BaseSyntheticEvent) => {
@@ -55,10 +58,15 @@ function NavBar() {
                                     <div>
                                         {<Modal open={modal} handleChange={handleChange} />}
                                         {/* <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"> */}
-                                             <SecondaryButton value='Share your feedback' handleSubmit={handleModal} />
+                                        <SecondaryButton value='Share your feedback' handleSubmit={handleModal} />
                                         {/* </Menu.Button> */}
                                     </div>
+
                                 </Menu>
+                                {router.locale === 'en' ?
+                                    <div className='ml-1'><Link href={`https://salaries.cc/fr${router.asPath}`}><a>Changer le site en Francais</a></Link></div> :
+                                    <div className='ml-1'><Link href={`https://salaries.cc${router.asPath}`}><a>Change the website in English</a></Link></div>
+                                }
                             </div>
                         </div>
                     </div>
