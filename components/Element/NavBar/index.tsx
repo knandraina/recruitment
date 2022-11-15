@@ -63,6 +63,7 @@ function NavBar() {
                                     </div>
 
                                 </Menu>
+                                
                                 {router.locale === 'en' ?
                                     <div className='ml-1'><Link href={`https://salaries.cc/fr${router.asPath}`}><a>Changer le site en Francais</a></Link></div> :
                                     <div className='ml-1'><Link href={`https://salaries.cc${router.asPath}`}><a>Change the website in English</a></Link></div>
