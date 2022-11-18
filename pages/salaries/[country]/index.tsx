@@ -88,7 +88,6 @@ const FrenchData = (props: any) => {
                 seo={props.seo}
                 locale={props.locale}
             />
-
             <Footer />
         </>
     )
