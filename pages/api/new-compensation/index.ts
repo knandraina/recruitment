@@ -246,7 +246,6 @@ async function createCompensation(
         seo: seo,
         sex: gender === 'Female' ? { "en": { "gender": "Female" }, "fr": { "gender": "Femme" } } : { "en": { "gender": "Male" }, "fr": { "gender": "Homme" } }
 
-
     })
     return compensation;
 }
