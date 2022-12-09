@@ -47,7 +47,7 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
             seo: response.compensation[0].seo,
             intervalGraph,
             locale,
-            job_description: response.compensation[0].job_description
+            job_description: response.compensation[0].job_description ? response.compensation[0].job_description : ''
         },
     }
 }
@@ -109,12 +109,14 @@ const DepartmentData = (props: any) => {
                 seo={props.seo}
                 locale={props.locale}
             />
-            <Faq
+
+            {props.job_description ? <Faq
                 job_description={props.job_description}
                 role={props.role}
                 locale={props.locale}
                 seo={props.seo}
-            />
+            /> : ''}
+            
 
             <Footer />
         </>

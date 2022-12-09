@@ -21,7 +21,7 @@ import { useTranslation } from 'next-i18next';
 export const getStaticProps: GetStaticProps = async (context: any) => {
     const country: String = context.params.country;
     const role: string = context.params.role
-    
+
     await connectionDB();
     const locale = context.locale
     const response: any = await loadData(context.params);
@@ -36,7 +36,7 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
     return {
         // Passed to the page component as props
         props: {
-            ...(await serverSideTranslations(locale, ['common','seo','optimizedPage', 'footer'])),
+            ...(await serverSideTranslations(locale, ['common', 'seo', 'optimizedPage', 'footer'])),
             post: response.compensation.slice(0, 50),
             country,
             department,
@@ -51,7 +51,7 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
             seo: response.compensation[0].seo,
             intervalGraph,
             locale,
-            job_description: response.compensation[0].job_description
+            job_description: response.compensation[0].job_description ? response.compensation[0].job_description : ''
         },
     }
 }
@@ -61,11 +61,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
     await connectionDB();
     const path: Array<any> = await loadDepartmentData();
 
-    const fr = path.map( (items: any) => {
-        return  {...items, locale: 'fr'}
+    const fr = path.map((items: any) => {
+        return { ...items, locale: 'fr' }
     })
-    const en = path.map( (items: any) => {
-        return  {...items, locale: 'en'}
+    const en = path.map((items: any) => {
+        return { ...items, locale: 'en' }
     })
 
     const languagePath = fr.concat(en)
@@ -84,8 +84,8 @@ const GenderData = (props: any) => {
     return (
         <>
             <NextSeo
-                title={t('headline', {role: props.role ? props.seo[props.locale].first_role : 'Software Engineer', gender: props.gender ? props.gender[props.locale].gender : '', department: props.city_link_department ? props.city_link_department[props.locale].area : props.department ? props.department : props.country})}
-                description={t('description_headline', {role: props.role ? props.seo[props.locale].first_role : 'Software Engineer', department: props.department ? props.department : props.country})}
+                title={t('headline', { role: props.role ? props.seo[props.locale].first_role : 'Software Engineer', gender: props.gender ? props.gender[props.locale].gender : '', department: props.city_link_department ? props.city_link_department[props.locale].area : props.department ? props.department : props.country })}
+                description={t('description_headline', { role: props.role ? props.seo[props.locale].first_role : 'Software Engineer', department: props.department ? props.department : props.country })}
             />
             <OptimizedPage
                 country={'France'}
@@ -114,12 +114,12 @@ const GenderData = (props: any) => {
                 seo={props.seo}
                 locale={props.locale}
             />
-             <Faq
+            {props.job_description ? <Faq
                 job_description={props.job_description}
                 role={props.role}
                 locale={props.locale}
                 seo={props.seo}
-            />
+            /> : ''}
             <Footer />
         </>
     )
