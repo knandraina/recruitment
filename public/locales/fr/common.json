@@ -19,5 +19,10 @@
     "feedback": "Partagez vos critiques",
     "tagline": "Augmenter votre salaire",
     "description": "Arrêtez de vous demander si vous êtes payé correctement ou non. Tirez parti de notre base de données pour avoir confiance lorsque vous demanderez votre prochaine augmentation ou pour savoir si votre prochaine entreprise vous paiera bien par rapport à un concurrent.",
-    "salary_translation": "Salaire en"
+    "salary_translation": "Salaire en",
+    "faq": "Questions récurrentes",
+    "first_question": "Pouvez-vous partager un exemple d'offre d'emploi pour un {{role}}?",
+    "responsability": "Missions",
+    "qualification": "Compétences",
+    "context_question": "C'est un exemple d'offre d'emploi. Bien sûr il en existe plein d'autres!"
 }

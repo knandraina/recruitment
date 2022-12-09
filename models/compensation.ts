@@ -27,7 +27,8 @@ interface ICompensation {
     city_linked_to_department: string,
     city_linked_to_department_language: any,
     seo?: any,
-    sex: any
+    sex: any,
+    job_description: any
 }
 
 const CompensationSchema = new Schema<ICompensation>({
@@ -38,7 +39,7 @@ const CompensationSchema = new Schema<ICompensation>({
     role: { type: String, required: true },
     category_role: { type: String, required: true, default: 'Software Engineer' },
     gender: { type: String, enum: ['Male', 'Female', 'Other'], required: true },
-    sex: {type: Object},
+    sex: { type: Object },
     years_in_company: { type: Number, required: true, min: 0 },
     years_of_experience: { type: Number, required: true, min: 0 },
     seniority: { type: String, enum: ['Associate / Junior', 'Intermediate', 'Senior', 'Lead', 'Director / VP', 'CTO'] },
@@ -48,11 +49,12 @@ const CompensationSchema = new Schema<ICompensation>({
     contract: { type: String, enum: ['Full-Time', 'Part-Time', 'Freelance'], required: true },
     anonymous: { type: Boolean, required: true, default: false },
     department: { type: String, required: true, default: 'Paris' },
-    department_lower_case: {type: String, required: true, unique: true, default: 'paris'},
-    approved: {type: Boolean, required: true, default: false},
-    city_linked_to_department: {type: String, required: true, default: 'paris'},
-    city_linked_to_department_language: {type: Object},
-    seo:{type: Object}
+    department_lower_case: { type: String, required: true, unique: true, default: 'paris' },
+    approved: { type: Boolean, required: true, default: false },
+    city_linked_to_department: { type: String, required: true, default: 'paris' },
+    city_linked_to_department_language: { type: Object },
+    seo: { type: Object },
+    job_description: { type: Object }
 })
 
 export default mongoose.models.Compensation || mongoose.model('Compensation', CompensationSchema);

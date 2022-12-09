@@ -76,7 +76,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             industry,
             anonymous,
             feedback_job_form,
-            solution_tested, seo)
+            solution_tested,
+             seo)
 
 
         await analytics.track({

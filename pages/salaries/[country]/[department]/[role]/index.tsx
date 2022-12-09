@@ -9,6 +9,7 @@ import Table from '../../../../../components/Table/table';
 import OptimizedPage from '../../../../../components/Page/OptimizedPage'
 import Footer from '../../../../../components/Element/Footer';
 import { main } from '../../../../../lib/graphicData';
+import Faq from '../../../../../components/Faq';
 
 import { NextSeo } from 'next-seo';
 import { useTranslation } from 'next-i18next';
@@ -46,7 +47,8 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
             bonus: meanBonus,
             seo: response.compensation[0].seo,
             intervalGraph,
-            locale
+            locale,
+            job_description: response.compensation[0].job_description
         },
     }
 }
@@ -74,7 +76,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 
 const RoleData = (props: any) => {
-
+    console.log(props)
     const { t } = useTranslation('seo')
     
 
@@ -110,6 +112,12 @@ const RoleData = (props: any) => {
                 bonus={props.bonus}
                 seo={props.seo}
                 locale={props.locale}
+            />
+             <Faq
+                job_description={props.job_description}
+                role={props.role}
+                locale={props.locale}
+                seo={props.seo}
             />
             <Footer />
         </>

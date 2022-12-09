@@ -4,6 +4,7 @@ import { findUniqueValues } from '../lib/slugLoad'
 
 
 export async function loadData(params: any) {
+
     // Call an external API endpoint to get posts
     const res = await Compensation.find({ approved: true }).populate("company")
     const uniqueValue = await findUniqueValues(res);
@@ -16,6 +17,7 @@ export async function loadData(params: any) {
         return {compensation: JSON.parse(JSON.stringify(res))};
     } else if (Object.keys(params).length === 2) {
         const response:any = await retrieveDataWithTwoArg(params);
+        console.log(response[0].job_description)
         const responseRole = await checkRole(uniqueRole, Object.values(params)[1]);
         if (!responseRole) {
             const responseDepartment = await checkDepartment(uniqueDepartment, Object.values(params)[1])
@@ -34,7 +36,8 @@ export async function loadData(params: any) {
         }
         return {
             compensation: response,
-            role: Object.values(params)[1]
+            role: Object.values(params)[1],
+            // job_description: response[0].job_description
         }
     } else if (Object.keys(params).length === 3) {
         const secondObject: any = Object.values(params)[2];
@@ -49,7 +52,8 @@ export async function loadData(params: any) {
                 compensation: response,
                 department: response[0].department,
                 role: Object.values(params)[2],
-                city_link_department: response[0].city_linked_to_department_language
+                city_link_department: response[0].city_linked_to_department_language,
+                // job_description: response[0].job_description
             }
 
         } else if (responseRole && responseGender) {
@@ -57,7 +61,8 @@ export async function loadData(params: any) {
             return {
                 compensation: response,
                 role: Object.values(params)[1],
-                gender: response[0].sex
+                gender: response[0].sex,
+                // job_description: response[0].job_description
             }
 
         } else if (responseDepartment && responseGender) {
@@ -66,7 +71,7 @@ export async function loadData(params: any) {
                 compensation: response,
                 department: response[0].department,
                 gender: response[0].sex,
-                city_link_department: response[0].city_linked_to_department_language
+                // city_link_department: response[0].city_linked_to_department_language
             }
 
         }
@@ -130,6 +135,7 @@ export async function loadDepartmentData() {
                 department: data.department_lower_case,
                 role: data.category_role,
                 gender: data.gender.toLowerCase(),
+                
             }
         }
     })
