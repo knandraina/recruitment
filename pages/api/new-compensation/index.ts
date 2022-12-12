@@ -76,7 +76,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             industry,
             anonymous,
             feedback_job_form,
-            solution_tested, seo)
+            solution_tested,
+             seo)
 
 
         await analytics.track({
@@ -245,7 +246,6 @@ async function createCompensation(
         category_role: role,
         seo: seo,
         sex: gender === 'Female' ? { "en": { "gender": "Female" }, "fr": { "gender": "Femme" } } : { "en": { "gender": "Male" }, "fr": { "gender": "Homme" } }
-
 
     })
     return compensation;
