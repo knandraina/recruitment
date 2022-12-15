@@ -28,7 +28,7 @@ export const buildPath = async () => {
         return {
             params: {
                 country: 'france',
-                department: data.category_role
+                department: data.category_role.toLowerCase()
             },
         }
     })
@@ -85,7 +85,7 @@ export const buildPath = async () => {
         return {
             params: {
                 country: 'france',
-                department: data.category_role,
+                department: data.category_role.toLowerCase(),
                 role: data.gender.toLowerCase()
             }
         }
@@ -105,7 +105,7 @@ export const buildPath = async () => {
             params: {
                 country: 'france',
                 department: data.department_lower_case,
-                role: data.category_role
+                role: data.category_role.toLowerCase()
             }
         }
     }) 

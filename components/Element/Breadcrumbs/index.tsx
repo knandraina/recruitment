@@ -48,24 +48,24 @@ const departmentChoice = [
 
 const roleChoice = [
     { entity: '', data: '' },
-    { entity: 'role', data: 'Software Engineer, Back-end' },
-    { entity: 'role', data: 'Software Engineer, Full-Stack' },
-    { entity: 'role', data: 'Software Engineer, Front-end' },
-    { entity: 'role', data: 'Principal Engineer' },
-    { entity: 'role', data: 'DevOps' },
-    { entity: 'role', data: 'AdminSys' },
-    { entity: 'role', data: 'Data Analyst' },
-    { entity: 'role', data: 'Software Engineer' },
-    { entity: 'role', data: 'Software Architect' },
-    { entity: 'role', data: 'Data Scientist' },
-    { entity: 'role', data: 'Machine Learning Engineer' },
-    { entity: 'role', data: 'Software Security Engineer' },
-    { entity: 'role', data: 'Software Engineer, Embedded Systems' },
-    { entity: 'role', data: 'Software Engineer, Mobile' },
-    { entity: 'role', data: 'Engineering Director' },
-    { entity: 'role', data: 'Software Engineer, Digital Signal Processing Systems' },
-    { entity: 'role', data: 'CTO' },
-    { entity: 'role', data: 'Data Engineer' },]
+    { entity: 'role', data: 'Software Engineer, Back-end'.toLowerCase() },
+    { entity: 'role', data: 'Software Engineer, Full-Stack'.toLowerCase() },
+    { entity: 'role', data: 'Software Engineer, Front-end'.toLowerCase() },
+    { entity: 'role', data: 'Principal Engineer'.toLowerCase() },
+    { entity: 'role', data: 'DevOps'.toLowerCase() },
+    { entity: 'role', data: 'AdminSys'.toLowerCase() },
+    { entity: 'role', data: 'Data Analyst'.toLowerCase() },
+    { entity: 'role', data: 'Software Engineer'.toLowerCase() },
+    { entity: 'role', data: 'Software Architect'.toLowerCase() },
+    { entity: 'role', data: 'Data Scientist'.toLowerCase() },
+    { entity: 'role', data: 'Machine Learning Engineer'.toLowerCase() },
+    { entity: 'role', data: 'Software Security Engineer'.toLowerCase() },
+    { entity: 'role', data: 'Software Engineer, Embedded Systems'.toLowerCase() },
+    { entity: 'role', data: 'Software Engineer, Mobile'.toLowerCase() },
+    { entity: 'role', data: 'Engineering Director'.toLowerCase() },
+    { entity: 'role', data: 'Software Engineer, Digital Signal Processing Systems'.toLowerCase() },
+    { entity: 'role', data: 'CTO'.toLowerCase() },
+    { entity: 'role', data: 'Data Engineer' .toLowerCase()},]
 
 const genderChoice = [
     { entity: '', data: '' },
@@ -143,17 +143,17 @@ export default function Breadcrumbs() {
 
         if (responseDepartment === 'department' && responseRole === 'role' && responseGender === 'gender') {
             setDepartment(department)
-            setRole(role);
+            setRole(role.toLowerCase());
             setGender(genderPath)
         } else if (responseDepartment === 'role' && responseRole === 'gender') {
-            setRole(department)
+            setRole(department.toLowerCase())
             setGender(role);
             setDepartment('');
         } else if (responseDepartment === 'department' && responseRole === 'role') {
            
             setGender('');
             setDepartment(department)
-            setRole(role);
+            setRole(role.toLowerCase());
         } else if (responseDepartment === 'department' && responseRole === 'gender') {
 
             setGender(role);
@@ -166,7 +166,7 @@ export default function Breadcrumbs() {
             setRole('');
         } else if (responseDepartment === 'role') {
 
-            setRole(department)
+            setRole(department.toLowerCase())
             setDepartment('')
             setGender('')
         } else if (responseDepartment === 'gender'){
@@ -182,47 +182,46 @@ export default function Breadcrumbs() {
     const handleChange = async (form: string, results: string) => {
         if (form === 'menu_one') {
             const i = all.findIndex((e: any) => e.data === departmentPath);
-            const responseDepartment = i !== -1 ? all[i].entity : '';
+            const responseDepartment = i !== -1 ? all[i].entity.toLowerCase() : '';
             const j = all.findIndex((e: any) => e.data === rolePath);
-            const responseRole = all[j].entity;
+            const responseRole = all[j].entity.toLowerCase();
             const k = all.findIndex((e: any) => e.data === genderPath);
-            const responseGender = k !== -1 ? all[k].entity : '';
+            const responseGender = k !== -1 ? all[k].entity.toLowerCase() : '';
 
 
             setDepartment(results);
 
             if (responseGender !== '' && responseRole !== '') {
-
-                router.push(`/salaries/france/${results}/${rolePath}/${genderPath}`);
+                router.push(`/salaries/france/${results.toLowerCase()}/${rolePath}/${genderPath}`);
             } else if (responseDepartment === 'department' && responseRole !== '') {
 
-                router.push(`/salaries/france/${results}/${rolePath}`);
+                router.push(`/salaries/france/${results.toLowerCase()}/${rolePath}`);
             } else if (responseDepartment === 'department' && responseRole === 'role' && responseGender === 'gender') {
 
-                router.push(`/salaries/france/${results}/${rolePath}/${genderPath}`)
+                router.push(`/salaries/france/${results.toLowerCase()}/${rolePath}/${genderPath}`)
             } else if (responseDepartment === 'role' && responseRole === 'gender') {
 
-                router.push(`/salaries/france/${results}/${departmentPath}/${rolePath}`)
+                router.push(`/salaries/france/${results.toLowerCase()}/${departmentPath}/${rolePath}`)
             } else if (responseDepartment === 'role' || responseDepartment === 'gender') {
 
-                router.push(`/salaries/france/${results}/${departmentPath}`)
+                router.push(`/salaries/france/${results.toLowerCase()}/${departmentPath}`)
             } else if (responseDepartment === '' && responseRole === '' && responseGender === '') {
 
-                router.push(`/salaries/france/${results}`)
+                router.push(`/salaries/france/${results.toLowerCase()}`)
             } else {
 
-                router.push(`/salaries/france/${results}`)
+                router.push(`/salaries/france/${results.toLowerCase()}`)
             }
 
 
         } else if (form === 'menu_two') {
             setRole(results);
             const i = all.findIndex((e: any) => e.data === departmentPath);
-            const responseDepartment = i !== -1 ? all[i].entity : '';
+            const responseDepartment = i !== -1 ? all[i].entity.toLowerCase() : '';
             const j = all.findIndex((e: any) => e.data === rolePath);
-            const responseRole = all[j].entity;
+            const responseRole = all[j].entity.toLowerCase();
             const k = all.findIndex((e: any) => e.data === genderPath);
-            const responseGender = k !== -1 ? all[k].entity : '';
+            const responseGender = k !== -1 ? all[k].entity.toLowerCase() : '';
 
 
 
@@ -262,11 +261,11 @@ export default function Breadcrumbs() {
         } else if (form === 'menu_three') {
 
             const i = all.findIndex((e: any) => e.data === departmentPath);
-            const responseDepartment = i !== -1 ? all[i].entity : '';
+            const responseDepartment = i !== -1 ? all[i].entity.toLowerCase() : '';
             const j = all.findIndex((e: any) => e.data === rolePath);
-            const responseRole = all[j].entity;
+            const responseRole = all[j].entity.toLowerCase();
             const k = all.findIndex((e: any) => e.data === genderPath);
-            const responseGender = k !== -1 ? all[k].entity : '';
+            const responseGender = k !== -1 ? all[k].entity.toLowerCase() : '';
 
 
 
