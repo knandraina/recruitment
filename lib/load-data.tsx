@@ -17,7 +17,6 @@ export async function loadData(params: any) {
         return {compensation: JSON.parse(JSON.stringify(res))};
     } else if (Object.keys(params).length === 2) {
         const response:any = await retrieveDataWithTwoArg(params);
-        console.log(response[0].job_description)
         const responseRole = await checkRole(uniqueRole, Object.values(params)[1]);
         if (!responseRole) {
             const responseDepartment = await checkDepartment(uniqueDepartment, Object.values(params)[1])

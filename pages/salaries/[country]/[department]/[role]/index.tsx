@@ -76,7 +76,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 
 const RoleData = (props: any) => {
-    console.log(props)
     const { t } = useTranslation('seo')
 
 
