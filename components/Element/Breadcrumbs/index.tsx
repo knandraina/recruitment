@@ -67,6 +67,7 @@ const roleChoice = [
     { entity: 'role', data: 'CTO'.toLowerCase() },
     { entity: 'role', data: 'Data Engineer' .toLowerCase()},]
 
+    
 const genderChoice = [
     { entity: '', data: '' },
     { entity: 'gender', data: 'male' },
