@@ -4,9 +4,11 @@ interface ButtonProps {
 }
 
 const Button = (props: ButtonProps) => {
+
     const handleSubmit = (e: any) => {
         props.handleSubmit(e)
     }
+    
     return (
         <div>
             <button
