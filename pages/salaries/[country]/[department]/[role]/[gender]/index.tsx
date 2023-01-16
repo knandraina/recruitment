@@ -60,6 +60,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
     await connectionDB();
     const path: Array<any> = await loadDepartmentData();
+    console.log(path);
 
     const fr = path.map((items: any) => {
         return { ...items, locale: 'fr' }

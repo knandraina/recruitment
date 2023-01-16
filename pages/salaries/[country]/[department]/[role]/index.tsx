@@ -58,6 +58,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
     await connectionDB();
     const path = await buildPath();
+    console.log(path);
 
     const fr = path.answerDepartmentRole.map((items: any) => {
         return { ...items, locale: 'fr' }
