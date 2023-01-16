@@ -101,23 +101,23 @@ const all = [
     { entity: 'department', data: 'var' },
     { entity: 'department', data: 'rhone-alpes' },
     { entity: 'department', data: 'loiret' },
-    { entity: 'role', data: 'Software Engineer, Back-end' },
-    { entity: 'role', data: 'Software Engineer, Full-Stack' },
-    { entity: 'role', data: 'Software Engineer, Front-end' },
-    { entity: 'role', data: 'Principal Engineer' },
-    { entity: 'role', data: 'DevOps' },
-    { entity: 'role', data: 'AdminSys' },
-    { entity: 'role', data: 'Data Analyst' },
-    { entity: 'role', data: 'Software Architect' },
-    { entity: 'role', data: 'Data Scientist' },
-    { entity: 'role', data: 'Machine Learning Engineer' },
-    { entity: 'role', data: 'Software Security Engineer' },
-    { entity: 'role', data: 'Software Engineer, Embedded Systems' },
-    { entity: 'role', data: 'Software Engineer, Mobile' },
-    { entity: 'role', data: 'Engineering Director' },
-    { entity: 'role', data: 'Software Engineer, Digital Signal Processing Systems' },
-    { entity: 'role', data: 'CTO' },
-    { entity: 'role', data: 'Data Engineer' },
+    { entity: 'role', data: 'Software Engineer, Back-end'.toLowerCase() },
+    { entity: 'role', data: 'Software Engineer, Full-Stack'.toLowerCase() },
+    { entity: 'role', data: 'Software Engineer, Front-end'.toLowerCase() },
+    { entity: 'role', data: 'Principal Engineer'.toLowerCase() },
+    { entity: 'role', data: 'DevOps'.toLowerCase() },
+    { entity: 'role', data: 'AdminSys'.toLowerCase() },
+    { entity: 'role', data: 'Data Analyst'.toLowerCase() },
+    { entity: 'role', data: 'Software Architect'.toLowerCase() },
+    { entity: 'role', data: 'Data Scientist'.toLowerCase() },
+    { entity: 'role', data: 'Machine Learning Engineer'.toLowerCase() },
+    { entity: 'role', data: 'Software Security Engineer'.toLowerCase() },
+    { entity: 'role', data: 'Software Engineer, Embedded Systems'.toLowerCase() },
+    { entity: 'role', data: 'Software Engineer, Mobile'.toLowerCase() },
+    { entity: 'role', data: 'Engineering Director'.toLowerCase() },
+    { entity: 'role', data: 'Software Engineer, Digital Signal Processing Systems'.toLowerCase() },
+    { entity: 'role', data: 'CTO'.toLowerCase() },
+    { entity: 'role', data: 'Data Engineer'.toLowerCase() },
     { entity: 'gender', data: 'male' },
     { entity: 'gender', data: 'female' }
 ]
@@ -264,6 +264,7 @@ export default function Breadcrumbs() {
             const i = all.findIndex((e: any) => e.data === departmentPath);
             const responseDepartment = i !== -1 ? all[i].entity.toLowerCase() : '';
             const j = all.findIndex((e: any) => e.data === rolePath);
+            console.log(all, 'test keke', j, 'marche pas', rolePath)
             const responseRole = all[j].entity.toLowerCase();
             const k = all.findIndex((e: any) => e.data === genderPath);
             const responseGender = k !== -1 ? all[k].entity.toLowerCase() : '';
