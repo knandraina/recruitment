@@ -24,7 +24,7 @@ const departmentChoice = [
      { entity: 'department', data: 'bas-rhin' } ,
      { entity: 'department', data: 'maine et loire' } ,
      { entity: 'department', data: 'lorraine' } ,
-    {  entity: 'department', department: 'alpes-de-haute-provence' },
+    {  entity: 'department', data: 'alpes-de-haute-provence' },
      { entity: 'department', data: 'isere' } ,
      { entity: 'department', data: 'vienne' } ,
      { entity: 'department', data: 'gironde' } ,
